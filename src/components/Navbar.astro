@@ -1,5 +1,6 @@
 ---
 // src/components/Navbar.astro
+
 ---
 
 <header class="navbar">
@@ -51,10 +52,16 @@
 
   .navbar__inner {
     width: 100%;
-    padding: 1.5rem 3.5rem;
+    padding: 1rem 1.25rem;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .navbar__inner {
+      padding: 1.5rem 3.5rem;
+    }
   }
 
   .navbar__logo {
@@ -63,7 +70,7 @@
   }
 
   .navbar__logo img {
-    height: 4.5rem;
+    height: clamp(2.8rem, 6vw, 4.5rem);
     width: auto;
     display: block;
     transition: opacity 0.3s ease;
@@ -147,8 +154,8 @@
     justify-content: center;
     align-items: center;
     gap: 7px;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 44px;
+    height: 44px;
     background: none;
     border: none;
     cursor: pointer;
@@ -157,8 +164,8 @@
 
   .navbar__hamburger span {
     display: block;
-    width: 24px;
-    height: 1px;
+    width: 28px;
+    height: 1.5px;
     background: #ffffff;
     border-radius: 999px;
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
@@ -198,7 +205,7 @@
 
   .mobile-menu__link {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 7vw, 3rem);
+    font-size: clamp(1.5rem, 5vw, 2rem);
     font-weight: 300;
     font-style: italic;
     letter-spacing: 0.04em;
@@ -227,7 +234,7 @@
   .mobile-menu__cta {
     font-family: var(--font-display);
     font-size: clamp(1.5rem, 5vw, 2rem);
-    font-weight: 400;
+    font-weight: 300;
     font-style: italic;
     letter-spacing: 0.04em;
     text-decoration: none;
