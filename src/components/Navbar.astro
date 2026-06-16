@@ -145,6 +145,7 @@
     grid-column: 3;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 7px;
     width: 2.5rem;
     height: 2.5rem;
@@ -269,8 +270,8 @@
       toggle.setAttribute('aria-expanded', 'true');
       menu.classList.add('is-open');
       if (lines) {
-        (lines[0] as HTMLElement).style.transform = 'translateY(3.5px) rotate(45deg)';
-        (lines[1] as HTMLElement).style.transform = 'translateY(-3.5px) rotate(-45deg)';
+        (lines[0] as HTMLElement).style.transform = 'translateY(4px) rotate(45deg)';
+        (lines[1] as HTMLElement).style.transform = 'translateY(-4px) rotate(-45deg)';
       }
       trapHandler = (e: KeyboardEvent) => {
         if (e.key === 'Escape') { closeMenu(); toggle.focus(); }
