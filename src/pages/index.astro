@@ -3,11 +3,36 @@ import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Lagoon Masáže – Mladá Boleslav">
 
-  <section
-    style="background-image: url('/hero.jpg')"
-    class="relative w-full min-h-dvh bg-cover bg-center"
-  >
+  <section id="hero" style="position:relative; overflow:hidden; display:flex;">
+    <picture style="position:absolute; inset:0; z-index:0;">
+      <source srcset="/hero-mobile.jpg" media="(max-width: 767px)" />
+      <img
+        src="/hero.jpg"
+        alt="Lagoon Masáže"
+        fetchpriority="high"
+        style="width:100%; height:100%; object-fit:cover; display:block;"
+      />
+    </picture>
     <div class="absolute inset-0 bg-black/40"></div>
   </section>
 
 </Layout>
+
+<script>
+  const setHeroHeight = () => {
+    const hero = document.getElementById('hero');
+    if (hero) hero.style.minHeight = `${window.innerHeight}px`;
+  };
+
+  let lastWidth = window.innerWidth;
+  setHeroHeight();
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth !== lastWidth) {
+      lastWidth = window.innerWidth;
+      setHeroHeight();
+    }
+  });
+
+  window.addEventListener('orientationchange', () => setTimeout(setHeroHeight, 100));
+</script>

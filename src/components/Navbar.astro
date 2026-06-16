@@ -1,0 +1,303 @@
+---
+// src/components/Navbar.astro
+---
+
+<header class="navbar">
+  <div class="navbar__inner">
+
+    <a href="/" class="navbar__logo">
+      <img src="/logo.png" alt="Lagoon Masáže" />
+    </a>
+
+    <nav class="navbar__nav">
+      <a href="#typy-masazi" class="navbar__link">Typy masáží</a>
+      <span class="navbar__dot">·</span>
+      <a href="#jak-to-funguje" class="navbar__link">Jak to u nás funguje</a>
+      <span class="navbar__dot">·</span>
+      <a href="#kontakt" class="navbar__link">Kontakt</a>
+    </nav>
+
+    <a href="#rezervace" class="navbar__cta">Rezervace</a>
+
+    <button
+      id="menu-toggle"
+      class="navbar__hamburger"
+      aria-label="Otevřít menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+</header>
+
+<div id="mobile-menu" class="mobile-menu" role="navigation">
+  <a href="#typy-masazi" class="mobile-menu__link">Typy masáží</a>
+  <a href="#jak-to-funguje" class="mobile-menu__link">Jak to u nás funguje</a>
+  <a href="#kontakt" class="mobile-menu__link">Kontakt</a>
+  <a href="#rezervace" class="mobile-menu__cta">Rezervace</a>
+</div>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+  }
+
+  .navbar__inner {
+    width: 100%;
+    padding: 1.5rem 3.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
+
+  .navbar__logo {
+    justify-self: start;
+    grid-column: 1;
+  }
+
+  .navbar__logo img {
+    height: 4.5rem;
+    width: auto;
+    display: block;
+    transition: opacity 0.3s ease;
+  }
+
+  .navbar__logo:hover img { opacity: 0.7; }
+
+  .navbar__nav {
+    display: none;
+    align-items: center;
+    justify-self: center;
+    grid-column: 2;
+    gap: 0;
+  }
+
+  .navbar__dot {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 1.3rem;
+    font-style: normal;
+    padding: 0 0.25rem;
+    user-select: none;
+  }
+
+  .navbar__link {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.4rem 1rem;
+    position: relative;
+    transition: color 0.25s ease;
+  }
+
+  .navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    right: 1rem;
+    height: 1px;
+    background: #ffffff;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .navbar__link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .navbar__cta {
+    display: none;
+    justify-self: end;
+    grid-column: 3;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--color-brown);
+    background: var(--color-gold);
+    padding: 0.6rem 2rem;
+    border-radius: 999px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .navbar__cta:hover {
+    background: #ffffff;
+    color: var(--color-brown);
+  }
+
+  .navbar__hamburger {
+    display: flex;
+    justify-self: end;
+    grid-column: 3;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .navbar__hamburger span {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: #ffffff;
+    border-radius: 999px;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    transform-origin: center;
+  }
+
+  @media (min-width: 900px) {
+    .navbar__nav       { display: flex; }
+    .navbar__cta       { display: inline-flex; align-items: center; }
+    .navbar__hamburger { display: none !important; }
+  }
+
+  /* ── MOBILE MENU ─────────────────────── */
+  @media (min-width: 900px) {
+    .mobile-menu { display: none !important; }
+  }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: var(--color-brown);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.75rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .mobile-menu.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-menu__link {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 7vw, 3rem);
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    position: relative;
+    transition: opacity 0.25s ease;
+  }
+
+  .mobile-menu__link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #ffffff;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .mobile-menu__link:hover::after { transform: scaleX(1); }
+
+  .mobile-menu__cta {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--color-brown);
+    background: var(--color-gold);
+    padding: 0.75rem 2.75rem;
+    border-radius: 999px;
+    margin-top: 0.5rem;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .mobile-menu__cta:hover {
+    background: #ffffff;
+    color: var(--color-brown);
+  }
+</style>
+
+<script>
+  let isOpen = false;
+  let trapHandler: ((e: KeyboardEvent) => void) | null = null;
+  let resizeHandler: (() => void) | null = null;
+
+  function initMenu() {
+    const toggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
+    const menu = document.getElementById('mobile-menu');
+    const lines = toggle?.querySelectorAll('span');
+    const links = menu?.querySelectorAll('a');
+
+    if (!toggle || !menu) return;
+
+    if (trapHandler) { document.removeEventListener('keydown', trapHandler); trapHandler = null; }
+    if (resizeHandler) { window.removeEventListener('resize', resizeHandler); resizeHandler = null; }
+
+    isOpen = false;
+    toggle.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('is-open');
+
+    const openMenu = () => {
+      isOpen = true;
+      toggle.setAttribute('aria-expanded', 'true');
+      menu.classList.add('is-open');
+      if (lines) {
+        (lines[0] as HTMLElement).style.transform = 'translateY(3.5px) rotate(45deg)';
+        (lines[1] as HTMLElement).style.transform = 'translateY(-3.5px) rotate(-45deg)';
+      }
+      trapHandler = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') { closeMenu(); toggle.focus(); }
+      };
+      document.addEventListener('keydown', trapHandler);
+    };
+
+    const closeMenu = () => {
+      isOpen = false;
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('is-open');
+      if (lines) {
+        (lines[0] as HTMLElement).style.transform = 'none';
+        (lines[1] as HTMLElement).style.transform = 'none';
+      }
+      if (trapHandler) { document.removeEventListener('keydown', trapHandler); trapHandler = null; }
+    };
+
+    resizeHandler = () => {
+      if (window.innerWidth >= 900 && isOpen) closeMenu();
+    };
+    window.addEventListener('resize', resizeHandler);
+
+    toggle.addEventListener('click', () => isOpen ? closeMenu() : openMenu());
+    links?.forEach(link => link.addEventListener('click', () => { if (isOpen) closeMenu(); }));
+  }
+
+  document.addEventListener('astro:page-load', initMenu);
+  initMenu();
+</script>
