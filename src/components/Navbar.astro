@@ -1,13 +1,13 @@
 ---
 // src/components/Navbar.astro
-
 ---
 
-<header class="navbar">
+<header class="navbar" id="navbar">
   <div class="navbar__inner">
 
     <a href="/" class="navbar__logo">
-      <img src="/logo.png" alt="Lagoon Masáže" />
+      <img class="navbar__logo-img navbar__logo-white" src="/logo.png"          alt="Lagoon Masáže" />
+      <img class="navbar__logo-img navbar__logo-dark"  src="/lagoon-bronze.png" alt="" aria-hidden="true" />
     </a>
 
     <nav class="navbar__nav">
@@ -42,12 +42,27 @@
 </div>
 
 <style>
+  :root {
+    --nav-duration: 0.6s;
+    --nav-ease: linear;
+  }
+
   .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 50;
+    background: transparent;
+    box-shadow: none;
+    transition:
+      background   var(--nav-duration) var(--nav-ease),
+      box-shadow   var(--nav-duration) var(--nav-ease);
+  }
+
+  .navbar.is-scrolled {
+    background: #ffffff;
+    box-shadow: 0 1px 0 rgba(74, 64, 58, 0.08);
   }
 
   .navbar__inner {
@@ -59,25 +74,38 @@
   }
 
   @media (min-width: 900px) {
-    .navbar__inner {
-      padding: 1.5rem 3.5rem;
-    }
+    .navbar__inner { padding: 1.5rem 3.5rem; }
   }
 
+  /* ── Logo crossfade ── */
   .navbar__logo {
     justify-self: start;
     grid-column: 1;
+    position: relative;
+    display: block;
+    height: clamp(2.8rem, 6vw, 4.5rem);
+    transition: opacity 0.3s linear;
   }
 
-  .navbar__logo img {
-    height: clamp(2.8rem, 6vw, 4.5rem);
+  .navbar__logo:hover { opacity: 0.7; }
+
+  .navbar__logo-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
     width: auto;
     display: block;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--nav-duration) var(--nav-ease);
   }
 
-  .navbar__logo:hover img { opacity: 0.7; }
+  .navbar__logo-white { opacity: 1; }
+  .navbar__logo-dark  { opacity: 0; }
 
+  .navbar.is-scrolled .navbar__logo-white { opacity: 0; }
+  .navbar.is-scrolled .navbar__logo-dark  { opacity: 1; }
+
+  /* ── Nav ── */
   .navbar__nav {
     display: none;
     align-items: center;
@@ -92,6 +120,7 @@
     font-style: normal;
     padding: 0 0.25rem;
     user-select: none;
+    transition: color var(--nav-duration) var(--nav-ease);
   }
 
   .navbar__link {
@@ -104,7 +133,7 @@
     text-decoration: none;
     padding: 0.4rem 1rem;
     position: relative;
-    transition: color 0.25s ease;
+    transition: color var(--nav-duration) var(--nav-ease);
   }
 
   .navbar__link::after {
@@ -114,16 +143,18 @@
     left: 1rem;
     right: 1rem;
     height: 1px;
-    background: #ffffff;
+    background: currentColor;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .navbar__link:hover::after {
-    transform: scaleX(1);
-  }
+  .navbar__link:hover::after { transform: scaleX(1); }
 
+  .navbar.is-scrolled .navbar__link { color: var(--color-brown); }
+  .navbar.is-scrolled .navbar__dot  { color: rgba(74, 64, 58, 0.25); }
+
+  /* ── CTA ── */
   .navbar__cta {
     display: none;
     justify-self: end;
@@ -138,14 +169,13 @@
     background: var(--color-gold);
     padding: 0.6rem 2rem;
     border-radius: 999px;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition: background 0.3s linear, color 0.3s linear;
   }
 
-  .navbar__cta:hover {
-    background: #ffffff;
-    color: var(--color-brown);
-  }
+  .navbar__cta:hover { background: #ffffff; color: var(--color-brown); }
+  .navbar.is-scrolled .navbar__cta:hover { background: var(--color-brown); color: #ffffff; }
 
+  /* ── Hamburger ── */
   .navbar__hamburger {
     display: flex;
     justify-self: end;
@@ -168,9 +198,13 @@
     height: 1.5px;
     background: #ffffff;
     border-radius: 999px;
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     transform-origin: center;
+    transition:
+      transform  0.2s linear,
+      background var(--nav-duration) var(--nav-ease);
   }
+
+  .navbar.is-scrolled .navbar__hamburger span { background: var(--color-brown); }
 
   @media (min-width: 900px) {
     .navbar__nav       { display: flex; }
@@ -178,7 +212,7 @@
     .navbar__hamburger { display: none !important; }
   }
 
-  /* ── MOBILE MENU ─────────────────────── */
+  /* ── Mobile menu — otevření okamžité 0.2s ── */
   @media (min-width: 900px) {
     .mobile-menu { display: none !important; }
   }
@@ -195,7 +229,7 @@
     gap: 2.75rem;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 0.2s linear;
   }
 
   .mobile-menu.is-open {
@@ -213,7 +247,6 @@
     text-decoration: none;
     text-align: center;
     position: relative;
-    transition: opacity 0.25s ease;
   }
 
   .mobile-menu__link::after {
@@ -243,27 +276,39 @@
     padding: 0.75rem 2.75rem;
     border-radius: 999px;
     margin-top: 0.5rem;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition: background 0.3s linear, color 0.3s linear;
   }
 
-  .mobile-menu__cta:hover {
-    background: #ffffff;
-    color: var(--color-brown);
-  }
+  .mobile-menu__cta:hover { background: #ffffff; color: var(--color-brown); }
 </style>
 
 <script>
   let isOpen = false;
   let trapHandler: ((e: KeyboardEvent) => void) | null = null;
   let resizeHandler: (() => void) | null = null;
+  let scrollHandler: (() => void) | null = null;
+
+  const SCROLL_THRESHOLD = 80;
 
   function initMenu() {
     const toggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
     const menu = document.getElementById('mobile-menu');
+    const navbar = document.getElementById('navbar');
     const lines = toggle?.querySelectorAll('span');
     const links = menu?.querySelectorAll('a');
 
-    if (!toggle || !menu) return;
+    if (!toggle || !menu || !navbar) return;
+
+    const updateScrollState = () => {
+      window.scrollY > SCROLL_THRESHOLD
+        ? navbar.classList.add('is-scrolled')
+        : navbar.classList.remove('is-scrolled');
+    };
+
+    if (scrollHandler) window.removeEventListener('scroll', scrollHandler);
+    scrollHandler = updateScrollState;
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    updateScrollState();
 
     if (trapHandler) { document.removeEventListener('keydown', trapHandler); trapHandler = null; }
     if (resizeHandler) { window.removeEventListener('resize', resizeHandler); resizeHandler = null; }
