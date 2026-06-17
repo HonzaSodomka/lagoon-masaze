@@ -56,8 +56,8 @@
     background: transparent;
     box-shadow: none;
     transition:
-      background   var(--nav-duration) var(--nav-ease),
-      box-shadow   var(--nav-duration) var(--nav-ease);
+      background var(--nav-duration) var(--nav-ease),
+      box-shadow var(--nav-duration) var(--nav-ease);
   }
 
   .navbar.is-scrolled {
@@ -77,30 +77,41 @@
     .navbar__inner { padding: 1.5rem 3.5rem; }
   }
 
-  /* ── Logo crossfade ── */
+  /* ── Logo crossfade — klíčová oprava ── */
   .navbar__logo {
     justify-self: start;
     grid-column: 1;
     position: relative;
-    display: block;
+    display: inline-block; /* width se přizpůsobí obsahu */
     height: clamp(2.8rem, 6vw, 4.5rem);
     transition: opacity 0.3s linear;
   }
 
   .navbar__logo:hover { opacity: 0.7; }
 
-  .navbar__logo-img {
+  /*
+    Bílé logo — normální flow, určuje šířku kontejneru.
+    Tmavé logo — absolute přes něj, stejná pozice.
+  */
+  .navbar__logo-white {
+    display: block;
+    height: 100%;
+    width: auto;
+    position: relative; /* v normálním flow = určuje šířku rodiče */
+    transition: opacity var(--nav-duration) var(--nav-ease);
+    opacity: 1;
+  }
+
+  .navbar__logo-dark {
+    display: block;
+    height: 100%;
+    width: auto;
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
-    width: auto;
-    display: block;
     transition: opacity var(--nav-duration) var(--nav-ease);
+    opacity: 0;
   }
-
-  .navbar__logo-white { opacity: 1; }
-  .navbar__logo-dark  { opacity: 0; }
 
   .navbar.is-scrolled .navbar__logo-white { opacity: 0; }
   .navbar.is-scrolled .navbar__logo-dark  { opacity: 1; }
@@ -212,7 +223,7 @@
     .navbar__hamburger { display: none !important; }
   }
 
-  /* ── Mobile menu — otevření okamžité 0.2s ── */
+  /* ── Mobile menu ── */
   @media (min-width: 900px) {
     .mobile-menu { display: none !important; }
   }
