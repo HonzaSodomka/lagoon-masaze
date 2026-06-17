@@ -2,8 +2,10 @@
 // src/components/JakToFunguje.astro
 ---
 
+
 <section id="jak-to-funguje" class="jtf">
   <div class="jtf__container">
+
 
     <div class="jtf__header">
       <span class="jtf__eyebrow">Průvodce návštěvou</span>
@@ -11,72 +13,112 @@
       <p class="jtf__subtitle">Vše co potřebujete vědět před první i&nbsp;každou další návštěvou.</p>
     </div>
 
-    <ol class="jtf__list">
 
-      <li class="jtf__item">
-        <div class="jtf__num" aria-hidden="true">01</div>
-        <div class="jtf__body">
-          <h3 class="jtf__step-title">Rezervace</h3>
-          <p class="jtf__step-text">Vše začíná výběrem termínu a&nbsp;masáže. Nejsnazší cesta je přes náš online rezervační systém — vyberete typ, délku a&nbsp;případné poznámky. Nejde to online? Zavolejte nám na <a href="tel:+420776381199" class="jtf__link">+420&nbsp;776&nbsp;381&nbsp;199</a> nebo napište na <a href="mailto:info@lagoon-masaze.cz" class="jtf__link">info@lagoon-masaze.cz</a>.</p>
+    <!-- Mobil: foto masérky před kroky -->
+    <div class="jtf__photo jtf__photo-mobile">
+      <img src="/maserky.webp" alt="Naše masérky" width="800" height="600" loading="lazy" decoding="async" />
+    </div>
+
+
+    <!-- Desktop: sidebar layout / Mobil: kroky -->
+    <div class="jtf__layout">
+
+      <ol class="jtf__list">
+
+        <li class="jtf__item">
+          <div class="jtf__num" aria-hidden="true">01</div>
+          <div class="jtf__body">
+            <h3 class="jtf__step-title">Rezervace</h3>
+            <p class="jtf__step-text">Vše začíná výběrem termínu a&nbsp;masáže. Nejsnazší cesta je přes náš online rezervační systém — vyberete typ, délku a&nbsp;případné poznámky. Nejde to online? Zavolejte nám na <a href="tel:+420776381199" class="jtf__link">+420&nbsp;776&nbsp;381&nbsp;199</a> nebo napište na <a href="mailto:info@lagoon-masaze.cz" class="jtf__link">info@lagoon-masaze.cz</a>.</p>
+          </div>
+        </li>
+
+        <li class="jtf__item">
+          <div class="jtf__num" aria-hidden="true">02</div>
+          <div class="jtf__body">
+            <h3 class="jtf__step-title">SMS s&nbsp;kódem</h3>
+            <p class="jtf__step-text">Po rezervaci obdržíte potvrzovací e-mail. 24&nbsp;hodin předem vám přijde SMS upozornění — a&nbsp;v&nbsp;ní kód od vstupních dveří, díky kterému se dostanete přímo do naší offline recepce bez čekání.</p>
+          </div>
+        </li>
+
+        <li class="jtf__item">
+          <div class="jtf__num" aria-hidden="true">03</div>
+          <div class="jtf__body">
+            <h3 class="jtf__step-title">Parkování</h3>
+            <p class="jtf__step-text">Jsme na Staroměstském náměstí — velmi frekventovaném místě. Doporučujeme počítat s&nbsp;časovou rezervou. Přímo na náměstí je podzemní parkovací dům, takže místo vždy najdete.</p>
+          </div>
+        </li>
+
+        <li class="jtf__item">
+          <div class="jtf__num" aria-hidden="true">04</div>
+          <div class="jtf__body">
+            <h3 class="jtf__step-title">Přijďte s&nbsp;předstihem</h3>
+            <p class="jtf__step-text">Masáž je o&nbsp;relaxaci, ne o&nbsp;stresu. Doporučujeme dorazit klidně 15&nbsp;minut předem. Pamatujte — rezervací máte vyhrazen přesný časový blok, který nelze prodloužit z&nbsp;ohledu na ostatní klienty.</p>
+          </div>
+        </li>
+
+        <li class="jtf__item">
+          <div class="jtf__num" aria-hidden="true">05</div>
+          <div class="jtf__body">
+            <h3 class="jtf__step-title">Offline recepce</h3>
+            <p class="jtf__step-text">Po zadání kódu vstoupíte do naší recepce, kde na vás čeká čaj, káva nebo malý snack. Přijít s&nbsp;předstihem se vyplatí — v&nbsp;luxusním prostoru si klidně počkáte a&nbsp;nalaďte se na relaxaci. WC najdete na konci chodby.</p>
+          </div>
+        </li>
+
+        <li class="jtf__item">
+          <div class="jtf__num" aria-hidden="true">06</div>
+          <div class="jtf__body">
+            <h3 class="jtf__step-title">Průběh masáže</h3>
+            <p class="jtf__step-text">Masérka vás vyzvedne a&nbsp;společně vyberete olej z&nbsp;přírodních zdrojů — všechny se nahřívají ve speciálním boxu. V&nbsp;chodbě najdete jednorázové doplňky. Před vstupem do místnosti sundáte boty a&nbsp;nasadíte pantofle. Osobní věci si vezměte s&nbsp;sebou do místnosti. Jakmile budete připraveni, masérka zaklepe a&nbsp;začínáme.</p>
+          </div>
+        </li>
+
+        <li class="jtf__item">
+          <div class="jtf__num" aria-hidden="true">07</div>
+          <div class="jtf__body">
+            <h3 class="jtf__step-title">Na závěr</h3>
+            <p class="jtf__step-text">Platba probíhá přímo masérce v&nbsp;místnosti. Chcete-li nechat spropitné, je v&nbsp;místnosti připravená nádoba. Po masáži si dopřejte čaj nebo kávu na recepci — klid po masáži je stejně důležitý jako masáž samotná.</p>
+          </div>
+        </li>
+
+      </ol>
+
+      <aside class="jtf__sidebar" aria-hidden="true">
+        <div class="jtf__sidebar-inner">
+          <div class="jtf__photo">
+            <img src="/maserky.webp" alt="" width="600" height="450" loading="lazy" decoding="async" />
+          </div>
+          <div class="jtf__photo">
+            <img src="/recepce.webp" alt="" width="600" height="450" loading="lazy" decoding="async" />
+          </div>
+          <div class="jtf__photo">
+            <img src="/prostory.webp" alt="" width="600" height="450" loading="lazy" decoding="async" />
+          </div>
         </div>
-      </li>
+      </aside>
 
-      <li class="jtf__item">
-        <div class="jtf__num" aria-hidden="true">02</div>
-        <div class="jtf__body">
-          <h3 class="jtf__step-title">SMS s&nbsp;kódem</h3>
-          <p class="jtf__step-text">Po rezervaci obdržíte potvrzovací e-mail. 24&nbsp;hodin předem vám přijde SMS upozornění — a&nbsp;v&nbsp;ní kód od vstupních dveří, díky kterému se dostanete přímo do naší offline recepce bez čekání.</p>
-        </div>
-      </li>
+    </div>
 
-      <li class="jtf__item">
-        <div class="jtf__num" aria-hidden="true">03</div>
-        <div class="jtf__body">
-          <h3 class="jtf__step-title">Parkování</h3>
-          <p class="jtf__step-text">Jsme na Staroměstském náměstí — velmi frekventovaném místě. Doporučujeme počítat s&nbsp;časovou rezervou. Přímo na náměstí je podzemní parkovací dům, takže místo vždy najdete.</p>
-        </div>
-      </li>
 
-      <li class="jtf__item">
-        <div class="jtf__num" aria-hidden="true">04</div>
-        <div class="jtf__body">
-          <h3 class="jtf__step-title">Přijďte s&nbsp;předstihem</h3>
-          <p class="jtf__step-text">Masáž je o&nbsp;relaxaci, ne o&nbsp;stresu. Doporučujeme dorazit klidně 15&nbsp;minut předem. Pamatujte — rezervací máte vyhrazen přesný časový blok, který nelze prodloužit z&nbsp;ohledu na ostatní klienty.</p>
-        </div>
-      </li>
+    <!-- Mobil: foto recepce po krokách -->
+    <div class="jtf__photo jtf__photo-mobile">
+      <img src="/recepce.webp" alt="Recepce Lagoon" width="800" height="600" loading="lazy" decoding="async" />
+    </div>
 
-      <li class="jtf__item">
-        <div class="jtf__num" aria-hidden="true">05</div>
-        <div class="jtf__body">
-          <h3 class="jtf__step-title">Offline recepce</h3>
-          <p class="jtf__step-text">Po zadání kódu vstoupíte do naší recepce, kde na vás čeká čaj, káva nebo malý snack. Přijít s&nbsp;předstihem se vyplatí — v&nbsp;luxusním prostoru si klidně počkáte a&nbsp;nalaďte se na relaxaci. WC najdete na konci chodby.</p>
-        </div>
-      </li>
+    <!-- Mobil: foto prostory na konci -->
+    <div class="jtf__photo jtf__photo-mobile">
+      <img src="/prostory.webp" alt="Prostory Lagoon masáže" width="800" height="600" loading="lazy" decoding="async" />
+    </div>
 
-      <li class="jtf__item">
-        <div class="jtf__num" aria-hidden="true">06</div>
-        <div class="jtf__body">
-          <h3 class="jtf__step-title">Průběh masáže</h3>
-          <p class="jtf__step-text">Masérka vás vyzvedne a&nbsp;společně vyberete olej z&nbsp;přírodních zdrojů — všechny se nahřívají ve speciálním boxu. V&nbsp;chodbě najdete jednorázové doplňky. Před vstupem do místnosti sundáte boty a&nbsp;nasadíte pantofle. Osobní věci si vezměte s&nbsp;sebou do místnosti. Jakmile budete připraveni, masérka zaklepe a&nbsp;začínáme.</p>
-        </div>
-      </li>
-
-      <li class="jtf__item">
-        <div class="jtf__num" aria-hidden="true">07</div>
-        <div class="jtf__body">
-          <h3 class="jtf__step-title">Na závěr</h3>
-          <p class="jtf__step-text">Platba probíhá přímo masérce v&nbsp;místnosti. Chcete-li nechat spropitné, je v&nbsp;místnosti připravená nádoba. Po masáži si dopřejte čaj nebo kávu na recepci — klid po masáži je stejně důležitý jako masáž samotná.</p>
-        </div>
-      </li>
-
-    </ol>
 
     <div class="jtf__cta-wrap">
       <a href="#rezervace" class="jtf__cta">Rezervovat masáž</a>
     </div>
 
+
   </div>
 </section>
+
 
 <style>
   .jtf {
@@ -99,7 +141,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: clamp(2rem, 4vw, 3rem);
   }
 
   @media (min-width: 900px) {
@@ -137,35 +179,71 @@
     margin: 0;
   }
 
+  /* ── Sdílený styl fotek ── */
+  .jtf__photo {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 0.875rem;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .jtf__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .jtf__photo:hover img { transform: scale(1.04); }
+
+  /* ── Mobilní fotky (skryté na desktopu) ── */
+  .jtf__photo-mobile {
+    margin: clamp(2.5rem, 5vw, 4rem) 0;
+  }
+
+  @media (min-width: 900px) {
+    .jtf__photo-mobile { display: none; }
+  }
+
+  /* ── Desktop layout: kroky vlevo, sidebar vpravo ── */
+  .jtf__layout {
+    display: block;
+  }
+
+  @media (min-width: 900px) {
+    .jtf__layout {
+      display: grid;
+      grid-template-columns: 1fr clamp(300px, 30vw, 420px);
+      gap: clamp(3rem, 4vw, 4rem);
+      align-items: start;
+    }
+  }
+
+  /* ── Sidebar ── */
+  .jtf__sidebar {
+    display: none;
+  }
+
+  @media (min-width: 900px) {
+    .jtf__sidebar {
+      display: block;
+    }
+  }
+
+  .jtf__sidebar-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
   /* ── Seznam kroků ── */
   .jtf__list {
     list-style: none;
     display: grid;
     grid-template-columns: 1fr;
     gap: 0;
-    position: relative;
-  }
-
-  @media (min-width: 640px) and (max-width: 899px) {
-    .jtf__list::before {
-      content: '';
-      position: absolute;
-      left: 2.1rem;
-      top: 2.5rem;
-      bottom: 2.5rem;
-      width: 1px;
-      background: linear-gradient(
-        to bottom,
-        rgba(198, 162, 122, 0),
-        rgba(198, 162, 122, 0.2) 10%,
-        rgba(198, 162, 122, 0.2) 90%,
-        rgba(198, 162, 122, 0)
-      );
-    }
-  }
-
-  @media (min-width: 900px) {
-    .jtf__list { grid-template-columns: repeat(2, 1fr); }
   }
 
   /* ── Jednotlivý krok ── */
@@ -179,38 +257,23 @@
     transition: background 0.4s ease;
   }
 
+  .jtf__item:last-child {
+    border-bottom: none;
+  }
+
   @media (min-width: 900px) {
     .jtf__item {
-      padding: 2rem 1.5rem;
-      border: none;
+      padding: 1.75rem 1rem;
+      border-bottom: 1px solid rgba(198, 162, 122, 0.15);
       border-radius: 0.5rem;
     }
 
-    /* Jemný hover — sotva znatelný */
+    .jtf__item:last-child {
+      border-bottom: none;
+    }
+
     .jtf__item:hover {
       background: rgba(255, 255, 255, 0.02);
-    }
-
-    /* Spodní border — všechny kromě posledního (07) */
-    .jtf__item:not(:last-child)::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0.75rem;
-      right: 0.75rem;
-      height: 1px;
-      background: rgba(198, 162, 122, 0.25);
-    }
-
-    /* Pravý border — liché kromě posledního (07) */
-    .jtf__item:nth-child(odd):not(:last-child)::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 0.75rem;
-      bottom: 0.75rem;
-      width: 1px;
-      background: rgba(198, 162, 122, 0.25);
     }
   }
 
@@ -301,7 +364,8 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .jtf__item { transition: none; }
-    .jtf__cta  { transition: none; }
+    .jtf__item,
+    .jtf__photo img { transition: none; }
+    .jtf__cta       { transition: none; }
   }
 </style>

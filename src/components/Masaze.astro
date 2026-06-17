@@ -2,8 +2,10 @@
 // src/components/Masaze.astro
 ---
 
+
 <section id="typy-masazi" class="masaze">
   <div class="masaze__container">
+
 
     <div class="masaze__header">
       <span class="masaze__eyebrow">Naše nabídka</span>
@@ -11,9 +13,14 @@
       <p class="masaze__subtitle">Osm druhů orientálních procedur — každá jiná, každá výjimečná.</p>
     </div>
 
+
     <div class="masaze__grid" id="masazeGrid">
 
+
       <article class="masaze__card" data-id="0">
+        <div class="masaze__card-image">
+          <img src="/masaz-thajska.webp" alt="Thajská olejová masáž" width="600" height="600" loading="lazy" decoding="async" />
+        </div>
         <div class="masaze__card-top">
           <div class="masaze__card-icon"><i data-lucide="flame"></i></div>
           <div>
@@ -34,7 +41,11 @@
         </button>
       </article>
 
+
       <article class="masaze__card" data-id="1">
+        <div class="masaze__card-image">
+          <img src="/masaz-filipinska.webp" alt="Filipínská olejová masáž" width="600" height="600" loading="lazy" decoding="async" />
+        </div>
         <div class="masaze__card-top">
           <div class="masaze__card-icon"><i data-lucide="waves"></i></div>
           <div>
@@ -55,7 +66,11 @@
         </button>
       </article>
 
+
       <article class="masaze__card" data-id="2">
+        <div class="masaze__card-image">
+          <img src="/masaz-ajurvedska.webp" alt="Ajurvédská masáž" width="600" height="600" loading="lazy" decoding="async" />
+        </div>
         <div class="masaze__card-top">
           <div class="masaze__card-icon"><i data-lucide="sparkles"></i></div>
           <div>
@@ -76,7 +91,11 @@
         </button>
       </article>
 
+
       <article class="masaze__card" data-id="3">
+        <div class="masaze__card-image">
+          <img src="/masaz-shiatsu-abhyanga.webp" alt="Shiatsu + Abhyanga masáž" width="600" height="600" loading="lazy" decoding="async" />
+        </div>
         <div class="masaze__card-top">
           <div class="masaze__card-icon"><i data-lucide="zap"></i></div>
           <div>
@@ -97,7 +116,11 @@
         </button>
       </article>
 
+
       <article class="masaze__card" data-id="4">
+        <div class="masaze__card-image">
+          <img src="/masaz-pro-dva.webp" alt="Masáž pro dva" width="600" height="600" loading="lazy" decoding="async" />
+        </div>
         <div class="masaze__card-top">
           <div class="masaze__card-icon"><i data-lucide="heart"></i></div>
           <div>
@@ -117,7 +140,11 @@
         </button>
       </article>
 
+
       <article class="masaze__card" data-id="5">
+        <div class="masaze__card-image">
+          <img src="/masaz-reflexni-nohy.webp" alt="Reflexní masáž nohou" width="600" height="600" loading="lazy" decoding="async" />
+        </div>
         <div class="masaze__card-top">
           <div class="masaze__card-icon"><i data-lucide="footprints"></i></div>
           <div>
@@ -137,7 +164,11 @@
         </button>
       </article>
 
+
       <article class="masaze__card" data-id="6">
+        <div class="masaze__card-image">
+          <img src="/masaz-zada-sije.webp" alt="Masáž zad a šíje" width="600" height="600" loading="lazy" decoding="async" />
+        </div>
         <div class="masaze__card-top">
           <div class="masaze__card-icon"><i data-lucide="activity"></i></div>
           <div>
@@ -157,7 +188,11 @@
         </button>
       </article>
 
+
       <article class="masaze__card" data-id="7">
+        <div class="masaze__card-image">
+          <img src="/masaz-hlava-oblicej.webp" alt="Masáž hlavy a obličeje" width="600" height="600" loading="lazy" decoding="async" />
+        </div>
         <div class="masaze__card-top">
           <div class="masaze__card-icon"><i data-lucide="smile"></i></div>
           <div>
@@ -177,7 +212,11 @@
         </button>
       </article>
 
+
       <article class="masaze__card masaze__card--voucher" data-id="voucher">
+        <div class="masaze__card-image">
+          <img src="/darkovy-poukaz.webp" alt="Dárkový poukaz na masáž" width="600" height="600" loading="lazy" decoding="async" />
+        </div>
         <div class="masaze__card-top">
           <div class="masaze__card-icon"><i data-lucide="gift"></i></div>
           <div>
@@ -197,9 +236,11 @@
         </button>
       </article>
 
+
     </div>
 
-    <!-- Detail panely — výchozí stav: display:none, mimo grid, schovány v containeru -->
+
+    <!-- Detail panely -->
     <div id="masaze-detail-0" class="masaze-detail" role="region" aria-label="Detail: Thajská olejová masáž" aria-hidden="true">
       <div class="masaze-detail__inner">
         <p>Tradiční masáž kombinující práci s tlakovými body, jemné protahování a masážní olej. Pomáhá uvolnit ztuhlé svaly, zmírnit napětí v těle a podpořit celkovou regeneraci. Vhodná i pro klienty, kteří s thajskými masážemi teprve začínají.</p>
@@ -254,8 +295,10 @@
       </div>
     </div>
 
+
   </div>
 </section>
+
 
 <style>
   .masaze {
@@ -317,23 +360,7 @@
     margin: 0;
   }
 
-  /* ── Grid ──
-     column-gap na gridu, row-gap řeší margin na kartách a detail panelu
-     — margin lze animovat spolu s výškou, gap nikoli.
-
-     Karty mají margin-top/bottom 0.5rem na každou stranu (= 1rem mezi
-     řádky, stejně jako dřív gap). Nahoře by to ale přidalo zbytečných
-     0.5rem navíc pod nadpis, proto má grid kompenzační margin-top: -0.5rem.
-
-     Důležité: tahle kompenzace NESMÍ být na jednotlivé kartě (např.
-     `:first-child`), protože při 2–3 sloupcích je v prvním řádku víc
-     karet a selektor `:first-child` trefí jen úplně tu první (data-id="0").
-     Ostatní karty ve stejném řádku by si pak nesly margin-top 0.5rem,
-     grid by řádek roztáhl podle nich (align-items: stretch) a karta 0 by
-     se kvůli stretchování vykreslila vyšší než sousedi ve stejném řádku.
-     Kompenzace na .masaze__grid platí stejně pro celý řádek bez ohledu
-     na počet sloupců, takže všechny karty mají vždy identické marginy.
-  */
+  /* ── Grid ── */
   .masaze__grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -358,11 +385,31 @@
   .masaze__card:hover     { box-shadow: 0 4px 20px rgba(74, 64, 58, 0.11); }
   .masaze__card.is-active { box-shadow: 0 4px 20px rgba(74, 64, 58, 0.13); }
 
+  /* ── Obrázek nahoře ── */
+      .masaze__card-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #e8e2da;
+    flex-shrink: 0;
+    }
+    .masaze__card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .masaze__card:hover .masaze__card-image img {
+    transform: scale(1.04);
+    }
+
   .masaze__card-top {
     display: flex;
     gap: 0.875rem;
     align-items: flex-start;
-    padding: 1.5rem 1.5rem 0;
+    padding: 1.25rem 1.5rem 0.75rem;
     flex: 1;
   }
   .masaze__card-icon {
@@ -388,7 +435,7 @@
     font-size: 0.9rem;
     color: var(--brown-06);
     line-height: 1.5;
-    margin-bottom: 0.3rem;
+    margin: 0;
   }
 
   .masaze__card-footer {
@@ -399,6 +446,7 @@
     gap: 0.75rem;
     padding: 1rem 1.5rem;
     border-top: 1px solid var(--card-border);
+    margin-top: auto;
   }
   .masaze__prices         { display: flex; flex-direction: column; gap: 0.15rem; }
   .masaze__prices span    { font-family: var(--font-body); font-size: 0.875rem; color: var(--brown-06); }
@@ -446,25 +494,21 @@
   .masaze__toggle[aria-expanded="true"] .masaze__chevron { transform: rotate(180deg); }
 
   /* ── Voucher ── */
-  .masaze__card--voucher                       { background: var(--color-brown); }
-  .masaze__card--voucher .masaze__card-icon    { color: var(--color-gold); }
-  .masaze__card--voucher .masaze__card-title   { color: #fff; }
-  .masaze__card--voucher .masaze__card-short   { color: rgba(255, 255, 255, 0.6); }
-  .masaze__card--voucher .masaze__card-footer  { border-top-color: rgba(255, 255, 255, 0.1); }
-  .masaze__card--voucher .masaze__prices span  { color: rgba(255, 255, 255, 0.55); }
+  .masaze__card--voucher                        { background: var(--color-brown); }
+  .masaze__card--voucher .masaze__card-image    { background: rgba(0, 0, 0, 0.2); }
+  .masaze__card--voucher .masaze__card-icon     { color: var(--color-gold); }
+  .masaze__card--voucher .masaze__card-title    { color: #fff; }
+  .masaze__card--voucher .masaze__card-short    { color: rgba(255, 255, 255, 0.6); }
+  .masaze__card--voucher .masaze__card-footer   { border-top-color: rgba(255, 255, 255, 0.1); }
+  .masaze__card--voucher .masaze__prices span   { color: rgba(255, 255, 255, 0.55); }
   .masaze__card--voucher .masaze__prices strong { color: #fff; }
-  .masaze__card--voucher .masaze__card-cta     { color: var(--color-gold); border-color: rgba(198, 162, 122, 0.45); }
+  .masaze__card--voucher .masaze__card-cta      { color: var(--color-gold); border-color: rgba(198, 162, 122, 0.45); }
   .masaze__card--voucher .masaze__card-cta:hover { background: var(--color-gold); border-color: var(--color-gold); color: var(--color-brown); }
-  .masaze__card--voucher .masaze__toggle       { border-top-color: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.4); }
+  .masaze__card--voucher .masaze__toggle        { border-top-color: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.4); }
   .masaze__card--voucher .masaze__toggle:hover,
   .masaze__card--voucher.is-active .masaze__toggle { color: var(--color-gold); }
 
-  /* ── Detail panel ──
-     Výchozí: display:none — mimo flow, žádné rozměry ani rámeček.
-     Po vložení do gridu dostane --ready: display:grid, výška 0, marginy 0.
-     Rámeček je inset box-shadow — nepřidává k výšce, takže při zavření
-     nevzniká skok. Marginy animují spolu s výškou → plynulé otevření i zavření.
-  */
+  /* ── Detail panel ── */
   .masaze-detail {
     display: none;
     grid-column: 1 / -1;
@@ -522,16 +566,18 @@
 
   @media (prefers-reduced-motion: reduce) {
     .masaze__card,
+    .masaze__card-image img,
     .masaze-detail--ready,
     .masaze-detail__inner,
     .masaze__chevron { transition: none; }
   }
 </style>
 
+
 <script is:inline>
 (function () {
   document.addEventListener('DOMContentLoaded', function () {
-    var ANIM_MS = 420; /* shoduje se s délkou --anim v CSS */
+    var ANIM_MS = 420;
 
     var grid = document.getElementById('masazeGrid');
     if (!grid) return;
@@ -539,22 +585,20 @@
     var container = grid.closest('.masaze__container');
     var cards     = Array.from(grid.querySelectorAll('.masaze__card[data-id]'));
 
-    /* Sestav mapu id → detail element přímo z DOM */
     var details = {};
     grid.closest('.masaze__container').querySelectorAll('.masaze-detail[id]').forEach(function (el) {
       var key = el.id.replace('masaze-detail-', '');
       details[isNaN(key) ? key : parseInt(key)] = el;
     });
 
-    var openId      = null;  /* id aktuálně otevřeného detailu, nebo null */
-    var isAnimating = false; /* blokuje klikání během animace */
+    var openId      = null;
+    var isAnimating = false;
 
     function getCols() {
       var w = window.innerWidth;
       return w >= 1024 ? 3 : w >= 640 ? 2 : 1;
     }
 
-    /* Poslední karta ve stejném řádku jako karta na cardIndex */
     function getAnchor(cardIndex) {
       var row = Math.floor(cardIndex / getCols());
       var anchor = cards[cardIndex];
@@ -564,21 +608,18 @@
       return anchor;
     }
 
-    /* Vloží detail za anchor a zpřístupní ho pro animaci */
     function insertDetail(detail, anchor) {
       anchor.parentNode.insertBefore(detail, anchor.nextSibling);
       detail.classList.add('masaze-detail--ready');
       detail.setAttribute('aria-hidden', 'false');
     }
 
-    /* Odebere třídy a vrátí detail zpět do containeru */
     function detachDetail(detail) {
       detail.classList.remove('masaze-detail--ready', 'is-open');
       detail.setAttribute('aria-hidden', 'true');
       container.appendChild(detail);
     }
 
-    /* Zavře aktuálně otevřený detail; po dokončení animace zavolá cb */
     function closeActive(cb) {
       if (openId === null) { cb && cb(); return; }
 
@@ -600,15 +641,12 @@
       setTimeout(function () { detachDetail(detail); cb && cb(); }, ANIM_MS + 20);
     }
 
-    /* Otevře detail pro danou kartu */
     function openDetail(id, card, cardIndex) {
       var detail = details[id];
       if (!detail) return;
 
       insertDetail(detail, getAnchor(cardIndex));
 
-      /* Dvojitý rAF: prohlížeč musí vykreslit display:grid + výška 0
-         dřív než přidáme is-open, jinak animace neprobíhá */
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
           detail.classList.add('is-open');
@@ -621,7 +659,6 @@
       });
     }
 
-    /* Click handler */
     cards.forEach(function (card, cardIndex) {
       var btn   = card.querySelector('.masaze__toggle');
       if (!btn) return;
@@ -634,7 +671,6 @@
         if (isAnimating) return;
 
         if (openId === id) {
-          /* Klik na otevřený → zavřít */
           isAnimating = true;
           closeActive(function () { isAnimating = false; });
           return;
@@ -643,16 +679,13 @@
         isAnimating = true;
 
         if (openId === null) {
-          /* Nic není otevřeno → otevřít rovnou */
           openDetail(id, card, cardIndex);
         } else {
-          /* Jiný je otevřen → počkat na zavření, pak otevřít */
           closeActive(function () { openDetail(id, card, cardIndex); });
         }
       });
     });
 
-    /* Resize: přesuň otevřený detail za správný anchor */
     var resizeTimer;
     window.addEventListener('resize', function () {
       clearTimeout(resizeTimer);
