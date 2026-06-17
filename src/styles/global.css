@@ -19,7 +19,17 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+html {
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px; /* mobil — navbar je ~64px, +8px rezerva */
+}
+
+@media (min-width: 900px) {
+  html {
+    scroll-padding-top: 100px; /* desktop — navbar je ~88px, +12px rezerva */
+  }
+}
 
 body {
   font-family: var(--font-body);
