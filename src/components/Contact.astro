@@ -5,6 +5,7 @@
 <section id="kontakt" class="contact">
   <div class="contact__container">
 
+    <!-- ── levý sloupec: info ── -->
     <div class="contact__info">
       <span class="contact__label">Kontakt</span>
       <h2 class="contact__heading">Přijďte na&nbsp;místo,<br/>kde se čas zastaví</h2>
@@ -57,21 +58,46 @@
       <a href="#rezervace" class="contact__cta">Rezervovat termín</a>
     </div>
 
-    <div class="contact__map-wrap">
-      <iframe
-        class="contact__map"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2000!2d14.90247369690523!3d50.41018080615023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDI0JzM2LjciTiAxNMKwNTQnMDguOSJF!5e0!3m2!1scs!2scz!4v1"
-        width="100%" height="100%"
-        style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Mapa – Lagoon Masáže, Staroměstské náměstí 19/23, Mladá Boleslav"
-      ></iframe>
-    </div>
+    <!-- ── pravý sloupec: fotka + mapa ── -->
+    <div class="contact__visual">
 
+      <!-- Fotka studia -->
+      <div class="contact__photo-wrap">
+        <img
+          src="/studio.webp"
+          alt="Interiér studia Lagoon Masáže"
+          class="contact__photo"
+          loading="lazy"
+          width="800"
+          height="600"
+        />
+      </div>
+
+      <!-- Delikátní oddělovač -->
+      <div class="contact__divider" aria-hidden="true">
+        <span class="contact__divider-line"></span>
+        <span class="contact__divider-dot"></span>
+        <span class="contact__divider-line"></span>
+      </div>
+
+      <!-- Mapa -->
+      <div class="contact__map-wrap">
+        <iframe
+          class="contact__map"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2000!2d14.90247369690523!3d50.41018080615023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDI0JzM2LjciTiAxNMKwNTQnMDguOSJF!5e0!3m2!1scs!2scz!4v1"
+          width="100%" height="100%"
+          style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mapa – Lagoon Masáže, Staroměstské náměstí 19/23, Mladá Boleslav"
+        ></iframe>
+      </div>
+
+    </div>
   </div>
 </section>
 
 <style>
+  /* ── sekce ── */
   .contact {
     background: var(--color-bg);
     padding-block: clamp(4rem, 8vw, 7rem);
@@ -87,6 +113,7 @@
     align-items: start;
   }
 
+  /* ── levý sloupec ── */
   .contact__label {
     display: block;
     font-family: var(--font-body);
@@ -191,11 +218,97 @@
   }
   .contact__cta:hover { background: var(--color-brown); color: #fff; }
 
-  .contact__map-wrap {
-    height: 380px;
-    border-radius: 1.25rem;
+  /* ── pravý sloupec ── */
+  .contact__visual {
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* gap řídí divider */
+  }
+
+  /* fotka */
+  .contact__photo-wrap {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 1.25rem 1.25rem 0 0;
     overflow: hidden;
     border: 1px solid rgba(74, 64, 58, 0.08);
+    border-bottom: none;
+    box-shadow: 0 8px 32px rgba(74, 64, 58, 0.07);
+  }
+
+  .contact__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .contact__photo-wrap:hover .contact__photo {
+    transform: scale(1.04);
+  }
+
+  /* tmavý přechod dole + badge */
+  .contact__photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 55%,
+      rgba(44, 36, 30, 0.45) 100%
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: 1.25rem 1.5rem;
+    pointer-events: none;
+  }
+
+  .contact__photo-badge {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  /* oddělovač */
+  .contact__divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-inline: 0.25rem;
+    background: var(--color-bg);
+    border-inline: 1px solid rgba(74, 64, 58, 0.08);
+    padding-block: 0.85rem;
+  }
+
+  .contact__divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      rgba(198, 162, 122, 0.0),
+      rgba(198, 162, 122, 0.4),
+      rgba(198, 162, 122, 0.0)
+    );
+  }
+
+  .contact__divider-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+
+  /* mapa */
+  .contact__map-wrap {
+    height: 240px;
+    border-radius: 0 0 1.25rem 1.25rem;
+    overflow: hidden;
+    border: 1px solid rgba(74, 64, 58, 0.08);
+    border-top: none;
     box-shadow: 0 8px 32px rgba(74, 64, 58, 0.07);
   }
 
@@ -205,8 +318,21 @@
     display: block;
   }
 
+  /* ── responzivita ── */
   @media (max-width: 860px) {
-    .contact__container { grid-template-columns: 1fr; }
-    .contact__map-wrap  { height: 240px; order: 1; }
+    .contact__container {
+      grid-template-columns: 1fr;
+    }
+
+    .contact__info   { order: 1; }
+    .contact__visual { order: 2; }
+
+    .contact__photo-wrap {
+      border-radius: 1.25rem 1.25rem 0 0;
+    }
+
+    .contact__map-wrap {
+      height: 200px;
+    }
   }
 </style>

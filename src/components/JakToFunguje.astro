@@ -100,15 +100,15 @@
     </div>
 
 
-    <!-- Mobil: foto recepce po krokách -->
-    <div class="jtf__photo jtf__photo-mobile">
-      <img src="/recepce.webp" alt="Recepce Lagoon" width="800" height="600" loading="lazy" decoding="async" />
-    </div>
-
-    <!-- Mobil: foto prostory na konci -->
-    <div class="jtf__photo jtf__photo-mobile">
-      <img src="/prostory.webp" alt="Prostory Lagoon masáže" width="800" height="600" loading="lazy" decoding="async" />
-    </div>
+    <!-- Mobil: recepce + prostory vedle sebe -->
+<div class="jtf__photo-pair">
+  <div class="jtf__photo">
+    <img src="/recepce.webp" alt="Recepce Lagoon" width="800" height="600" loading="lazy" decoding="async" />
+  </div>
+  <div class="jtf__photo">
+    <img src="/prostory.webp" alt="Prostory Lagoon masáže" width="800" height="600" loading="lazy" decoding="async" />
+  </div>
+</div>
 
 
     <div class="jtf__cta-wrap">
@@ -368,4 +368,19 @@
     .jtf__photo img { transition: none; }
     .jtf__cta       { transition: none; }
   }
+  .jtf__photo-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin: clamp(2.5rem, 5vw, 4rem) 0;
+}
+
+.jtf__photo-pair .jtf__photo {
+  aspect-ratio: 1 / 1;
+  margin: 0;
+}
+
+@media (min-width: 900px) {
+  .jtf__photo-pair { display: none; }
+}
 </style>
