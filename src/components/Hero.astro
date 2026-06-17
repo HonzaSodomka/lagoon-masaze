@@ -31,6 +31,18 @@
       <a href="#typy-masazi" class="hero__btn-ghost">Objevit masáže</a>
     </div>
 
+    <a
+      href="https://maps.app.goo.gl/pAcxyPUEK9RcHGYa9"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="hero__reviews"
+      aria-label="4,9 hvězdy — 280 recenzí na Google Maps"
+    >
+      <span class="hero__reviews-stars" aria-hidden="true">★★★★★</span>
+      <span class="hero__reviews-divider" aria-hidden="true"></span>
+      <span class="hero__reviews-text"><strong>4,9</strong> · 280+ recenzí</span>
+    </a>
+
   </div>
 </section>
 
@@ -50,7 +62,7 @@
     position: relative; z-index: 2;
     width: 100%; max-width: 1200px;
     padding: 0 1.25rem;
-    padding-top: 6rem; /* +1rem oproti původnímu — bezpečný offset pro fixed Navbar na mobilu */
+    padding-top: 6rem;
     display: flex; flex-direction: column;
     align-items: flex-start; text-align: left;
   }
@@ -80,7 +92,7 @@
     font-size: clamp(3.2rem, 7.5vw, 6.5rem);
     font-weight: 300;
     font-style: italic;
-    line-height: 1.05; /* opraveno z 1.0 — Cormorant descenders se nedotýkají */
+    line-height: 1.05;
     letter-spacing: 0.01em;
     color: var(--color-white);
     margin: 0 0 0.75rem;
@@ -100,6 +112,7 @@
     animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
   }
 
+  /* ── Akční tlačítka ── */
   .hero__actions {
     display: flex;
     gap: 1rem;
@@ -108,7 +121,6 @@
     animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
   }
 
-  /* Na velmi malých displejích CTA full-width */
   @media (max-width: 540px) {
     .hero__actions { flex-direction: column; width: 100%; }
     .hero__btn-primary,
@@ -124,46 +136,88 @@
     display: inline-flex; align-items: center;
     transition: background 0.3s ease, color 0.3s ease;
   }
-  .hero__btn-primary:hover { background: var(--color-white); }
 
+  .hero__btn-primary:hover {
+    background: var(--color-white);
+  }
+
+  /* Ghost CTA — vylepšený */
   .hero__btn-ghost {
-    font-family: var(--font-display);
-    font-size: 1.3rem; font-weight: 300; font-style: italic;
-    letter-spacing: 0.04em; text-decoration: none;
-    color: var(--color-white); padding: 0.75rem 2.25rem;
-    border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.32);
-    display: inline-flex; align-items: center;
-    transition: border-color 0.3s ease, background 0.3s ease;
-  }
-  .hero__btn-ghost:hover { border-color: var(--color-white); background: rgba(255,255,255,0.06); }
+  font-family: var(--font-display);
+  font-size: 1.3rem; font-weight: 300; font-style: italic;
+  letter-spacing: 0.04em; text-decoration: none;
+  color: #ffffff;
+  padding: 0.75rem 2.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  display: inline-flex; align-items: center;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.hero__btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+}
 
-  .hero__scroll {
-    position: absolute; bottom: 2.5rem; left: 50%;
-    transform: translateX(-50%); z-index: 3;
-    display: flex; flex-direction: column; align-items: center;
-    opacity: 0; animation: heroFade 1s ease 1.1s forwards;
-  }
-  .hero__scroll span {
-    display: block; width: 1px; height: 52px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(255,255,255,0));
-    animation: scrollLine 2s ease-in-out infinite;
+  /* ── Google reviews pill ── */
+  .hero__reviews {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    text-decoration: none;
+    opacity: 0;
+    animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
 
+  .hero__reviews:hover {
+    background: rgba(255, 255, 255, 0.11);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .hero__reviews-stars {
+    font-size: 0.8rem;
+    color: var(--color-gold);
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+
+  .hero__reviews-divider {
+    width: 1px;
+    height: 0.9rem;
+    background: rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+  }
+
+  .hero__reviews-text {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    white-space: nowrap;
+  }
+
+  .hero__reviews-text strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* ── Animace ── */
   @keyframes heroFadeUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+
   @keyframes heroFade { to { opacity: 1; } }
-  @keyframes scrollLine {
-    0%   { transform: scaleY(0); transform-origin: top;    opacity: 1; }
-    50%  { transform: scaleY(1); transform-origin: top;    opacity: 1; }
-    100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
-  }
 
   @media (prefers-reduced-motion: reduce) {
     .hero__h1, .hero__display, .hero__text,
-    .hero__actions, .hero__scroll { animation: none; opacity: 1; }
-    .hero__scroll span { animation: none; }
+    .hero__actions, .hero__reviews { animation: none; opacity: 1; }
   }
 </style>
 
