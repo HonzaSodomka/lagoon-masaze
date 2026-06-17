@@ -1,0 +1,307 @@
+---
+// src/components/JakToFunguje.astro
+---
+
+<section id="jak-to-funguje" class="jtf">
+  <div class="jtf__container">
+
+    <div class="jtf__header">
+      <span class="jtf__eyebrow">Průvodce návštěvou</span>
+      <h2 class="jtf__title">Jak to u&nbsp;nás funguje</h2>
+      <p class="jtf__subtitle">Vše co potřebujete vědět před první i&nbsp;každou další návštěvou.</p>
+    </div>
+
+    <ol class="jtf__list">
+
+      <li class="jtf__item">
+        <div class="jtf__num" aria-hidden="true">01</div>
+        <div class="jtf__body">
+          <h3 class="jtf__step-title">Rezervace</h3>
+          <p class="jtf__step-text">Vše začíná výběrem termínu a&nbsp;masáže. Nejsnazší cesta je přes náš online rezervační systém — vyberete typ, délku a&nbsp;případné poznámky. Nejde to online? Zavolejte nám na <a href="tel:+420776381199" class="jtf__link">+420&nbsp;776&nbsp;381&nbsp;199</a> nebo napište na <a href="mailto:info@lagoon-masaze.cz" class="jtf__link">info@lagoon-masaze.cz</a>.</p>
+        </div>
+      </li>
+
+      <li class="jtf__item">
+        <div class="jtf__num" aria-hidden="true">02</div>
+        <div class="jtf__body">
+          <h3 class="jtf__step-title">SMS s&nbsp;kódem</h3>
+          <p class="jtf__step-text">Po rezervaci obdržíte potvrzovací e-mail. 24&nbsp;hodin předem vám přijde SMS upozornění — a&nbsp;v&nbsp;ní kód od vstupních dveří, díky kterému se dostanete přímo do naší offline recepce bez čekání.</p>
+        </div>
+      </li>
+
+      <li class="jtf__item">
+        <div class="jtf__num" aria-hidden="true">03</div>
+        <div class="jtf__body">
+          <h3 class="jtf__step-title">Parkování</h3>
+          <p class="jtf__step-text">Jsme na Staroměstském náměstí — velmi frekventovaném místě. Doporučujeme počítat s&nbsp;časovou rezervou. Přímo na náměstí je podzemní parkovací dům, takže místo vždy najdete.</p>
+        </div>
+      </li>
+
+      <li class="jtf__item">
+        <div class="jtf__num" aria-hidden="true">04</div>
+        <div class="jtf__body">
+          <h3 class="jtf__step-title">Přijďte s&nbsp;předstihem</h3>
+          <p class="jtf__step-text">Masáž je o&nbsp;relaxaci, ne o&nbsp;stresu. Doporučujeme dorazit klidně 15&nbsp;minut předem. Pamatujte — rezervací máte vyhrazen přesný časový blok, který nelze prodloužit z&nbsp;ohledu na ostatní klienty.</p>
+        </div>
+      </li>
+
+      <li class="jtf__item">
+        <div class="jtf__num" aria-hidden="true">05</div>
+        <div class="jtf__body">
+          <h3 class="jtf__step-title">Offline recepce</h3>
+          <p class="jtf__step-text">Po zadání kódu vstoupíte do naší recepce, kde na vás čeká čaj, káva nebo malý snack. Přijít s&nbsp;předstihem se vyplatí — v&nbsp;luxusním prostoru si klidně počkáte a&nbsp;nalaďte se na relaxaci. WC najdete na konci chodby.</p>
+        </div>
+      </li>
+
+      <li class="jtf__item">
+        <div class="jtf__num" aria-hidden="true">06</div>
+        <div class="jtf__body">
+          <h3 class="jtf__step-title">Průběh masáže</h3>
+          <p class="jtf__step-text">Masérka vás vyzvedne a&nbsp;společně vyberete olej z&nbsp;přírodních zdrojů — všechny se nahřívají ve speciálním boxu. V&nbsp;chodbě najdete jednorázové doplňky. Před vstupem do místnosti sundáte boty a&nbsp;nasadíte pantofle. Osobní věci si vezměte s&nbsp;sebou do místnosti. Jakmile budete připraveni, masérka zaklepe a&nbsp;začínáme.</p>
+        </div>
+      </li>
+
+      <li class="jtf__item">
+        <div class="jtf__num" aria-hidden="true">07</div>
+        <div class="jtf__body">
+          <h3 class="jtf__step-title">Na závěr</h3>
+          <p class="jtf__step-text">Platba probíhá přímo masérce v&nbsp;místnosti. Chcete-li nechat spropitné, je v&nbsp;místnosti připravená nádoba. Po masáži si dopřejte čaj nebo kávu na recepci — klid po masáži je stejně důležitý jako masáž samotná.</p>
+        </div>
+      </li>
+
+    </ol>
+
+    <div class="jtf__cta-wrap">
+      <a href="#rezervace" class="jtf__cta">Rezervovat masáž</a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .jtf {
+    background: var(--color-brown);
+    padding: clamp(4rem, 8vw, 8rem) 0;
+  }
+
+  .jtf__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  @media (min-width: 900px) {
+    .jtf__container { padding: 0 3.5rem; }
+  }
+
+  /* ── Header ── */
+  .jtf__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  @media (min-width: 900px) {
+    .jtf__header   { align-items: center; text-align: center; }
+    .jtf__subtitle { margin-inline: auto; }
+  }
+
+  .jtf__eyebrow {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-gold);
+    margin-bottom: 1rem;
+  }
+
+  .jtf__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.05;
+    color: #ffffff;
+    margin: 0 0 1rem;
+  }
+
+  .jtf__subtitle {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 480px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Seznam kroků ── */
+  .jtf__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    position: relative;
+  }
+
+  @media (min-width: 640px) and (max-width: 899px) {
+    .jtf__list::before {
+      content: '';
+      position: absolute;
+      left: 2.1rem;
+      top: 2.5rem;
+      bottom: 2.5rem;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        rgba(198, 162, 122, 0),
+        rgba(198, 162, 122, 0.2) 10%,
+        rgba(198, 162, 122, 0.2) 90%,
+        rgba(198, 162, 122, 0)
+      );
+    }
+  }
+
+  @media (min-width: 900px) {
+    .jtf__list { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ── Jednotlivý krok ── */
+  .jtf__item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    position: relative;
+    transition: background 0.4s ease;
+  }
+
+  @media (min-width: 900px) {
+    .jtf__item {
+      padding: 2rem 1.5rem;
+      border: none;
+      border-radius: 0;
+    }
+
+    /* Jemný hover — sotva znatelný */
+    .jtf__item:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Spodní border — všechny kromě posledního (07) */
+    .jtf__item:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0.75rem;
+      right: 0.75rem;
+      height: 1px;
+      background: rgba(198, 162, 122, 0.25);
+    }
+
+    /* Pravý border — liché kromě posledního (07) */
+    .jtf__item:nth-child(odd):not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0.75rem;
+      bottom: 0.75rem;
+      width: 1px;
+      background: rgba(198, 162, 122, 0.25);
+    }
+  }
+
+  /* ── Číslo ── */
+  .jtf__num {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1;
+    color: rgba(198, 162, 122, 0.3);
+    flex-shrink: 0;
+    width: 2.75rem;
+    text-align: center;
+    user-select: none;
+    transition: color 0.4s ease;
+  }
+
+  .jtf__item:hover .jtf__num {
+    color: rgba(198, 162, 122, 0.6);
+  }
+
+  /* ── Text ── */
+  .jtf__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .jtf__step-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.2;
+    color: #ffffff;
+    margin: 0 0 0.5rem;
+  }
+
+  .jtf__step-text {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.52);
+    margin: 0;
+    max-width: 52ch;
+  }
+
+  .jtf__link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline;
+    text-decoration-color: rgba(198, 162, 122, 0.4);
+    text-underline-offset: 3px;
+    white-space: nowrap;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  }
+
+  .jtf__link:hover {
+    color: var(--color-gold);
+    text-decoration-color: var(--color-gold);
+  }
+
+  /* ── CTA ── */
+  .jtf__cta-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(2.5rem, 4vw, 4rem);
+  }
+
+  .jtf__cta {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--color-brown);
+    background: var(--color-gold);
+    padding: 0.75rem 2.5rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .jtf__cta:hover {
+    background: #ffffff;
+    color: var(--color-brown);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .jtf__item { transition: none; }
+    .jtf__cta  { transition: none; }
+  }
+</style>
