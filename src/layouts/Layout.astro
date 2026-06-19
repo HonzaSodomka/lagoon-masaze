@@ -53,10 +53,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "HealthAndBeautyBusiness",
+        "@type": ["LocalBusiness", "SpaOrBeautyShop"],
         "name": "Lagoon Masáže",
         "image": "https://www.lagoon-masaze.cz/og-image.webp",
         "@id": "https://www.lagoon-masaze.cz",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 50.4102,
+          "longitude": 14.9025
+        },
+        "hasMap": "https://maps.app.goo.gl/pAcxyPUEK9RcHGYa9",
         "url": "https://www.lagoon-masaze.cz",
         "telephone": "+420732596212",
         "address": {
@@ -82,13 +88,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
           }
         ],
         "priceRange": "$$",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "280",
-          "bestRating": "5",
-          "worstRating": "1"
-        }
       }
     </script>
     
@@ -97,14 +96,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
       href="https://api.fontshare.com/v2/css?f[]=cormorant@300,400,500,600&f[]=satoshi@300,400,500&display=swap"
       rel="stylesheet"
     />
-    <script src="https://unpkg.com/lucide@latest" is:inline></script>
   </head>
   <body class="is-loading" style="margin:0">
 
     <!-- [OPRAVA 7] Skip-to-content link – pro uživatele klávesnice a čteček obrazovky -->
     <a href="#hero" class="skip-link">Přeskočit na obsah</a>
     
-    <div id="preloader" class="preloader" aria-hidden="true">
+    <div id="preloader" class="preloader" role="status" aria-label="Načítání stránky">
       <div class="preloader__content">
         <!-- [OPRAVA 5] height="auto" není platná HTML hodnota – nahrazeno výškou v px -->
         <img src="/lagoon-bronze.png" alt="" class="preloader__logo" width="180" height="100" aria-hidden="true" />
@@ -115,25 +113,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
     <Navbar />
     <slot />
     
-    <script is:inline>
-      document.addEventListener('DOMContentLoaded', function () {
-        if (window.lucide) window.lucide.createIcons();
-      });
+<script is:inline>
+  window.addEventListener('load', function() {
+    const preloader = document.getElementById('preloader');
+    const body = document.body;
 
-      window.addEventListener('load', function() {
-        const preloader = document.getElementById('preloader');
-        const body = document.body;
+    if (preloader) {
+      preloader.classList.add('is-hidden');
+      body.classList.remove('is-loading');
 
-        if (preloader) {
-          preloader.classList.add('is-hidden');
-          body.classList.remove('is-loading');
-
-          setTimeout(() => {
-            preloader.remove();
-          }, 600);
-        }
-      });
-    </script>
+      setTimeout(() => {
+        preloader.remove();
+      }, 600);
+    }
+  });
+</script>
   </body>
 </html>
 
