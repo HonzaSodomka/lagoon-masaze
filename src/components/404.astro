@@ -1,0 +1,119 @@
+---
+// src/pages/404.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Stránka nenalezena | Lagoon Masáže">
+  <section class="error-page">
+    <div class="error-page__container">
+      
+      <span class="error-page__eyebrow">Chyba 404</span>
+      
+      <h1 class="error-page__title">Tady se čas zastavil<br/>až příliš</h1>
+      
+      <p class="error-page__text">
+        Omlouváme se, ale stránka, kterou hledáte, neexistuje, nebo byla přesunuta. 
+        Pojďme vás vrátit zpět tam, kde to znáte.
+      </p>
+      
+      <a href="/" class="error-page__cta">Zpět na hlavní stranu</a>
+      
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .error-page {
+    /* Minimální výška na celý displej, aby to vypadalo dobře i bez dalšího obsahu */
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f0ea; /* Stejná krémová barva jako u sekce masáží */
+    padding: 120px 1.25rem 4rem; /* Horní padding tvoří rezervu pro fixní navbar */
+    text-align: center;
+  }
+
+  .error-page__container {
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .error-page__eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-gold);
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1.2rem;
+    border: 1px solid rgba(198, 162, 122, 0.3);
+    border-radius: 999px;
+    background: rgba(198, 162, 122, 0.05);
+  }
+
+  .error-page__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.05;
+    color: var(--color-brown);
+    margin-bottom: 1.5rem;
+  }
+
+  .error-page__text {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: rgba(74, 64, 58, 0.7);
+    line-height: 1.65;
+    margin: 0 auto 2.5rem;
+    max-width: 420px;
+  }
+
+  .error-page__cta {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--color-brown);
+    background: var(--color-gold);
+    padding: 0.75rem 2.5rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  }
+
+  .error-page__cta:hover {
+    background: var(--color-brown);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  /* Jemná animace náběhu */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .error-page__container {
+      animation: none;
+    }
+    .error-page__cta:hover {
+      transform: none;
+    }
+  }
+</style>

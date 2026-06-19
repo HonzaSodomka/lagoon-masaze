@@ -2,10 +2,8 @@
 // src/components/Masaze.astro
 ---
 
-
 <section id="typy-masazi" class="masaze">
   <div class="masaze__container">
-
 
     <div class="masaze__header">
       <span class="masaze__eyebrow">Naše nabídka</span>
@@ -13,9 +11,7 @@
       <p class="masaze__subtitle">Osm druhů orientálních procedur — každá jiná, každá výjimečná.</p>
     </div>
 
-
     <div class="masaze__grid" id="masazeGrid">
-
 
       <article class="masaze__card" data-id="0">
         <div class="masaze__card-image">
@@ -41,7 +37,6 @@
         </button>
       </article>
 
-
       <article class="masaze__card" data-id="1">
         <div class="masaze__card-image">
           <img src="/masaz-filipinska.webp" alt="Filipínská olejová masáž" width="600" height="600" loading="lazy" decoding="async" />
@@ -65,7 +60,6 @@
           <i data-lucide="chevron-down" class="masaze__chevron"></i>
         </button>
       </article>
-
 
       <article class="masaze__card" data-id="2">
         <div class="masaze__card-image">
@@ -91,7 +85,6 @@
         </button>
       </article>
 
-
       <article class="masaze__card" data-id="3">
         <div class="masaze__card-image">
           <img src="/masaz-shiatsu-abhyanga.webp" alt="Shiatsu + Abhyanga masáž" width="600" height="600" loading="lazy" decoding="async" />
@@ -116,7 +109,6 @@
         </button>
       </article>
 
-
       <article class="masaze__card" data-id="4">
         <div class="masaze__card-image">
           <img src="/masaz-pro-dva.webp" alt="Masáž pro dva" width="600" height="600" loading="lazy" decoding="async" />
@@ -139,7 +131,6 @@
           <i data-lucide="chevron-down" class="masaze__chevron"></i>
         </button>
       </article>
-
 
       <article class="masaze__card" data-id="5">
         <div class="masaze__card-image">
@@ -164,7 +155,6 @@
         </button>
       </article>
 
-
       <article class="masaze__card" data-id="6">
         <div class="masaze__card-image">
           <img src="/masaz-zada-sije.webp" alt="Masáž zad a šíje" width="600" height="600" loading="lazy" decoding="async" />
@@ -187,7 +177,6 @@
           <i data-lucide="chevron-down" class="masaze__chevron"></i>
         </button>
       </article>
-
 
       <article class="masaze__card" data-id="7">
         <div class="masaze__card-image">
@@ -212,7 +201,6 @@
         </button>
       </article>
 
-
       <article class="masaze__card masaze__card--voucher" data-id="voucher">
         <div class="masaze__card-image">
           <img src="/darkovy-poukaz.webp" alt="Dárkový poukaz na masáž" width="600" height="600" loading="lazy" decoding="async" />
@@ -236,11 +224,8 @@
         </button>
       </article>
 
-
     </div>
 
-
-    <!-- Detail panely -->
     <div id="masaze-detail-0" class="masaze-detail" role="region" aria-label="Detail: Thajská olejová masáž" aria-hidden="true">
       <div class="masaze-detail__inner">
         <p>Tradiční masáž kombinující práci s tlakovými body, jemné protahování a masážní olej. Pomáhá uvolnit ztuhlé svaly, zmírnit napětí v těle a podpořit celkovou regeneraci. Vhodná i pro klienty, kteří s thajskými masážemi teprve začínají.</p>
@@ -295,10 +280,8 @@
       </div>
     </div>
 
-
   </div>
 </section>
-
 
 <style>
   .masaze {
@@ -514,8 +497,31 @@
     grid-column: 1 / -1;
     background: var(--card-bg);
     border-radius: var(--card-radius);
-    overflow: hidden;
+    position: relative; /* Důležité: slouží pro napozicování šipky */
   }
+
+  /* Zobáček (šipka) směřující k aktivní kartě */
+  .masaze-detail::before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: var(--arrow-pos, 50%);
+    transform: translateX(-50%) rotate(45deg);
+    width: 14px;
+    height: 14px;
+    background: var(--card-bg);
+    border-top: 1px solid var(--card-border);
+    border-left: 1px solid var(--card-border);
+    z-index: 10;
+    opacity: 0;
+    /* Plynulý fade-in a fade-out přesně slazený s křivkou a délkou rozbalení panelu */
+    transition: opacity var(--anim);
+    pointer-events: none;
+  }
+  .masaze-detail.is-open::before {
+    opacity: 1;
+  }
+
   .masaze-detail--ready {
     display: grid;
     grid-template-rows: 0fr;
@@ -563,16 +569,23 @@
   .masaze-detail--dark .masaze-detail__inner p      { color: rgba(255, 255, 255, 0.82); }
   .masaze-detail--dark .masaze-detail__vhodna        { color: rgba(255, 255, 255, 0.6); }
   .masaze-detail--dark .masaze-detail__vhodna strong { color: rgba(255, 255, 255, 0.85); }
+  
+  /* Šipka pro tmavou variantu */
+  .masaze-detail--dark::before {
+    background: var(--color-brown);
+    border-top-color: rgba(255, 255, 255, 0.07);
+    border-left-color: rgba(255, 255, 255, 0.07);
+  }
 
   @media (prefers-reduced-motion: reduce) {
     .masaze__card,
     .masaze__card-image img,
     .masaze-detail--ready,
     .masaze-detail__inner,
-    .masaze__chevron { transition: none; }
+    .masaze__chevron,
+    .masaze-detail::before { transition: none; }
   }
 </style>
-
 
 <script is:inline>
 (function () {
@@ -593,6 +606,15 @@
 
     var openId      = null;
     var isAnimating = false;
+
+    // Přepočítá bod, na který má šipka směřovat, ještě před rozbalením panelu
+    function updateArrow(detail, card) {
+      if (!detail || !card) return;
+      var cardRect = card.getBoundingClientRect();
+      var gridRect = grid.getBoundingClientRect();
+      var centerPos = (cardRect.left - gridRect.left) + (cardRect.width / 2);
+      detail.style.setProperty('--arrow-pos', centerPos + 'px');
+    }
 
     function getCols() {
       var w = window.innerWidth;
@@ -646,6 +668,9 @@
       if (!detail) return;
 
       insertDetail(detail, getAnchor(cardIndex));
+      
+      // Získáme přesnou pozici ihned - jakmile bublina začne růst, šipka se u ní objeví na správném místě.
+      updateArrow(detail, card);
 
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
@@ -693,10 +718,17 @@
         if (openId === null) return;
         var activeIndex = cards.findIndex(function (c) { return c.dataset.id === String(openId); });
         if (activeIndex === -1) return;
+        
         var anchor = getAnchor(activeIndex);
         var detail = details[openId];
+        var activeCard = cards[activeIndex];
+
         if (detail && detail.previousSibling !== anchor) {
           anchor.parentNode.insertBefore(detail, anchor.nextSibling);
+        }
+        
+        if (detail && activeCard) {
+          updateArrow(detail, activeCard);
         }
       }, 150);
     });

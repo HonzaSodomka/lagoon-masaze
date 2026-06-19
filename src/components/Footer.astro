@@ -1,0 +1,186 @@
+---
+// src/components/Footer.astro
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__container">
+    
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo" aria-label="Zpět na hlavní stranu">
+          <img src="/logo.png" alt="Lagoon Masáže logo" width="160" height="auto" loading="lazy" />
+        </a>
+        <p class="footer__legal">
+          IČ: 193 25 240<br/>
+          Společnost je zapsaná u Městského soudu v Praze pod spisovou značkou C 384783
+        </p>
+      </div>
+
+      <div class="footer__links-col">
+        <h3 class="footer__heading">Menu</h3>
+        <ul class="footer__list">
+          <li><a href="#typy-masazi" class="footer__link">Typy masáží</a></li>
+          <li><a href="#jak-to-funguje" class="footer__link">Jak to funguje</a></li>
+          <li><a href="#kontakt" class="footer__link">Kontakt</a></li>
+          <li><a href="#rezervace" class="footer__link footer__link--gold">Rezervovat termín</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__contact-col">
+        <h3 class="footer__heading">Lagoon Masáže</h3>
+        <ul class="footer__list">
+          <li class="footer__text">Staroměstské náměstí 19/23<br/>Mladá Boleslav 293 01</li>
+          <li><a href="tel:+420776381199" class="footer__link">+420 776 381 199</a></li>
+          <li><a href="mailto:info@lagoon-masaze.cz" class="footer__link">info@lagoon-masaze.cz</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; {year} Lagoon Masáže. Všechna práva vyhrazena.</p>
+      <p class="footer__credits">
+        Realizováno <a href="https://webresent.cz" target="_blank" rel="noopener noreferrer" class="footer__webresent">Webresent</a>
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-brown);
+    padding: clamp(4rem, 8vw, 6rem) 0 2rem;
+    color: #ffffff;
+  }
+
+  .footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  @media (min-width: 900px) {
+    .footer__container { padding: 0 3.5rem; }
+  }
+
+  /* ── Horní mřížka ── */
+  .footer__top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: clamp(3rem, 6vw, 4rem);
+  }
+
+  @media (min-width: 768px) {
+    .footer__top {
+      grid-template-columns: 2fr 1fr 1.5fr;
+      gap: 2rem;
+    }
+  }
+
+  /* ── Brand ── */
+  .footer__logo {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    transition: opacity 0.3s ease;
+  }
+  .footer__logo:hover {
+    opacity: 0.8;
+  }
+  .footer__logo img {
+    display: block;
+    width: clamp(140px, 15vw, 180px);
+  }
+
+  .footer__legal {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 40ch;
+  }
+
+  /* ── Sloupce s odkazy a kontaktem ── */
+  .footer__heading {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--color-gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer__text {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .footer__link {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .footer__link:hover {
+    color: #ffffff;
+  }
+
+  .footer__link--gold {
+    color: var(--color-gold);
+    font-weight: 500;
+  }
+  .footer__link--gold:hover {
+    color: #ffffff;
+  }
+
+  /* ── Spodní lišta ── */
+  .footer__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  @media (min-width: 600px) {
+    .footer__bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+
+  .footer__webresent {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  .footer__webresent:hover {
+    color: var(--color-gold);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer__link,
+    .footer__logo,
+    .footer__webresent {
+      transition: none;
+    }
+  }
+</style>
