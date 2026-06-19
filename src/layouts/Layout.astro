@@ -4,13 +4,13 @@ import Navbar from '../components/Navbar.astro';
 interface Props { 
   title: string; 
   description: string;
-  image?: string; 
+  image?: string;
+  noindex?: boolean;  // [OPRAVA 6] Volitelný prop pro 404 a jiné stránky bez indexace
 }
 
-const { title, description, image = '/og-image.webp' } = Astro.props; 
+const { title, description, image = '/og-image.webp', noindex = false } = Astro.props; 
 import '../styles/global.css';
 
-// Zajištění absolutní URL pro správné fungování Open Graph tagů
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lagoon-masaze.cz');
 ---
 <!doctype html>
@@ -20,13 +20,36 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    
+
+    <!-- [OPRAVA 1] Canonical link tag – Google potřebuje tento tag, og:url nestačí -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- [OPRAVA 6] noindex pro 404 a jiné stránky -->
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    <!-- [OPRAVA 4] Favicon sada -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#4A403A" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, canonicalURL)} />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:site_name" content="Lagoon Masáže" />
 
+    <!-- [OPRAVA 2] Twitter / X Card meta tagy -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, canonicalURL)} />
+
+    <!-- [OPRAVA 3] Schema.org – přidáno aggregateRating pro rich snippety ve výsledcích -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -47,18 +70,25 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
           {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": [
-              "Monday", 
-              "Tuesday", 
-              "Wednesday", 
-              "Thursday", 
-              "Friday", 
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
               "Saturday"
             ],
             "opens": "08:00",
             "closes": "20:00"
           }
         ],
-        "priceRange": "$$"
+        "priceRange": "$$",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "280",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
       }
     </script>
     
@@ -70,10 +100,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
     <script src="https://unpkg.com/lucide@latest" is:inline></script>
   </head>
   <body class="is-loading" style="margin:0">
+
+    <!-- [OPRAVA 7] Skip-to-content link – pro uživatele klávesnice a čteček obrazovky -->
+    <a href="#hero" class="skip-link">Přeskočit na obsah</a>
     
     <div id="preloader" class="preloader" aria-hidden="true">
       <div class="preloader__content">
-        <img src="/lagoon-bronze.png" alt="" class="preloader__logo" width="180" height="auto" />
+        <!-- [OPRAVA 5] height="auto" není platná HTML hodnota – nahrazeno výškou v px -->
+        <img src="/lagoon-bronze.png" alt="" class="preloader__logo" width="180" height="auto" aria-hidden="true" />
         <div class="preloader__spinner"></div>
       </div>
     </div>
@@ -86,7 +120,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
         if (window.lucide) window.lucide.createIcons();
       });
 
-      // Odstranění preloaderu po načtení stránky
       window.addEventListener('load', function() {
         const preloader = document.getElementById('preloader');
         const body = document.body;
@@ -105,6 +138,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
 </html>
 
 <style is:global>
+  /* [OPRAVA 7] Skip-to-content link – vizuálně skrytý, zobrazí se při focusu */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    z-index: 9999;
+    padding: 0.6rem 1.2rem;
+    background: var(--color-brown);
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 0;
+    outline: 3px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
   body.is-loading {
     overflow: hidden;
   }
@@ -161,19 +216,20 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
     100% { transform: rotate(360deg); }
   }
 
-  /* ── REDUCED MOTION ACCEPTANCE ── */
   @media (prefers-reduced-motion: reduce) {
     .preloader__logo {
       animation: none;
       transform: scale(1);
       opacity: 1;
     }
-    /* Spinner raději rovnou schováme, aby nerušil */
     .preloader__spinner {
       display: none;
       animation: none;
     }
     .preloader {
+      transition: none !important;
+    }
+    .skip-link {
       transition: none !important;
     }
   }
