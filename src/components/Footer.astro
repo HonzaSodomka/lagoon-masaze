@@ -6,44 +6,47 @@ const year = new Date().getFullYear();
 <footer class="footer" role="contentinfo">
   <div class="footer__container">
     
-    <div class="footer__top">
-      <div class="footer__brand scroll-animate">
-        <a href="/" class="footer__logo" aria-label="Zpět na hlavní stranu">
-          <img src="/logo.png" alt="" width="160" height="auto" loading="eager" />
-        </a>
-        <p class="footer__legal">
-          IČ: 193 25 240<br/>
-          Společnost je zapsaná u Městského soudu v Praze pod spisovou značkou C 384783
+    <div class="scroll-animate">
+      
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="/" class="footer__logo" aria-label="Zpět na hlavní stranu">
+            <img src="/logo.png" alt="" width="160" height="auto" loading="eager" />
+          </a>
+          <p class="footer__legal">
+            IČ: 193 25 240<br/>
+            Společnost je zapsaná u Městského soudu v Praze pod spisovou značkou C 384783
+          </p>
+        </div>
+
+        <nav class="footer__links-col" aria-label="Patičková navigace">
+          <h3 class="footer__heading">Menu</h3>
+          <ul class="footer__list">
+            <li><a href="#typy-masazi" class="footer__link">Typy masáží</a></li>
+            <li><a href="#jak-to-funguje" class="footer__link">Jak to funguje</a></li>
+            <li><a href="#kontakt" class="footer__link">Kontakt</a></li>
+            <li><a href="#rezervace" class="footer__link footer__link--gold" aria-label="Rezervovat termín - přesun na rezervační systém">Rezervovat termín</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer__contact-col">
+          <h3 class="footer__heading">Lagoon Masáže</h3>
+          <ul class="footer__list">
+            <li class="footer__text">Staroměstské náměstí 19/23<br/>Mladá Boleslav 293 01</li>
+            <li><a href="tel:+420732596212" class="footer__link" aria-label="Zavolejte nám">+420 732 596 212</a></li>
+            <li><a href="mailto:info@lagoon-masaze.cz" class="footer__link" aria-label="Napište nám e-mail">info@lagoon-masaze.cz</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; {year} Lagoon Masáže. Všechna práva vyhrazena.</p>
+        <p class="footer__credits">
+          Realizováno <a href="https://webresent.cz" target="_blank" rel="noopener noreferrer" class="footer__webresent">Webresent</a>
         </p>
       </div>
 
-      <nav class="footer__links-col scroll-animate" style="transition-delay: 0.1s;" aria-label="Patičková navigace">
-        <h3 class="footer__heading">Menu</h3>
-        <ul class="footer__list">
-          <li><a href="#typy-masazi" class="footer__link">Typy masáží</a></li>
-          <li><a href="#jak-to-funguje" class="footer__link">Jak to funguje</a></li>
-          <li><a href="#kontakt" class="footer__link">Kontakt</a></li>
-          <li><a href="#rezervace" class="footer__link footer__link--gold" aria-label="Rezervovat termín - přesun na rezervační systém">Rezervovat termín</a></li>
-        </ul>
-      </nav>
-
-      <div class="footer__contact-col scroll-animate" style="transition-delay: 0.2s;">
-        <h3 class="footer__heading">Lagoon Masáže</h3>
-        <ul class="footer__list">
-          <li class="footer__text">Staroměstské náměstí 19/23<br/>Mladá Boleslav 293 01</li>
-          <li><a href="tel:+420732596212" class="footer__link" aria-label="Zavolejte nám">+420 732 596 212</a></li>
-          <li><a href="mailto:info@lagoon-masaze.cz" class="footer__link" aria-label="Napište nám e-mail">info@lagoon-masaze.cz</a></li>
-        </ul>
-      </div>
     </div>
-
-    <div class="footer__bottom scroll-animate" style="transition-delay: 0.3s;">
-      <p class="footer__copy">&copy; {year} Lagoon Masáže. Všechna práva vyhrazena.</p>
-      <p class="footer__credits">
-        Realizováno <a href="https://webresent.cz" target="_blank" rel="noopener noreferrer" class="footer__webresent">Webresent</a>
-      </p>
-    </div>
-
   </div>
 </footer>
 
@@ -52,6 +55,7 @@ const year = new Date().getFullYear();
     background: var(--color-brown);
     padding: clamp(4rem, 8vw, 6rem) 0 2rem;
     color: #ffffff;
+    overflow: hidden;
   }
 
   .footer__container {
@@ -86,7 +90,6 @@ const year = new Date().getFullYear();
     transition: opacity 0.3s ease;
   }
   
-  /* MOBILE FIX: Hover logo */
   @media (hover: hover) {
     .footer__logo:hover { opacity: 0.8; }
   }
@@ -141,7 +144,6 @@ const year = new Date().getFullYear();
     font-weight: 500;
   }
 
-  /* MOBILE FIX: Hover odkazy */
   @media (hover: hover) {
     .footer__link:hover { color: #ffffff; }
     .footer__link--gold:hover { color: #ffffff; }
@@ -176,7 +178,6 @@ const year = new Date().getFullYear();
     transition: color 0.3s ease;
   }
   
-  /* MOBILE FIX: Hover tvůj odkaz */
   @media (hover: hover) {
     .footer__webresent:hover { color: var(--color-gold); }
   }
@@ -184,7 +185,7 @@ const year = new Date().getFullYear();
   /* ── SCROLL ANIMACE ── */
   .scroll-animate {
     opacity: 0;
-    transform: translateY(30px); /* Prodloužena dráha, ať pohyb krásně vynikne */
+    transform: translateY(30px);
     transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .scroll-animate.is-visible {
@@ -207,7 +208,6 @@ const year = new Date().getFullYear();
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function () {
-    // SCROLL ANIMACE: Observer, který animuje prvky s třídou .scroll-animate
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
