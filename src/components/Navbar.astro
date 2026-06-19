@@ -365,6 +365,8 @@
       menu.setAttribute('aria-hidden', 'false');
       
       menu.classList.add('is-open');
+      const firstLink = menu.querySelector('a');
+      if (firstLink) (firstLink as HTMLElement).focus();
       if (lines) {
         (lines[0] as HTMLElement).style.transform = 'translateY(4px) rotate(45deg)';
         (lines[1] as HTMLElement).style.transform = 'translateY(-4px) rotate(-45deg)';
