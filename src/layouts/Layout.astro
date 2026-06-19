@@ -6,7 +6,7 @@ interface Props {
   title: string; 
   description: string;
   image?: string;
-  noindex?: boolean;  // [OPRAVA 6] Volitelný prop pro 404 a jiné stránky bez indexace
+  noindex?: boolean;
 }
 
 const { title, description, image = '/og-image.webp', noindex = false } = Astro.props; 
@@ -22,18 +22,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <!-- [OPRAVA 1] Canonical link tag – Google potřebuje tento tag, og:url nestačí -->
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- [OPRAVA 6] noindex pro 404 a jiné stránky -->
     {noindex && <meta name="robots" content="noindex, follow" />}
 
-    <!-- [OPRAVA 4] Favicon sada -->
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#4A403A" />
+
+    <!-- Lokální SEO -->
+    <meta name="geo.region" content="CZ-SC" />
+    <meta name="geo.placename" content="Mladá Boleslav" />
+    <meta name="geo.position" content="50.4102;14.9025" />
+    <meta name="ICBM" content="50.4102, 14.9025" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -44,13 +48,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
     <meta property="og:locale" content="cs_CZ" />
     <meta property="og:site_name" content="Lagoon Masáže" />
 
-    <!-- [OPRAVA 2] Twitter / X Card meta tagy -->
+    <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, canonicalURL)} />
 
-    <!-- [OPRAVA 3] Schema.org – přidáno aggregateRating pro rich snippety ve výsledcích -->
+    <!-- Schema.org -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -58,12 +62,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
         "name": "Lagoon Masáže",
         "image": "https://www.lagoon-masaze.cz/og-image.webp",
         "@id": "https://www.lagoon-masaze.cz",
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 50.4102,
-          "longitude": 14.9025
-        },
-        "hasMap": "https://maps.app.goo.gl/pAcxyPUEK9RcHGYa9",
         "url": "https://www.lagoon-masaze.cz",
         "telephone": "+420732596212",
         "address": {
@@ -73,22 +71,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
           "postalCode": "293 01",
           "addressCountry": "CZ"
         },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 50.4102,
+          "longitude": 14.9025
+        },
+        "hasMap": "https://maps.app.goo.gl/pAcxyPUEK9RcHGYa9",
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday"
+              "Monday", "Tuesday", "Wednesday",
+              "Thursday", "Friday", "Saturday"
             ],
             "opens": "08:00",
             "closes": "20:00"
           }
         ],
-        "priceRange": "$$"
+        "priceRange": "$$",
+        "sameAs": [
+          "https://www.instagram.com/lagoon_masaze",
+          "https://www.facebook.com/p/Lagoon-Mas%C3%A1%C5%BEe-61553022234305/"
+        ]
       }
     </script>
     
@@ -100,41 +104,40 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
   </head>
   <body class="is-loading" style="margin:0">
 
-    <!-- [OPRAVA 7] Skip-to-content link – pro uživatele klávesnice a čteček obrazovky -->
-    <a href="#hero" class="skip-link">Přeskočit na obsah</a>
+    <a href="#main-content" class="skip-link">Přeskočit na obsah</a>
     
-    <div id="preloader" class="preloader" role="status" aria-label="Načítání stránky">
+    <div id="preloader" class="preloader" aria-hidden="true">
       <div class="preloader__content">
-        <!-- [OPRAVA 5] height="auto" není platná HTML hodnota – nahrazeno výškou v px -->
         <img src="/lagoon-bronze.png" alt="" class="preloader__logo" width="180" height="100" aria-hidden="true" />
         <div class="preloader__spinner"></div>
       </div>
     </div>
 
     <Navbar />
-    <slot />
+    <main id="main-content">
+      <slot />
+    </main>
     
-<script is:inline>
-  window.addEventListener('load', function() {
-    const preloader = document.getElementById('preloader');
-    const body = document.body;
+    <script is:inline>
+      window.addEventListener('load', function() {
+        const preloader = document.getElementById('preloader');
+        const body = document.body;
 
-    if (preloader) {
-      preloader.classList.add('is-hidden');
-      body.classList.remove('is-loading');
+        if (preloader) {
+          preloader.classList.add('is-hidden');
+          body.classList.remove('is-loading');
 
-      setTimeout(() => {
-        preloader.remove();
-      }, 600);
-    }
-  });
-</script>
-<CookieBanner />
+          setTimeout(() => {
+            preloader.remove();
+          }, 600);
+        }
+      });
+    </script>
+    <CookieBanner />
   </body>
 </html>
 
 <style is:global>
-  /* [OPRAVA 7] Skip-to-content link – vizuálně skrytý, zobrazí se při focusu */
   .skip-link {
     position: absolute;
     top: -100%;
@@ -228,5 +231,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
     .skip-link {
       transition: none !important;
     }
+  }
+
+  /* Reset výchozích margin/padding pro main — layout řeší každá sekce sama */
+  main {
+    display: contents;
   }
 </style>
