@@ -2,24 +2,27 @@
 // src/components/Hero.astro
 ---
 
-<section id="hero" class="hero">
+<section id="hero" class="hero" aria-labelledby="hero-heading">
   <picture class="hero__bg">
+    <div class="hero__bg-skeleton"></div>
     <source srcset="/hero-mobile.jpg" media="(max-width: 767px)" />
     <img
       src="/hero.jpg"
       alt="Lagoon Masáže – relaxační prostředí v centru Mladé Boleslavi"
       fetchpriority="high"
-      style="width:100%;height:100%;object-fit:cover;display:block;"
+      width="1920"
+      height="1080"
     />
   </picture>
-  <div class="hero__overlay"></div>
+  
+  <div class="hero__overlay" aria-hidden="true"></div>
 
   <div class="hero__container">
 
-    <h1 class="hero__h1">Masáže Mladá Boleslav</h1>
+    <h1 id="hero-heading" class="hero__h1">Masáže Mladá Boleslav</h1>
 
-    <p class="hero__display" aria-hidden="true">
-      Chvíle klidu<br/>jen pro vás
+    <p class="hero__display">
+      Chvíle klidu<br aria-hidden="true"/>jen pro vás
     </p>
 
     <p class="hero__text">
@@ -36,7 +39,7 @@
       target="_blank"
       rel="noopener noreferrer"
       class="hero__reviews"
-      aria-label="4,9 hvězdy — 280 recenzí na Google Maps"
+      aria-label="Hodnocení 4,9 hvězdy od více než 280 zákazníků na Google Maps"
     >
       <span class="hero__reviews-stars" aria-hidden="true">★★★★★</span>
       <span class="hero__reviews-divider" aria-hidden="true"></span>
@@ -53,28 +56,69 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    /* CSS REVOLUCE: Nahrazuje veškerý ten JavaScript na výšku! */
+    min-height: 100vh; /* Záloha pro staré prohlížeče */
+    min-height: 100dvh; /* Moderní řešení pro mobily (Dynamic Viewport Height) */
   }
 
-  .hero__bg { position: absolute; inset: 0; z-index: 0; }
-  .hero__overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.42); z-index: 1; }
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    /* Tmavě hnědá výplň pod obrázkem, pomáhá LCP, pokud je fotka pomalá */
+    background-color: var(--color-brown, #4a403a); 
+  }
+
+  /* Kostra před načtením fotky (Pulse) */
+  .hero__bg-skeleton {
+    position: absolute;
+    inset: 0;
+    background-color: inherit;
+    animation: skeletonPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    z-index: -1;
+  }
+
+  .hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Plynulé objevení po stažení */
+    opacity: 0;
+    animation: heroFadeIn 0.8s ease forwards;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.42);
+    z-index: 1;
+  }
 
   .hero__container {
-    position: relative; z-index: 2;
-    width: 100%; max-width: 1200px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
     padding: 0 1.25rem;
     padding-top: 6rem;
-    display: flex; flex-direction: column;
-    align-items: flex-start; text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
   }
 
   @media (min-width: 900px) {
     .hero__container {
-      align-items: center; text-align: center;
-      padding: 0 3.5rem; padding-top: 6rem;
+      align-items: center;
+      text-align: center;
+      padding: 0 3.5rem;
+      padding-top: 6rem;
     }
     .hero__text { margin-inline: auto; }
   }
 
+  /* ── Typografie a Stagger animace ── */
   .hero__h1 {
     font-family: var(--font-body);
     font-size: var(--text-sm);
@@ -129,34 +173,44 @@
 
   .hero__btn-primary {
     font-family: var(--font-display);
-    font-size: 1.3rem; font-weight: 400; font-style: italic;
-    letter-spacing: 0.04em; text-decoration: none;
-    color: var(--color-brown); background: var(--color-gold);
-    padding: 0.75rem 2.25rem; border-radius: 999px;
-    display: inline-flex; align-items: center;
+    font-size: 1.3rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: var(--color-brown);
+    background: var(--color-gold);
+    padding: 0.75rem 2.25rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
     transition: background 0.3s ease, color 0.3s ease;
   }
-
-  .hero__btn-primary:hover {
-    background: var(--color-white);
+  @media (hover: hover) {
+    .hero__btn-primary:hover { background: var(--color-white); }
   }
 
-  /* Ghost CTA — vylepšený */
   .hero__btn-ghost {
-  font-family: var(--font-display);
-  font-size: 1.3rem; font-weight: 300; font-style: italic;
-  letter-spacing: 0.04em; text-decoration: none;
-  color: #ffffff;
-  padding: 0.75rem 2.25rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  display: inline-flex; align-items: center;
-  transition: border-color 0.3s ease, background 0.3s ease;
-}
-.hero__btn-ghost:hover {
-  border-color: rgba(255, 255, 255, 0.9);
-  background: rgba(255, 255, 255, 0.08);
-}
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 0.75rem 2.25rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    display: inline-flex;
+    align-items: center;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+  @media (hover: hover) {
+    .hero__btn-ghost:hover {
+      border-color: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
 
   /* ── Google reviews pill ── */
   .hero__reviews {
@@ -175,61 +229,51 @@
     animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
     transition: background 0.3s ease, border-color 0.3s ease;
   }
-
-  .hero__reviews:hover {
-    background: rgba(255, 255, 255, 0.11);
-    border-color: rgba(255, 255, 255, 0.25);
+  @media (hover: hover) {
+    .hero__reviews:hover {
+      background: rgba(255, 255, 255, 0.11);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
   }
 
-  .hero__reviews-stars {
-    font-size: 0.8rem;
-    color: var(--color-gold);
-    letter-spacing: 0.05em;
-    line-height: 1;
-  }
-
-  .hero__reviews-divider {
-    width: 1px;
-    height: 0.9rem;
-    background: rgba(255, 255, 255, 0.2);
-    flex-shrink: 0;
-  }
-
-  .hero__reviews-text {
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.6);
-    white-space: nowrap;
-  }
-
-  .hero__reviews-text strong {
-    color: #fff;
-    font-weight: 600;
-  }
+  .hero__reviews-stars { font-size: 0.8rem; color: var(--color-gold); letter-spacing: 0.05em; line-height: 1; }
+  .hero__reviews-divider { width: 1px; height: 0.9rem; background: rgba(255, 255, 255, 0.2); flex-shrink: 0; }
+  .hero__reviews-text { font-family: var(--font-body); font-size: 0.8rem; color: rgba(255, 255, 255, 0.6); white-space: nowrap; }
+  .hero__reviews-text strong { color: #fff; font-weight: 600; }
 
   /* ── Animace ── */
   @keyframes heroFadeUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+  
+  @keyframes heroFadeIn {
+    to { opacity: 1; }
+  }
 
-  @keyframes heroFade { to { opacity: 1; } }
+  @keyframes skeletonPulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.7; }
+  }
 
+  /* REDUCED MOTION ACCEPTANCE: Okamžité zobrazení místo animací */
   @media (prefers-reduced-motion: reduce) {
+    .hero__bg-skeleton {
+      animation: none;
+      display: none;
+    }
+    .hero__bg img {
+      opacity: 1;
+      animation: none;
+    }
     .hero__h1, .hero__display, .hero__text,
-    .hero__actions, .hero__reviews { animation: none; opacity: 1; }
+    .hero__actions, .hero__reviews { 
+      animation: none !important; 
+      opacity: 1 !important;
+      transform: none !important; 
+    }
+    .hero__btn-primary, .hero__btn-ghost, .hero__reviews {
+      transition: none !important;
+    }
   }
 </style>
-
-<script>
-  const setHeroHeight = () => {
-    const hero = document.getElementById('hero');
-    if (hero) hero.style.minHeight = `${window.innerHeight}px`;
-  };
-  let lastWidth = window.innerWidth;
-  setHeroHeight();
-  window.addEventListener('resize', () => {
-    if (window.innerWidth !== lastWidth) { lastWidth = window.innerWidth; setHeroHeight(); }
-  });
-  window.addEventListener('orientationchange', () => setTimeout(setHeroHeight, 100));
-</script>

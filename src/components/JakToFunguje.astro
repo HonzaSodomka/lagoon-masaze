@@ -2,38 +2,32 @@
 // src/components/JakToFunguje.astro
 ---
 
-
-<section id="jak-to-funguje" class="jtf">
+<section id="jak-to-funguje" class="jtf" aria-labelledby="jtf-heading">
   <div class="jtf__container">
 
-
-    <div class="jtf__header">
+    <div class="jtf__header scroll-animate">
       <span class="jtf__eyebrow">Průvodce návštěvou</span>
-      <h2 class="jtf__title">Jak to u&nbsp;nás funguje</h2>
+      <h2 id="jtf-heading" class="jtf__title">Jak to u&nbsp;nás funguje</h2>
       <p class="jtf__subtitle">Vše co potřebujete vědět před první i&nbsp;každou další návštěvou.</p>
     </div>
 
-
-    <!-- Mobil: foto masérky před kroky -->
-    <div class="jtf__photo jtf__photo-mobile">
-      <img src="/maserky.webp" alt="Naše masérky" width="800" height="600" loading="lazy" decoding="async" />
+    <div class="jtf__photo jtf__photo-mobile scroll-animate">
+      <img src="/maserky.webp" alt="" width="800" height="600" loading="eager" decoding="async" />
     </div>
 
-
-    <!-- Desktop: sidebar layout / Mobil: kroky -->
     <div class="jtf__layout">
 
       <ol class="jtf__list">
 
-        <li class="jtf__item">
+        <li class="jtf__item scroll-animate" style="transition-delay: 0.1s;">
           <div class="jtf__num" aria-hidden="true">01</div>
           <div class="jtf__body">
             <h3 class="jtf__step-title">Rezervace</h3>
-            <p class="jtf__step-text">Vše začíná výběrem termínu a&nbsp;masáže. Nejsnazší cesta je přes náš online rezervační systém — vyberete typ, délku a&nbsp;případné poznámky. Nejde to online? Zavolejte nám na <a href="tel:+420776381199" class="jtf__link">+420&nbsp;776&nbsp;381&nbsp;199</a> nebo napište na <a href="mailto:info@lagoon-masaze.cz" class="jtf__link">info@lagoon-masaze.cz</a>.</p>
+            <p class="jtf__step-text">Vše začíná výběrem termínu a&nbsp;masáže. Nejsnazší cesta je přes náš online rezervační systém — vyberete typ, délku a&nbsp;případné poznámky. Nejde to online? Zavolejte nám na <a href="tel:+420732596212" class="jtf__link">+420&nbsp;732&nbsp;596&nbsp;212</a> nebo napište na <a href="mailto:info@lagoon-masaze.cz" class="jtf__link">info@lagoon-masaze.cz</a>.</p>
           </div>
         </li>
 
-        <li class="jtf__item">
+        <li class="jtf__item scroll-animate" style="transition-delay: 0.15s;">
           <div class="jtf__num" aria-hidden="true">02</div>
           <div class="jtf__body">
             <h3 class="jtf__step-title">SMS s&nbsp;kódem</h3>
@@ -41,7 +35,7 @@
           </div>
         </li>
 
-        <li class="jtf__item">
+        <li class="jtf__item scroll-animate" style="transition-delay: 0.2s;">
           <div class="jtf__num" aria-hidden="true">03</div>
           <div class="jtf__body">
             <h3 class="jtf__step-title">Parkování</h3>
@@ -49,7 +43,7 @@
           </div>
         </li>
 
-        <li class="jtf__item">
+        <li class="jtf__item scroll-animate" style="transition-delay: 0.25s;">
           <div class="jtf__num" aria-hidden="true">04</div>
           <div class="jtf__body">
             <h3 class="jtf__step-title">Přijďte s&nbsp;předstihem</h3>
@@ -57,7 +51,7 @@
           </div>
         </li>
 
-        <li class="jtf__item">
+        <li class="jtf__item scroll-animate" style="transition-delay: 0.3s;">
           <div class="jtf__num" aria-hidden="true">05</div>
           <div class="jtf__body">
             <h3 class="jtf__step-title">Offline recepce</h3>
@@ -65,7 +59,7 @@
           </div>
         </li>
 
-        <li class="jtf__item">
+        <li class="jtf__item scroll-animate" style="transition-delay: 0.35s;">
           <div class="jtf__num" aria-hidden="true">06</div>
           <div class="jtf__body">
             <h3 class="jtf__step-title">Průběh masáže</h3>
@@ -73,7 +67,7 @@
           </div>
         </li>
 
-        <li class="jtf__item">
+        <li class="jtf__item scroll-animate" style="transition-delay: 0.4s;">
           <div class="jtf__num" aria-hidden="true">07</div>
           <div class="jtf__body">
             <h3 class="jtf__step-title">Na závěr</h3>
@@ -83,42 +77,37 @@
 
       </ol>
 
-      <aside class="jtf__sidebar" aria-hidden="true">
+      <aside class="jtf__sidebar scroll-animate" aria-hidden="true" style="transition-delay: 0.2s;">
         <div class="jtf__sidebar-inner">
           <div class="jtf__photo">
-            <img src="/maserky.webp" alt="" width="600" height="450" loading="lazy" decoding="async" />
+            <img src="/maserky.webp" alt="" width="600" height="450" loading="eager" decoding="async" />
           </div>
           <div class="jtf__photo">
-            <img src="/recepce.webp" alt="" width="600" height="450" loading="lazy" decoding="async" />
+            <img src="/recepce.webp" alt="" width="600" height="450" loading="eager" decoding="async" />
           </div>
           <div class="jtf__photo">
-            <img src="/prostory.webp" alt="" width="600" height="450" loading="lazy" decoding="async" />
+            <img src="/prostory.webp" alt="" width="600" height="450" loading="eager" decoding="async" />
           </div>
         </div>
       </aside>
 
     </div>
 
-
-    <!-- Mobil: recepce + prostory vedle sebe -->
-<div class="jtf__photo-pair">
-  <div class="jtf__photo">
-    <img src="/recepce.webp" alt="Recepce Lagoon" width="800" height="600" loading="lazy" decoding="async" />
-  </div>
-  <div class="jtf__photo">
-    <img src="/prostory.webp" alt="Prostory Lagoon masáže" width="800" height="600" loading="lazy" decoding="async" />
-  </div>
-</div>
-
-
-    <div class="jtf__cta-wrap">
-      <a href="#rezervace" class="jtf__cta">Rezervovat masáž</a>
+    <div class="jtf__photo-pair scroll-animate">
+      <div class="jtf__photo">
+        <img src="/recepce.webp" alt="" width="800" height="600" loading="eager" decoding="async" />
+      </div>
+      <div class="jtf__photo">
+        <img src="/prostory.webp" alt="" width="800" height="600" loading="eager" decoding="async" />
+      </div>
     </div>
 
+    <div class="jtf__cta-wrap scroll-animate">
+      <a href="#rezervace" class="jtf__cta" aria-label="Rezervovat masáž - přesun na rezervační systém">Rezervovat masáž</a>
+    </div>
 
   </div>
 </section>
-
 
 <style>
   .jtf {
@@ -196,7 +185,10 @@
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .jtf__photo:hover img { transform: scale(1.04); }
+  /* MOBILE FIX: Hover pouze s myší */
+  @media (hover: hover) {
+    .jtf__photo:hover img { transform: scale(1.04); }
+  }
 
   /* ── Mobilní fotky (skryté na desktopu) ── */
   .jtf__photo-mobile {
@@ -271,10 +263,11 @@
     .jtf__item:last-child {
       border-bottom: none;
     }
+  }
 
-    .jtf__item:hover {
-      background: rgba(255, 255, 255, 0.02);
-    }
+  /* MOBILE FIX: Podsvícení řádku kroku jen s myší */
+  @media (hover: hover) and (min-width: 900px) {
+    .jtf__item:hover { background: rgba(255, 255, 255, 0.02); }
   }
 
   /* ── Číslo ── */
@@ -292,8 +285,9 @@
     transition: color 0.4s ease;
   }
 
-  .jtf__item:hover .jtf__num {
-    color: rgba(198, 162, 122, 0.6);
+  /* MOBILE FIX: Rozsvícení čísla jen s myší */
+  @media (hover: hover) {
+    .jtf__item:hover .jtf__num { color: rgba(198, 162, 122, 0.6); }
   }
 
   /* ── Text ── */
@@ -330,9 +324,12 @@
     transition: color 0.2s ease, text-decoration-color 0.2s ease;
   }
 
-  .jtf__link:hover {
-    color: var(--color-gold);
-    text-decoration-color: var(--color-gold);
+  /* MOBILE FIX: Hover u textových odkazů */
+  @media (hover: hover) {
+    .jtf__link:hover {
+      color: var(--color-gold);
+      text-decoration-color: var(--color-gold);
+    }
   }
 
   /* ── CTA ── */
@@ -358,29 +355,68 @@
     transition: background 0.3s ease, color 0.3s ease;
   }
 
-  .jtf__cta:hover {
-    background: #ffffff;
-    color: var(--color-brown);
+  /* MOBILE FIX: Tlačítko */
+  @media (hover: hover) {
+    .jtf__cta:hover {
+      background: #ffffff;
+      color: var(--color-brown);
+    }
   }
 
+  .jtf__photo-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin: clamp(2.5rem, 5vw, 4rem) 0;
+  }
+
+  .jtf__photo-pair .jtf__photo {
+    aspect-ratio: 1 / 1;
+    margin: 0;
+  }
+
+  @media (min-width: 900px) {
+    .jtf__photo-pair { display: none; }
+  }
+
+  /* ── SCROLL ANIMACE ── */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(30px); /* Prodloužena dráha, ať pohyb krásně vynikne */
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .scroll-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── REDUCED MOTION ── */
   @media (prefers-reduced-motion: reduce) {
     .jtf__item,
-    .jtf__photo img { transition: none; }
-    .jtf__cta       { transition: none; }
+    .jtf__photo img,
+    .jtf__cta,
+    .scroll-animate { 
+      transition: none !important; 
+      transform: none !important;
+      opacity: 1 !important;
+    }
   }
-  .jtf__photo-pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-  margin: clamp(2.5rem, 5vw, 4rem) 0;
-}
-
-.jtf__photo-pair .jtf__photo {
-  aspect-ratio: 1 / 1;
-  margin: 0;
-}
-
-@media (min-width: 900px) {
-  .jtf__photo-pair { display: none; }
-}
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    // SCROLL ANIMACE: Observer, který animuje prvky s třídou .scroll-animate
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.scroll-animate').forEach(function(el) {
+      observer.observe(el);
+    });
+  });
+</script>

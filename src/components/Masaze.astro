@@ -2,23 +2,23 @@
 // src/components/Masaze.astro
 ---
 
-<section id="typy-masazi" class="masaze">
+<section id="typy-masazi" class="masaze" aria-labelledby="masaze-heading">
   <div class="masaze__container">
 
-    <div class="masaze__header">
+    <div class="masaze__header scroll-animate">
       <span class="masaze__eyebrow">Naše nabídka</span>
-      <h2 class="masaze__title">Typy masáží</h2>
+      <h2 id="masaze-heading" class="masaze__title">Typy masáží</h2>
       <p class="masaze__subtitle">Osm druhů orientálních procedur — každá jiná, každá výjimečná.</p>
     </div>
 
-    <div class="masaze__grid" id="masazeGrid">
+    <div class="masaze__grid" id="masazeGrid" role="group" aria-label="Seznam nabízených masáží">
 
-      <article class="masaze__card" data-id="0">
+      <article class="masaze__card scroll-animate" data-id="0">
         <div class="masaze__card-image">
-          <img src="/masaz-thajska.webp" alt="Thajská olejová masáž" width="600" height="600" loading="lazy" decoding="async" />
+          <img src="/masaz-thajska.webp" alt="" width="600" height="600" loading="eager" decoding="async" />
         </div>
         <div class="masaze__card-top">
-          <div class="masaze__card-icon"><i data-lucide="flame"></i></div>
+          <div class="masaze__card-icon" aria-hidden="true"><i data-lucide="flame"></i></div>
           <div>
             <h3 class="masaze__card-title">Thajská olejová masáž</h3>
             <p class="masaze__card-short">Uvolnění ztuhlého těla a regenerace svalů.</p>
@@ -29,20 +29,20 @@
             <span>60 min — <strong>800 Kč</strong></span>
             <span>90 min — <strong>1 200 Kč</strong></span>
           </div>
-          <a href="#rezervace" class="masaze__card-cta">Rezervovat</a>
+          <a href="#rezervace" class="masaze__card-cta" aria-label="Rezervovat Thajskou olejovou masáž">Rezervovat</a>
         </div>
         <button class="masaze__toggle" aria-expanded="false" aria-controls="masaze-detail-0">
           <span>Detail masáže</span>
-          <i data-lucide="chevron-down" class="masaze__chevron"></i>
+          <i data-lucide="chevron-down" class="masaze__chevron" aria-hidden="true"></i>
         </button>
       </article>
 
-      <article class="masaze__card" data-id="1">
+      <article class="masaze__card scroll-animate" data-id="1">
         <div class="masaze__card-image">
-          <img src="/masaz-filipinska.webp" alt="Filipínská olejová masáž" width="600" height="600" loading="lazy" decoding="async" />
+          <img src="/masaz-filipinska.webp" alt="" width="600" height="600" loading="eager" decoding="async" />
         </div>
         <div class="masaze__card-top">
-          <div class="masaze__card-icon"><i data-lucide="waves"></i></div>
+          <div class="masaze__card-icon" aria-hidden="true"><i data-lucide="waves"></i></div>
           <div>
             <h3 class="masaze__card-title">Filipínská olejová masáž</h3>
             <p class="masaze__card-short">Příjemná relaxace a odpočinek od každodenního stresu.</p>
@@ -53,20 +53,20 @@
             <span>60 min — <strong>800 Kč</strong></span>
             <span>90 min — <strong>1 200 Kč</strong></span>
           </div>
-          <a href="#rezervace" class="masaze__card-cta">Rezervovat</a>
+          <a href="#rezervace" class="masaze__card-cta" aria-label="Rezervovat Filipínskou olejovou masáž">Rezervovat</a>
         </div>
         <button class="masaze__toggle" aria-expanded="false" aria-controls="masaze-detail-1">
           <span>Detail masáže</span>
-          <i data-lucide="chevron-down" class="masaze__chevron"></i>
+          <i data-lucide="chevron-down" class="masaze__chevron" aria-hidden="true"></i>
         </button>
       </article>
 
-      <article class="masaze__card" data-id="2">
+      <article class="masaze__card scroll-animate" data-id="2">
         <div class="masaze__card-image">
-          <img src="/masaz-ajurvedska.webp" alt="Ajurvédská masáž" width="600" height="600" loading="lazy" decoding="async" />
+          <img src="/masaz-ajurvedska.webp" alt="" width="600" height="600" loading="eager" decoding="async" />
         </div>
         <div class="masaze__card-top">
-          <div class="masaze__card-icon"><i data-lucide="sparkles"></i></div>
+          <div class="masaze__card-icon" aria-hidden="true"><i data-lucide="sparkles"></i></div>
           <div>
             <h3 class="masaze__card-title">Ajurvédská masáž</h3>
             <p class="masaze__card-short">Harmonizace těla a mysli pomocí teplých olejů.</p>
@@ -77,20 +77,20 @@
             <span>60 min — <strong>800 Kč</strong></span>
             <span>90 min — <strong>1 200 Kč</strong></span>
           </div>
-          <a href="#rezervace" class="masaze__card-cta">Rezervovat</a>
+          <a href="#rezervace" class="masaze__card-cta" aria-label="Rezervovat Ajurvédskou masáž">Rezervovat</a>
         </div>
         <button class="masaze__toggle" aria-expanded="false" aria-controls="masaze-detail-2">
           <span>Detail masáže</span>
-          <i data-lucide="chevron-down" class="masaze__chevron"></i>
+          <i data-lucide="chevron-down" class="masaze__chevron" aria-hidden="true"></i>
         </button>
       </article>
 
-      <article class="masaze__card" data-id="3">
+      <article class="masaze__card scroll-animate" data-id="3">
         <div class="masaze__card-image">
-          <img src="/masaz-shiatsu-abhyanga.webp" alt="Shiatsu + Abhyanga masáž" width="600" height="600" loading="lazy" decoding="async" />
+          <img src="/masaz-shiatsu-abhyanga.webp" alt="" width="600" height="600" loading="eager" decoding="async" />
         </div>
         <div class="masaze__card-top">
-          <div class="masaze__card-icon"><i data-lucide="zap"></i></div>
+          <div class="masaze__card-icon" aria-hidden="true"><i data-lucide="zap"></i></div>
           <div>
             <h3 class="masaze__card-title">Shiatsu + Abhyanga</h3>
             <p class="masaze__card-short">Spojení tlakových technik a hluboké relaxace.</p>
@@ -101,20 +101,20 @@
             <span>60 min — <strong>800 Kč</strong></span>
             <span>90 min — <strong>1 200 Kč</strong></span>
           </div>
-          <a href="#rezervace" class="masaze__card-cta">Rezervovat</a>
+          <a href="#rezervace" class="masaze__card-cta" aria-label="Rezervovat Shiatsu s Abhyangou">Rezervovat</a>
         </div>
         <button class="masaze__toggle" aria-expanded="false" aria-controls="masaze-detail-3">
           <span>Detail masáže</span>
-          <i data-lucide="chevron-down" class="masaze__chevron"></i>
+          <i data-lucide="chevron-down" class="masaze__chevron" aria-hidden="true"></i>
         </button>
       </article>
 
-      <article class="masaze__card" data-id="4">
+      <article class="masaze__card scroll-animate" data-id="4">
         <div class="masaze__card-image">
-          <img src="/masaz-pro-dva.webp" alt="Masáž pro dva" width="600" height="600" loading="lazy" decoding="async" />
+          <img src="/masaz-pro-dva.webp" alt="" width="600" height="600" loading="eager" decoding="async" />
         </div>
         <div class="masaze__card-top">
-          <div class="masaze__card-icon"><i data-lucide="heart"></i></div>
+          <div class="masaze__card-icon" aria-hidden="true"><i data-lucide="heart"></i></div>
           <div>
             <h3 class="masaze__card-title">Masáž pro dva</h3>
             <p class="masaze__card-short">Společný zážitek ve stejný čas, každý dle svých preferencí.</p>
@@ -124,20 +124,20 @@
           <div class="masaze__prices">
             <span>Cena dle výběru masáže</span>
           </div>
-          <a href="#rezervace" class="masaze__card-cta">Rezervovat</a>
+          <a href="#rezervace" class="masaze__card-cta" aria-label="Rezervovat Masáž pro dva">Rezervovat</a>
         </div>
         <button class="masaze__toggle" aria-expanded="false" aria-controls="masaze-detail-4">
           <span>Detail masáže</span>
-          <i data-lucide="chevron-down" class="masaze__chevron"></i>
+          <i data-lucide="chevron-down" class="masaze__chevron" aria-hidden="true"></i>
         </button>
       </article>
 
-      <article class="masaze__card" data-id="5">
+      <article class="masaze__card scroll-animate" data-id="5">
         <div class="masaze__card-image">
-          <img src="/masaz-reflexni-nohy.webp" alt="Reflexní masáž nohou" width="600" height="600" loading="lazy" decoding="async" />
+          <img src="/masaz-reflexni-nohy.webp" alt="" width="600" height="600" loading="eager" decoding="async" />
         </div>
         <div class="masaze__card-top">
-          <div class="masaze__card-icon"><i data-lucide="footprints"></i></div>
+          <div class="masaze__card-icon" aria-hidden="true"><i data-lucide="footprints"></i></div>
           <div>
             <h3 class="masaze__card-title">Reflexní masáž nohou</h3>
             <p class="masaze__card-short">Úleva pro unavené nohy a pocit lehkosti.</p>
@@ -147,20 +147,20 @@
           <div class="masaze__prices">
             <span>30 min — <strong>500 Kč</strong></span>
           </div>
-          <a href="#rezervace" class="masaze__card-cta">Rezervovat</a>
+          <a href="#rezervace" class="masaze__card-cta" aria-label="Rezervovat Reflexní masáž nohou">Rezervovat</a>
         </div>
         <button class="masaze__toggle" aria-expanded="false" aria-controls="masaze-detail-5">
           <span>Detail masáže</span>
-          <i data-lucide="chevron-down" class="masaze__chevron"></i>
+          <i data-lucide="chevron-down" class="masaze__chevron" aria-hidden="true"></i>
         </button>
       </article>
 
-      <article class="masaze__card" data-id="6">
+      <article class="masaze__card scroll-animate" data-id="6">
         <div class="masaze__card-image">
-          <img src="/masaz-zada-sije.webp" alt="Masáž zad a šíje" width="600" height="600" loading="lazy" decoding="async" />
+          <img src="/masaz-zada-sije.webp" alt="" width="600" height="600" loading="eager" decoding="async" />
         </div>
         <div class="masaze__card-top">
-          <div class="masaze__card-icon"><i data-lucide="activity"></i></div>
+          <div class="masaze__card-icon" aria-hidden="true"><i data-lucide="activity"></i></div>
           <div>
             <h3 class="masaze__card-title">Masáž zad a šíje</h3>
             <p class="masaze__card-short">Rychlá pomoc pro záda, krk a ramena.</p>
@@ -170,20 +170,20 @@
           <div class="masaze__prices">
             <span>30 min — <strong>500 Kč</strong></span>
           </div>
-          <a href="#rezervace" class="masaze__card-cta">Rezervovat</a>
+          <a href="#rezervace" class="masaze__card-cta" aria-label="Rezervovat Masáž zad a šíje">Rezervovat</a>
         </div>
         <button class="masaze__toggle" aria-expanded="false" aria-controls="masaze-detail-6">
           <span>Detail masáže</span>
-          <i data-lucide="chevron-down" class="masaze__chevron"></i>
+          <i data-lucide="chevron-down" class="masaze__chevron" aria-hidden="true"></i>
         </button>
       </article>
 
-      <article class="masaze__card" data-id="7">
+      <article class="masaze__card scroll-animate" data-id="7">
         <div class="masaze__card-image">
-          <img src="/masaz-hlava-oblicej.webp" alt="Masáž hlavy a obličeje" width="600" height="600" loading="lazy" decoding="async" />
+          <img src="/masaz-hlava-oblicej.webp" alt="" width="600" height="600" loading="eager" decoding="async" />
         </div>
         <div class="masaze__card-top">
-          <div class="masaze__card-icon"><i data-lucide="smile"></i></div>
+          <div class="masaze__card-icon" aria-hidden="true"><i data-lucide="smile"></i></div>
           <div>
             <h3 class="masaze__card-title">Masáž hlavy a obličeje</h3>
             <p class="masaze__card-short">Uvolnění napětí a příjemná relaxace.</p>
@@ -193,20 +193,20 @@
           <div class="masaze__prices">
             <span>30 min — <strong>500 Kč</strong></span>
           </div>
-          <a href="#rezervace" class="masaze__card-cta">Rezervovat</a>
+          <a href="#rezervace" class="masaze__card-cta" aria-label="Rezervovat Masáž hlavy a obličeje">Rezervovat</a>
         </div>
         <button class="masaze__toggle" aria-expanded="false" aria-controls="masaze-detail-7">
           <span>Detail masáže</span>
-          <i data-lucide="chevron-down" class="masaze__chevron"></i>
+          <i data-lucide="chevron-down" class="masaze__chevron" aria-hidden="true"></i>
         </button>
       </article>
 
-      <article class="masaze__card masaze__card--voucher" data-id="voucher">
+      <article class="masaze__card masaze__card--voucher scroll-animate" data-id="voucher">
         <div class="masaze__card-image">
-          <img src="/darkovy-poukaz.webp" alt="Dárkový poukaz na masáž" width="600" height="600" loading="lazy" decoding="async" />
+          <img src="/darkovy-poukaz.webp" alt="" width="600" height="600" loading="eager" decoding="async" />
         </div>
         <div class="masaze__card-top">
-          <div class="masaze__card-icon"><i data-lucide="gift"></i></div>
+          <div class="masaze__card-icon" aria-hidden="true"><i data-lucide="gift"></i></div>
           <div>
             <h3 class="masaze__card-title">Dárkový poukaz</h3>
             <p class="masaze__card-short">Darujte chvíli klidu někomu blízkému.</p>
@@ -216,11 +216,11 @@
           <div class="masaze__prices">
             <span>Libovolná hodnota</span>
           </div>
-          <a href="#kontakt" class="masaze__card-cta">Kontaktovat</a>
+          <a href="#kontakt" class="masaze__card-cta" aria-label="Kontaktovat ohledně dárkového poukazu">Kontaktovat</a>
         </div>
         <button class="masaze__toggle" aria-expanded="false" aria-controls="masaze-detail-voucher">
           <span>Detail poukazu</span>
-          <i data-lucide="chevron-down" class="masaze__chevron"></i>
+          <i data-lucide="chevron-down" class="masaze__chevron" aria-hidden="true"></i>
         </button>
       </article>
 
@@ -363,30 +363,34 @@
     box-shadow: 0 1px 4px rgba(74, 64, 58, 0.07);
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s linear;
   }
-  .masaze__card:hover     { box-shadow: 0 4px 20px rgba(74, 64, 58, 0.11); }
   .masaze__card.is-active { box-shadow: 0 4px 20px rgba(74, 64, 58, 0.13); }
+  @media (hover: hover) {
+    .masaze__card:hover { box-shadow: 0 4px 20px rgba(74, 64, 58, 0.11); }
+  }
 
   /* ── Obrázek nahoře ── */
-      .masaze__card-image {
+  .masaze__card-image {
     width: 100%;
     aspect-ratio: 4 / 3;
     overflow: hidden;
     background: #e8e2da;
     flex-shrink: 0;
-    }
-    .masaze__card-image img {
+  }
+  .masaze__card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
     display: block;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+  }
+  @media (hover: hover) {
     .masaze__card:hover .masaze__card-image img {
-    transform: scale(1.04);
+      transform: scale(1.04);
     }
+  }
 
   .masaze__card-top {
     display: flex;
@@ -447,7 +451,11 @@
     white-space: nowrap;
     transition: background 0.25s, border-color 0.25s, color 0.25s;
   }
-  .masaze__card-cta:hover { background: var(--color-gold); border-color: var(--color-gold); color: #fff; }
+  
+  @media (hover: hover) {
+    .masaze__card-cta:hover { background: var(--color-gold); border-color: var(--color-gold); color: #fff; }
+    .masaze__card--voucher .masaze__card-cta:hover { background: var(--color-gold); border-color: var(--color-gold); color: var(--color-brown); }
+  }
 
   /* ── Toggle ── */
   .masaze__toggle {
@@ -463,8 +471,6 @@
     cursor: pointer;
     transition: color 0.2s;
   }
-  .masaze__toggle:hover,
-  .masaze__card.is-active .masaze__toggle { color: var(--color-gold); }
   .masaze__toggle span {
     font-family: var(--font-body);
     font-size: 0.72rem;
@@ -475,6 +481,14 @@
   .masaze__chevron { width: 1rem; height: 1rem; flex-shrink: 0; transition: transform var(--anim); }
   .masaze__chevron svg { width: 100%; height: 100%; stroke-width: 2; }
   .masaze__toggle[aria-expanded="true"] .masaze__chevron { transform: rotate(180deg); }
+  
+  .masaze__card.is-active .masaze__toggle,
+  .masaze__card--voucher.is-active .masaze__toggle { color: var(--color-gold); }
+
+  @media (hover: hover) {
+    .masaze__toggle:hover { color: var(--color-gold); }
+    .masaze__card--voucher .masaze__toggle:hover { color: var(--color-gold); }
+  }
 
   /* ── Voucher ── */
   .masaze__card--voucher                        { background: var(--color-brown); }
@@ -486,10 +500,7 @@
   .masaze__card--voucher .masaze__prices span   { color: rgba(255, 255, 255, 0.55); }
   .masaze__card--voucher .masaze__prices strong { color: #fff; }
   .masaze__card--voucher .masaze__card-cta      { color: var(--color-gold); border-color: rgba(198, 162, 122, 0.45); }
-  .masaze__card--voucher .masaze__card-cta:hover { background: var(--color-gold); border-color: var(--color-gold); color: var(--color-brown); }
   .masaze__card--voucher .masaze__toggle        { border-top-color: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.4); }
-  .masaze__card--voucher .masaze__toggle:hover,
-  .masaze__card--voucher.is-active .masaze__toggle { color: var(--color-gold); }
 
   /* ── Detail panel ── */
   .masaze-detail {
@@ -497,7 +508,7 @@
     grid-column: 1 / -1;
     background: var(--card-bg);
     border-radius: var(--card-radius);
-    position: relative; /* Důležité: slouží pro napozicování šipky */
+    position: relative; 
   }
 
   /* Zobáček (šipka) směřující k aktivní kartě */
@@ -514,7 +525,6 @@
     border-left: 1px solid var(--card-border);
     z-index: 10;
     opacity: 0;
-    /* Plynulý fade-in a fade-out přesně slazený s křivkou a délkou rozbalení panelu */
     transition: opacity var(--anim);
     pointer-events: none;
   }
@@ -570,20 +580,36 @@
   .masaze-detail--dark .masaze-detail__vhodna        { color: rgba(255, 255, 255, 0.6); }
   .masaze-detail--dark .masaze-detail__vhodna strong { color: rgba(255, 255, 255, 0.85); }
   
-  /* Šipka pro tmavou variantu */
   .masaze-detail--dark::before {
     background: var(--color-brown);
     border-top-color: rgba(255, 255, 255, 0.07);
     border-left-color: rgba(255, 255, 255, 0.07);
   }
 
+  /* ── SCROLL ANIMACE ── */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(30px); /* Prodloužena dráha, ať pohyb krásně vynikne */
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .scroll-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── REDUCED MOTION ACCEPTANCE ── */
   @media (prefers-reduced-motion: reduce) {
     .masaze__card,
     .masaze__card-image img,
     .masaze-detail--ready,
     .masaze-detail__inner,
     .masaze__chevron,
-    .masaze-detail::before { transition: none; }
+    .masaze-detail::before,
+    .scroll-animate { 
+      transition: none !important; 
+      transform: none !important;
+      opacity: 1 !important;
+    }
   }
 </style>
 
@@ -607,7 +633,20 @@
     var openId      = null;
     var isAnimating = false;
 
-    // Přepočítá bod, na který má šipka směřovat, ještě před rozbalením panelu
+    // SCROLL ANIMACE PRO OBSAH: Intersection Observer
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.scroll-animate').forEach(function(el) {
+      observer.observe(el);
+    });
+
     function updateArrow(detail, card) {
       if (!detail || !card) return;
       var cardRect = card.getBoundingClientRect();
@@ -669,7 +708,6 @@
 
       insertDetail(detail, getAnchor(cardIndex));
       
-      // Získáme přesnou pozici ihned - jakmile bublina začne růst, šipka se u ní objeví na správném místě.
       updateArrow(detail, card);
 
       requestAnimationFrame(function () {

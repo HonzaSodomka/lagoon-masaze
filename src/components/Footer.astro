@@ -3,13 +3,13 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="footer">
+<footer class="footer" role="contentinfo">
   <div class="footer__container">
     
     <div class="footer__top">
-      <div class="footer__brand">
+      <div class="footer__brand scroll-animate">
         <a href="/" class="footer__logo" aria-label="Zpět na hlavní stranu">
-          <img src="/logo.png" alt="Lagoon Masáže logo" width="160" height="auto" loading="lazy" />
+          <img src="/logo.png" alt="" width="160" height="auto" loading="eager" />
         </a>
         <p class="footer__legal">
           IČ: 193 25 240<br/>
@@ -17,27 +17,27 @@ const year = new Date().getFullYear();
         </p>
       </div>
 
-      <div class="footer__links-col">
+      <nav class="footer__links-col scroll-animate" style="transition-delay: 0.1s;" aria-label="Patičková navigace">
         <h3 class="footer__heading">Menu</h3>
         <ul class="footer__list">
           <li><a href="#typy-masazi" class="footer__link">Typy masáží</a></li>
           <li><a href="#jak-to-funguje" class="footer__link">Jak to funguje</a></li>
           <li><a href="#kontakt" class="footer__link">Kontakt</a></li>
-          <li><a href="#rezervace" class="footer__link footer__link--gold">Rezervovat termín</a></li>
+          <li><a href="#rezervace" class="footer__link footer__link--gold" aria-label="Rezervovat termín - přesun na rezervační systém">Rezervovat termín</a></li>
         </ul>
-      </div>
+      </nav>
 
-      <div class="footer__contact-col">
+      <div class="footer__contact-col scroll-animate" style="transition-delay: 0.2s;">
         <h3 class="footer__heading">Lagoon Masáže</h3>
         <ul class="footer__list">
           <li class="footer__text">Staroměstské náměstí 19/23<br/>Mladá Boleslav 293 01</li>
-          <li><a href="tel:+420776381199" class="footer__link">+420 776 381 199</a></li>
-          <li><a href="mailto:info@lagoon-masaze.cz" class="footer__link">info@lagoon-masaze.cz</a></li>
+          <li><a href="tel:+420732596212" class="footer__link" aria-label="Zavolejte nám">+420 732 596 212</a></li>
+          <li><a href="mailto:info@lagoon-masaze.cz" class="footer__link" aria-label="Napište nám e-mail">info@lagoon-masaze.cz</a></li>
         </ul>
       </div>
     </div>
 
-    <div class="footer__bottom">
+    <div class="footer__bottom scroll-animate" style="transition-delay: 0.3s;">
       <p class="footer__copy">&copy; {year} Lagoon Masáže. Všechna práva vyhrazena.</p>
       <p class="footer__credits">
         Realizováno <a href="https://webresent.cz" target="_blank" rel="noopener noreferrer" class="footer__webresent">Webresent</a>
@@ -85,9 +85,12 @@ const year = new Date().getFullYear();
     margin-bottom: 1.5rem;
     transition: opacity 0.3s ease;
   }
-  .footer__logo:hover {
-    opacity: 0.8;
+  
+  /* MOBILE FIX: Hover logo */
+  @media (hover: hover) {
+    .footer__logo:hover { opacity: 0.8; }
   }
+  
   .footer__logo img {
     display: block;
     width: clamp(140px, 15vw, 180px);
@@ -132,16 +135,16 @@ const year = new Date().getFullYear();
     text-decoration: none;
     transition: color 0.3s ease;
   }
-  .footer__link:hover {
-    color: #ffffff;
-  }
-
+  
   .footer__link--gold {
     color: var(--color-gold);
     font-weight: 500;
   }
-  .footer__link--gold:hover {
-    color: #ffffff;
+
+  /* MOBILE FIX: Hover odkazy */
+  @media (hover: hover) {
+    .footer__link:hover { color: #ffffff; }
+    .footer__link--gold:hover { color: #ffffff; }
   }
 
   /* ── Spodní lišta ── */
@@ -172,15 +175,50 @@ const year = new Date().getFullYear();
     font-weight: 500;
     transition: color 0.3s ease;
   }
-  .footer__webresent:hover {
-    color: var(--color-gold);
+  
+  /* MOBILE FIX: Hover tvůj odkaz */
+  @media (hover: hover) {
+    .footer__webresent:hover { color: var(--color-gold); }
   }
 
+  /* ── SCROLL ANIMACE ── */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(30px); /* Prodloužena dráha, ať pohyb krásně vynikne */
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .scroll-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── REDUCED MOTION ── */
   @media (prefers-reduced-motion: reduce) {
     .footer__link,
     .footer__logo,
-    .footer__webresent {
-      transition: none;
+    .footer__webresent,
+    .scroll-animate {
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
     }
   }
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    // SCROLL ANIMACE: Observer, který animuje prvky s třídou .scroll-animate
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.scroll-animate').forEach(function(el) {
+      observer.observe(el);
+    });
+  });
+</script>

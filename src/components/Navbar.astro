@@ -2,19 +2,19 @@
 // src/components/Navbar.astro
 ---
 
-<header class="navbar" id="navbar">
+<header class="navbar" id="navbar" role="banner">
   <div class="navbar__inner">
 
-    <a href="/" class="navbar__logo">
-      <img class="navbar__logo-img navbar__logo-white" src="/logo.png"          alt="Lagoon Masáže" />
-      <img class="navbar__logo-img navbar__logo-dark"  src="/lagoon-bronze.png" alt="" aria-hidden="true" />
+    <a href="/" class="navbar__logo" aria-label="Zpět na hlavní stránku – Lagoon Masáže">
+      <img class="navbar__logo-img navbar__logo-white" src="/logo.png" alt="" width="160" height="40" />
+      <img class="navbar__logo-img navbar__logo-dark"  src="/lagoon-bronze.png" alt="" width="160" height="40" aria-hidden="true" />
     </a>
 
-    <nav class="navbar__nav">
+    <nav class="navbar__nav" aria-label="Hlavní navigace">
       <a href="#typy-masazi" class="navbar__link">Typy masáží</a>
-      <span class="navbar__dot">·</span>
+      <span class="navbar__dot" aria-hidden="true">·</span>
       <a href="#jak-to-funguje" class="navbar__link">Jak to u nás funguje</a>
-      <span class="navbar__dot">·</span>
+      <span class="navbar__dot" aria-hidden="true">·</span>
       <a href="#kontakt" class="navbar__link">Kontakt</a>
     </nav>
 
@@ -34,12 +34,12 @@
   </div>
 </header>
 
-<div id="mobile-menu" class="mobile-menu" role="navigation">
+<nav id="mobile-menu" class="mobile-menu" aria-label="Mobilní navigace" aria-hidden="true">
   <a href="#typy-masazi" class="mobile-menu__link">Typy masáží</a>
   <a href="#jak-to-funguje" class="mobile-menu__link">Jak to u nás funguje</a>
   <a href="#kontakt" class="mobile-menu__link">Kontakt</a>
   <a href="#rezervace" class="mobile-menu__cta">Rezervace</a>
-</div>
+</nav>
 
 <style>
   :root {
@@ -77,27 +77,25 @@
     .navbar__inner { padding: 1.5rem 3.5rem; }
   }
 
-  /* ── Logo crossfade — klíčová oprava ── */
+  /* ── Logo crossfade ── */
   .navbar__logo {
     justify-self: start;
     grid-column: 1;
     position: relative;
-    display: inline-block; /* width se přizpůsobí obsahu */
+    display: inline-block;
     height: clamp(2.8rem, 6vw, 4.5rem);
     transition: opacity 0.3s linear;
   }
 
-  .navbar__logo:hover { opacity: 0.7; }
+  @media (hover: hover) {
+    .navbar__logo:hover { opacity: 0.7; }
+  }
 
-  /*
-    Bílé logo — normální flow, určuje šířku kontejneru.
-    Tmavé logo — absolute přes něj, stejná pozice.
-  */
   .navbar__logo-white {
     display: block;
     height: 100%;
     width: auto;
-    position: relative; /* v normálním flow = určuje šířku rodiče */
+    position: relative;
     transition: opacity var(--nav-duration) var(--nav-ease);
     opacity: 1;
   }
@@ -160,7 +158,9 @@
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .navbar__link:hover::after { transform: scaleX(1); }
+  @media (hover: hover) {
+    .navbar__link:hover::after { transform: scaleX(1); }
+  }
 
   .navbar.is-scrolled .navbar__link { color: var(--color-brown); }
   .navbar.is-scrolled .navbar__dot  { color: rgba(74, 64, 58, 0.25); }
@@ -183,8 +183,10 @@
     transition: background 0.3s linear, color 0.3s linear;
   }
 
-  .navbar__cta:hover { background: #ffffff; color: var(--color-brown); }
-  .navbar.is-scrolled .navbar__cta:hover { background: var(--color-brown); color: #ffffff; }
+  @media (hover: hover) {
+    .navbar__cta:hover { background: #ffffff; color: var(--color-brown); }
+    .navbar.is-scrolled .navbar__cta:hover { background: var(--color-brown); color: #ffffff; }
+  }
 
   /* ── Hamburger ── */
   .navbar__hamburger {
@@ -221,13 +223,10 @@
     .navbar__nav       { display: flex; }
     .navbar__cta       { display: inline-flex; align-items: center; }
     .navbar__hamburger { display: none !important; }
+    .mobile-menu       { display: none !important; }
   }
 
   /* ── Mobile menu ── */
-  @media (min-width: 900px) {
-    .mobile-menu { display: none !important; }
-  }
-
   .mobile-menu {
     position: fixed;
     inset: 0;
@@ -238,13 +237,17 @@
     align-items: center;
     justify-content: center;
     gap: 2.75rem;
+    
+    /* A11y: Zajišťuje bezpečné skrytí před tabulátorem, dokud se neotevře */
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.2s linear;
+    transition: opacity 0.2s linear, visibility 0.2s linear;
   }
 
   .mobile-menu.is-open {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
   }
 
@@ -273,8 +276,6 @@
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .mobile-menu__link:hover::after { transform: scaleX(1); }
-
   .mobile-menu__cta {
     font-family: var(--font-display);
     font-size: clamp(1.5rem, 5vw, 2rem);
@@ -290,7 +291,32 @@
     transition: background 0.3s linear, color 0.3s linear;
   }
 
-  .mobile-menu__cta:hover { background: #ffffff; color: var(--color-brown); }
+  @media (hover: hover) {
+    .mobile-menu__link:hover::after { transform: scaleX(1); }
+    .mobile-menu__cta:hover { background: #ffffff; color: var(--color-brown); }
+  }
+
+  /* ── REDUCED MOTION ACCEPTANCE ── */
+  /* Vypíná nebo zpomaluje animace pro uživatele, kteří mají v systému nastaveno omezení pohybu */
+  @media (prefers-reduced-motion: reduce) {
+    .navbar,
+    .navbar__logo,
+    .navbar__logo-white,
+    .navbar__logo-dark,
+    .navbar__link,
+    .navbar__link::after,
+    .navbar__dot,
+    .navbar__cta,
+    .navbar__hamburger span,
+    .mobile-menu,
+    .mobile-menu__link::after,
+    .mobile-menu__cta {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-delay: 0s !important;
+    }
+  }
 </style>
 
 <script>
@@ -325,17 +351,26 @@
     if (resizeHandler) { window.removeEventListener('resize', resizeHandler); resizeHandler = null; }
 
     isOpen = false;
+    
+    // A11y reset do zavřeného stavu
     toggle.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
     menu.classList.remove('is-open');
 
     const openMenu = () => {
       isOpen = true;
+      
+      // A11y aktualizace stavů pro čtečky
       toggle.setAttribute('aria-expanded', 'true');
+      menu.setAttribute('aria-hidden', 'false');
+      
       menu.classList.add('is-open');
       if (lines) {
         (lines[0] as HTMLElement).style.transform = 'translateY(4px) rotate(45deg)';
         (lines[1] as HTMLElement).style.transform = 'translateY(-4px) rotate(-45deg)';
       }
+      
+      // Focus Trap pro únik z menu pomocí klávesy ESC
       trapHandler = (e: KeyboardEvent) => {
         if (e.key === 'Escape') { closeMenu(); toggle.focus(); }
       };
@@ -344,7 +379,11 @@
 
     const closeMenu = () => {
       isOpen = false;
+      
+      // A11y znovuzamčení menu
       toggle.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+      
       menu.classList.remove('is-open');
       if (lines) {
         (lines[0] as HTMLElement).style.transform = 'none';
@@ -359,6 +398,8 @@
     window.addEventListener('resize', resizeHandler);
 
     toggle.addEventListener('click', () => isOpen ? closeMenu() : openMenu());
+    
+    // Automatické zavření mobilního menu po kliknutí na nějaký odkaz (A11y friendly)
     links?.forEach(link => link.addEventListener('click', () => { if (isOpen) closeMenu(); }));
   }
 

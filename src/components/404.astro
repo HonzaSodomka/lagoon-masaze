@@ -1,45 +1,39 @@
 ---
-// src/pages/404.astro
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Stránka nenalezena | Lagoon Masáže">
+<Layout 
+  title="Stránka nenalezena | Lagoon Masáže Mladá Boleslav"
+  description="Omlouváme se, ale tato stránka neexistuje. Vraťte se zpět na hlavní stranu salonu Lagoon Masáže a objevte naše relaxační procedury."
+>
   <section class="error-page">
     <div class="error-page__container">
-      
       <span class="error-page__eyebrow">Chyba 404</span>
-      
       <h1 class="error-page__title">Tady se čas zastavil<br/>až příliš</h1>
-      
       <p class="error-page__text">
         Omlouváme se, ale stránka, kterou hledáte, neexistuje, nebo byla přesunuta. 
         Pojďme vás vrátit zpět tam, kde to znáte.
       </p>
-      
       <a href="/" class="error-page__cta">Zpět na hlavní stranu</a>
-      
     </div>
   </section>
 </Layout>
 
 <style>
   .error-page {
-    /* Minimální výška na celý displej, aby to vypadalo dobře i bez dalšího obsahu */
     min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f5f0ea; /* Stejná krémová barva jako u sekce masáží */
-    padding: 120px 1.25rem 4rem; /* Horní padding tvoří rezervu pro fixní navbar */
+    background: #f5f0ea;
+    padding: 120px 1.25rem 4rem;
     text-align: center;
   }
-
   .error-page__container {
     max-width: 600px;
     margin: 0 auto;
     animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-
   .error-page__eyebrow {
     display: inline-block;
     font-family: var(--font-body);
@@ -54,7 +48,6 @@ import Layout from '../layouts/Layout.astro';
     border-radius: 999px;
     background: rgba(198, 162, 122, 0.05);
   }
-
   .error-page__title {
     font-family: var(--font-display);
     font-size: clamp(2.8rem, 6vw, 4.5rem);
@@ -64,7 +57,6 @@ import Layout from '../layouts/Layout.astro';
     color: var(--color-brown);
     margin-bottom: 1.5rem;
   }
-
   .error-page__text {
     font-family: var(--font-body);
     font-size: clamp(1rem, 2vw, 1.15rem);
@@ -73,7 +65,6 @@ import Layout from '../layouts/Layout.astro';
     margin: 0 auto 2.5rem;
     max-width: 420px;
   }
-
   .error-page__cta {
     font-family: var(--font-display);
     font-size: 1.25rem;
@@ -89,31 +80,17 @@ import Layout from '../layouts/Layout.astro';
     align-items: center;
     transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
   }
-
   .error-page__cta:hover {
     background: var(--color-brown);
     color: #ffffff;
     transform: translateY(-2px);
   }
-
-  /* Jemná animace náběhu */
   @keyframes fadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-
   @media (prefers-reduced-motion: reduce) {
-    .error-page__container {
-      animation: none;
-    }
-    .error-page__cta:hover {
-      transform: none;
-    }
+    .error-page__container { animation: none; }
+    .error-page__cta:hover { transform: none; }
   }
 </style>

@@ -1,8 +1,17 @@
 ---
 import Navbar from '../components/Navbar.astro';
-interface Props { title: string; }
-const { title } = Astro.props;
+
+interface Props { 
+  title: string; 
+  description: string;
+  image?: string; 
+}
+
+const { title, description, image = '/og-image.webp' } = Astro.props; 
 import '../styles/global.css';
+
+// Zajištění absolutní URL pro správné fungování Open Graph tagů
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lagoon-masaze.cz');
 ---
 <!doctype html>
 <html lang="cs">
@@ -10,6 +19,49 @@ import '../styles/global.css';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, canonicalURL)} />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HealthAndBeautyBusiness",
+        "name": "Lagoon Masáže",
+        "image": "https://www.lagoon-masaze.cz/og-image.webp",
+        "@id": "https://www.lagoon-masaze.cz",
+        "url": "https://www.lagoon-masaze.cz",
+        "telephone": "+420732596212",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Staroměstské náměstí 19/23",
+          "addressLocality": "Mladá Boleslav",
+          "postalCode": "293 01",
+          "addressCountry": "CZ"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday", 
+              "Tuesday", 
+              "Wednesday", 
+              "Thursday", 
+              "Friday", 
+              "Saturday"
+            ],
+            "opens": "08:00",
+            "closes": "20:00"
+          }
+        ],
+        "priceRange": "$$"
+      }
+    </script>
+    
     <link rel="preconnect" href="https://api.fontshare.com" />
     <link
       href="https://api.fontshare.com/v2/css?f[]=cormorant@300,400,500,600&f[]=satoshi@300,400,500&display=swap"
@@ -19,9 +71,9 @@ import '../styles/global.css';
   </head>
   <body class="is-loading" style="margin:0">
     
-    <div id="preloader" class="preloader">
+    <div id="preloader" class="preloader" aria-hidden="true">
       <div class="preloader__content">
-        <img src="/lagoon-bronze.png" alt="Lagoon Masáže načítání" class="preloader__logo" width="180" height="auto" />
+        <img src="/lagoon-bronze.png" alt="" class="preloader__logo" width="180" height="auto" />
         <div class="preloader__spinner"></div>
       </div>
     </div>
@@ -78,40 +130,51 @@ import '../styles/global.css';
     pointer-events: none;
   }
 
-  /* Obal pro logo a spinner, aby byly hezky pod sebou */
   .preloader__content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem; /* Mezera mezi logem a spinnerem */
+    gap: 2rem;
   }
 
   .preloader__logo {
     animation: pulse 2s infinite ease-in-out;
   }
 
-  /* ── CSS SPINNER ── */
   .preloader__spinner {
     width: 36px;
     height: 36px;
-    /* Poloprůhledná zlatá stopa */
     border: 3px solid rgba(198, 162, 122, 0.2); 
-    /* Plná zlatá barva, která se točí */
     border-top-color: var(--color-gold, #C6A27A); 
     border-radius: 50%;
     animation: spin 1s linear infinite;
   }
 
-  /* Animace pulzování loga */
   @keyframes pulse {
     0%   { transform: scale(0.95); opacity: 0.7; }
     50%  { transform: scale(1.02); opacity: 1; }
     100% { transform: scale(0.95); opacity: 0.7; }
   }
 
-  /* Animace točení spinneru */
   @keyframes spin {
     0%   { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+
+  /* ── REDUCED MOTION ACCEPTANCE ── */
+  @media (prefers-reduced-motion: reduce) {
+    .preloader__logo {
+      animation: none;
+      transform: scale(1);
+      opacity: 1;
+    }
+    /* Spinner raději rovnou schováme, aby nerušil */
+    .preloader__spinner {
+      display: none;
+      animation: none;
+    }
+    .preloader {
+      transition: none !important;
+    }
   }
 </style>
