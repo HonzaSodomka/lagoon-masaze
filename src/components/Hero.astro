@@ -34,7 +34,7 @@
       <a href="#typy-masazi" class="hero__btn-ghost">Objevit masáže</a>
     </div>
 
-    <a
+    
       href="https://maps.app.goo.gl/pAcxyPUEK9RcHGYa9"
       target="_blank"
       rel="noopener noreferrer"
@@ -56,20 +56,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* CSS REVOLUCE: Nahrazuje veškerý ten JavaScript na výšku! */
-    min-height: 100vh; /* Záloha pro staré prohlížeče */
-    min-height: 100dvh; /* Moderní řešení pro mobily (Dynamic Viewport Height) */
+    min-height: 100vh; /* fallback */
   }
 
   .hero__bg {
     position: absolute;
     inset: 0;
     z-index: 0;
-    /* Tmavě hnědá výplň pod obrázkem, pomáhá LCP, pokud je fotka pomalá */
-    background-color: var(--color-brown, #4a403a); 
+    background-color: var(--color-brown, #4a403a);
   }
 
-  /* Kostra před načtením fotky (Pulse) */
   .hero__bg-skeleton {
     position: absolute;
     inset: 0;
@@ -83,7 +79,6 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    /* Plynulé objevení po stažení */
     opacity: 0;
     animation: heroFadeIn 0.8s ease forwards;
   }
@@ -118,7 +113,6 @@
     .hero__text { margin-inline: auto; }
   }
 
-  /* ── Typografie a Stagger animace ── */
   .hero__h1 {
     font-family: var(--font-body);
     font-size: var(--text-sm);
@@ -156,7 +150,6 @@
     animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
   }
 
-  /* ── Akční tlačítka ── */
   .hero__actions {
     display: flex;
     gap: 1rem;
@@ -212,7 +205,6 @@
     }
   }
 
-  /* ── Google reviews pill ── */
   .hero__reviews {
     display: inline-flex;
     align-items: center;
@@ -241,12 +233,11 @@
   .hero__reviews-text { font-family: var(--font-body); font-size: 0.8rem; color: rgba(255, 255, 255, 0.6); white-space: nowrap; }
   .hero__reviews-text strong { color: #fff; font-weight: 600; }
 
-  /* ── Animace ── */
   @keyframes heroFadeUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  
+
   @keyframes heroFadeIn {
     to { opacity: 1; }
   }
@@ -256,24 +247,30 @@
     50%      { opacity: 0.7; }
   }
 
-  /* REDUCED MOTION ACCEPTANCE: Okamžité zobrazení místo animací */
   @media (prefers-reduced-motion: reduce) {
-    .hero__bg-skeleton {
-      animation: none;
-      display: none;
-    }
-    .hero__bg img {
-      opacity: 1;
-      animation: none;
-    }
+    .hero__bg-skeleton { animation: none; display: none; }
+    .hero__bg img { opacity: 1; animation: none; }
     .hero__h1, .hero__display, .hero__text,
-    .hero__actions, .hero__reviews { 
-      animation: none !important; 
+    .hero__actions, .hero__reviews {
+      animation: none !important;
       opacity: 1 !important;
-      transform: none !important; 
+      transform: none !important;
     }
     .hero__btn-primary, .hero__btn-ghost, .hero__reviews {
       transition: none !important;
     }
   }
 </style>
+
+<script>
+  const setHeroHeight = () => {
+    const hero = document.getElementById('hero');
+    if (hero) hero.style.minHeight = `${window.innerHeight}px`;
+  };
+  let lastWidth = window.innerWidth;
+  setHeroHeight();
+  window.addEventListener('resize', () => {
+    if (window.innerWidth !== lastWidth) { lastWidth = window.innerWidth; setHeroHeight(); }
+  });
+  window.addEventListener('orientationchange', () => setTimeout(setHeroHeight, 100));
+</script>
