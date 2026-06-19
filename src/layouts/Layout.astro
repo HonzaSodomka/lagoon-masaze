@@ -1,5 +1,6 @@
 ---
 import Navbar from '../components/Navbar.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 
 interface Props { 
   title: string; 
@@ -87,7 +88,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
             "closes": "20:00"
           }
         ],
-        "priceRange": "$$",
+        "priceRange": "$$"
       }
     </script>
     
@@ -128,6 +129,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
     }
   });
 </script>
+<CookieBanner />
   </body>
 </html>
 

@@ -41,6 +41,11 @@ const year = new Date().getFullYear();
 
       <div class="footer__bottom">
         <p class="footer__copy">&copy; {year} Lagoon Masáže. Všechna práva vyhrazena.</p>
+        <div class="footer__bottom-links">
+          <a href="/zasady-ochrany-soukromi" class="footer__cookie-btn">Zásady ochrany soukromí</a>
+          <span class="footer__bottom-sep" aria-hidden="true">·</span>
+          <button id="footer-cookie-settings" class="footer__cookie-btn" aria-label="Změnit nastavení cookies">Nastavení cookies</button>
+        </div>
         <p class="footer__credits">
           Realizováno <a href="https://webresent.cz" target="_blank" rel="noopener noreferrer" class="footer__webresent">Webresent</a>
         </p>
@@ -171,6 +176,36 @@ const year = new Date().getFullYear();
     }
   }
 
+  /* ── Spodní odkazy ── */
+  .footer__bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .footer__bottom-sep {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 1rem;
+  }
+
+  .footer__cookie-btn {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+  }
+
+  @media (hover: hover) {
+    .footer__cookie-btn:hover { color: var(--color-gold); }
+  }
+
   .footer__webresent {
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
@@ -198,6 +233,7 @@ const year = new Date().getFullYear();
     .footer__link,
     .footer__logo,
     .footer__webresent,
+    .footer__cookie-btn,
     .scroll-animate {
       transition: none !important;
       transform: none !important;
@@ -220,5 +256,16 @@ const year = new Date().getFullYear();
     document.querySelectorAll('.scroll-animate').forEach(function(el) {
       observer.observe(el);
     });
+
+    var cookieBtn = document.getElementById('footer-cookie-settings');
+    if (cookieBtn) {
+      cookieBtn.addEventListener('click', function () {
+        var modal = document.getElementById('cookie-modal');
+        if (modal) {
+          modal.classList.add('is-open');
+          modal.setAttribute('aria-hidden', 'false');
+        }
+      });
+    }
   });
 </script>

@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Zásady ochrany soukromí | Lagoon Masáže Mladá Boleslav"
+  description="Informace o zpracování osobních údajů a používání cookies na webu Lagoon Masáže."
+  noindex={false}
+>
+  <section class="legal">
+    <div class="legal__container">
+
+      <span class="legal__eyebrow">Právní informace</span>
+      <h1 class="legal__title">Zásady ochrany<br/>soukromí</h1>
+      <p class="legal__updated">Naposledy aktualizováno: červen 2026</p>
+
+      <h2 class="legal__heading">1. Správce osobních údajů</h2>
+      <p class="legal__text">Správcem osobních údajů je společnost <strong>Lagoon Partners s.r.o.</strong>, IČO: 193 25 240, se sídlem Staroměstské náměstí 19/23, Mladá Boleslav 293 01. Kontaktní e-mail: <a href="mailto:info@lagoon-masaze.cz" class="legal__link">info@lagoon-masaze.cz</a>.</p>
+
+      <h2 class="legal__heading">2. Jaké cookies používáme</h2>
+      <p class="legal__text"><strong class="legal__strong">Nezbytné cookies</strong> — zajišťují základní funkce webu, například uložení vašeho souhlasu s cookies. Tyto cookies nevyžadují váš souhlas a nelze je vypnout.</p>
+      <p class="legal__text"><strong class="legal__strong">Mapové služby (Google Maps)</strong> — pokud udělíte souhlas, načteme interaktivní mapu od společnosti Google LLC prostřednictvím služby Google Maps. Google může v této souvislosti ukládat cookies třetích stran po dobu až 6 měsíců. Více informací naleznete v <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="legal__link">zásadách ochrany soukromí Google</a>.</p>
+
+      <h2 class="legal__heading">3. Jak spravovat souhlas</h2>
+      <p class="legal__text">Svůj souhlas s cookies můžete kdykoliv změnit nebo odvolat kliknutím na „Nastavení cookies" v patičce webu, nebo vymazáním dat webu ve svém prohlížeči. Odvolání souhlasu nemá vliv na zákonnost zpracování před jeho odvoláním.</p>
+
+      <h2 class="legal__heading">4. Vaše práva</h2>
+      <p class="legal__text">V souvislosti se zpracováním osobních údajů máte právo:</p>
+      <ul class="legal__list">
+        <li>na přístup ke svým osobním údajům</li>
+        <li>na opravu nepřesných údajů</li>
+        <li>na výmaz osobních údajů („právo být zapomenut")</li>
+        <li>na omezení zpracování</li>
+        <li>vznést námitku proti zpracování</li>
+        <li>odvolat souhlas kdykoliv bez dopadu na předchozí zpracování</li>
+        <li>podat stížnost u dozorového úřadu — Úřadu pro ochranu osobních údajů (<a href="https://www.uoou.cz" target="_blank" rel="noopener noreferrer" class="legal__link">uoou.cz</a>)</li>
+      </ul>
+      <p class="legal__text">Svá práva můžete uplatnit na e-mailové adrese <a href="mailto:info@lagoon-masaze.cz" class="legal__link">info@lagoon-masaze.cz</a>.</p>
+
+      <h2 class="legal__heading">5. Kontakt</h2>
+      <p class="legal__text">V případě dotazů ohledně zpracování osobních údajů nás kontaktujte na <a href="mailto:info@lagoon-masaze.cz" class="legal__link">info@lagoon-masaze.cz</a>.</p>
+
+      <a href="/" class="legal__back">← Zpět na hlavní stranu</a>
+
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal {
+    background: var(--color-brown);
+    min-height: 100dvh;
+    padding: 8rem 1.25rem 6rem;
+  }
+
+  .legal__container {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .legal__eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .legal__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.05;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  .legal__updated {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 2rem;
+  }
+
+  .legal__heading {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--color-gold);
+    margin-top: 1.5rem;
+  }
+
+  .legal__text {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+  }
+
+  .legal__strong {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+  }
+
+  .legal__list {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.6);
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0;
+  }
+
+  .legal__link {
+    color: var(--color-gold);
+    text-decoration: underline;
+    text-decoration-color: rgba(198, 162, 122, 0.4);
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+
+  @media (hover: hover) {
+    .legal__link:hover { color: #ffffff; }
+  }
+
+  .legal__back {
+    display: inline-block;
+    margin-top: 2.5rem;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  @media (hover: hover) {
+    .legal__back:hover { color: var(--color-gold); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .legal__link,
+    .legal__back { transition: none !important; }
+  }
+</style>
