@@ -1,9 +1,9 @@
 ---
 // src/components/Footer.astro
-const year = new Date().getFullYear();
 import { Instagram, Facebook } from 'lucide-astro';
 const isHome = Astro.url.pathname === '/';
 const p = isHome ? '' : '/';
+// Rok se nastavuje klientsky aby byl vždy aktuální bez rebuildu
 ---
 
 <footer class="footer" role="contentinfo">
@@ -52,7 +52,7 @@ const p = isHome ? '' : '/';
       </div>
 
       <div class="footer__bottom">
-        <p class="footer__copy">&copy; {year} Lagoon Masáže. Všechna práva vyhrazena.</p>
+        <p class="footer__copy">&copy; <span id="footer-year"></span> Lagoon Masáže. Všechna práva vyhrazena.</p>
         <div class="footer__bottom-links">
           <a href="/zasady-ochrany-soukromi" class="footer__cookie-btn">Zásady ochrany soukromí</a>
           <span class="footer__bottom-sep" aria-hidden="true">·</span>
@@ -293,6 +293,9 @@ const p = isHome ? '' : '/';
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function () {
+    var yearEl = document.getElementById('footer-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
     var cookieBtn = document.getElementById('footer-cookie-settings');
     if (cookieBtn) {
       cookieBtn.addEventListener('click', function () {
