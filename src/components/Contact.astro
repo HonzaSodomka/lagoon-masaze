@@ -78,22 +78,22 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
       </div>
 
       <div class="contact__map-wrap">
-  <div id="map-placeholder" class="contact__map-placeholder">
-    <p class="contact__map-placeholder-text">Pro zobrazení mapy je nutný souhlas s cookies.</p>
-    <button onclick="(function(){localStorage.setItem('lagoon_cookie_consent', JSON.stringify({maps:true,ts:Date.now()}));var p=document.getElementById('map-placeholder');var i=document.getElementById('map-iframe');if(p)p.style.display='none';if(i)i.style.display='block';var b=document.getElementById('cookie-banner');if(b)b.classList.add('is-hidden');})()" class="contact__map-placeholder-btn">Povolit mapu</button>
-  </div>
-  <iframe
-    id="map-iframe"
-    class="contact__map"
-    style="display:none; border:0;"
-    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2000!2d14.902356641104513!3d50.410201499999985!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470955551596a721%3A0xe2e014efa9cdcc05!2zTGFnb29uIE1hc8Ohxb5l!5e0!3m2!1scs!2scz!4v1781876501496!5m2!1scs!2scz"
-    width="100%" height="100%"
-    allowfullscreen="" loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"
-    title="Mapa – Lagoon Masáže, Staroměstské náměstí 19/23, Mladá Boleslav"
-    aria-label="Mapa – Lagoon Masáže, Staroměstské náměstí 19/23, Mladá Boleslav"
-  ></iframe>
-</div>
+        <div id="map-placeholder" class="contact__map-placeholder">
+          <p class="contact__map-placeholder-text">Pro zobrazení mapy je nutný souhlas s cookies.</p>
+          <button onclick="(function(){localStorage.setItem('lagoon_cookie_consent', JSON.stringify({maps:true,ts:Date.now()}));var p=document.getElementById('map-placeholder');var i=document.getElementById('map-iframe');if(p)p.style.display='none';if(i)i.style.display='block';var b=document.getElementById('cookie-banner');if(b)b.classList.add('is-hidden');})()" class="contact__map-placeholder-btn">Povolit mapu</button>
+        </div>
+        <iframe
+          id="map-iframe"
+          class="contact__map"
+          style="display:none; border:0;"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2000!2d14.902356641104513!3d50.410201499999985!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470955551596a721%3A0xe2e014efa9cdcc05!2zTGFnb29uIE1hc8Ohxb5l!5e0!3m2!1scs!2scz!4v1781876501496!5m2!1scs!2scz"
+          width="100%" height="100%"
+          allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mapa – Lagoon Masáže, Staroměstské náměstí 19/23, Mladá Boleslav"
+          aria-label="Mapa – Lagoon Masáže, Staroměstské náměstí 19/23, Mladá Boleslav"
+        ></iframe>
+      </div>
 
     </div>
   </div>
@@ -114,6 +114,16 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
     grid-template-columns: 1fr 1fr;
     gap: clamp(2rem, 5vw, 5rem);
     align-items: start;
+  }
+
+  /* Na tabletu přepneme na jeden sloupec dříve — při 1fr 1fr
+     se levý sloupec na ~700–860px začíná mačkat */
+  @media (max-width: 860px) {
+    .contact__container {
+      grid-template-columns: 1fr;
+    }
+    .contact__info   { order: 1; }
+    .contact__visual { order: 2; }
   }
 
   /* ── levý sloupec ── */
@@ -178,7 +188,6 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
 
   .contact__detail-icon svg { width: 16px; height: 16px; }
 
-
   .contact__detail-label {
     display: block;
     font-family: var(--font-body);
@@ -203,29 +212,28 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
     text-decoration: none;
     transition: color 0.25s ease;
   }
-  
-  /* MOBILE FIX: Hover u kontaktů pouze s myší */
+
   @media (hover: hover) {
     .contact__detail-link:hover { color: var(--color-gold); }
   }
 
   .contact__cta {
     font-family: var(--font-display);
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
     font-weight: 400;
     font-style: italic;
     letter-spacing: 0.04em;
     text-decoration: none;
     color: var(--color-brown);
     background: var(--color-gold);
-    padding: 0.75rem 2.25rem;
+    padding: 0.75rem clamp(1.5rem, 2vw, 2.25rem);
     border-radius: 999px;
     display: inline-flex;
     align-items: center;
+    white-space: nowrap;
     transition: background 0.3s ease, color 0.3s ease;
   }
-  
-  /* MOBILE FIX: Hover u CTA tlačítka pouze s myší */
+
   @media (hover: hover) {
     .contact__cta:hover { background: var(--color-brown); color: #fff; }
   }
@@ -234,7 +242,7 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
   .contact__visual {
     display: flex;
     flex-direction: column;
-    gap: 0; /* gap řídí divider */
+    gap: 0;
   }
 
   /* fotka */
@@ -255,36 +263,11 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
     display: block;
     transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
-  
-  /* MOBILE FIX: Hover na fotce pouze s myší */
+
   @media (hover: hover) {
     .contact__photo-wrap:hover .contact__photo {
       transform: scale(1.04);
     }
-  }
-
-  /* tmavý přechod dole + badge */
-  .contact__photo-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      transparent 55%,
-      rgba(44, 36, 30, 0.45) 100%
-    );
-    display: flex;
-    align-items: flex-end;
-    padding: 1.25rem 1.5rem;
-    pointer-events: none;
-  }
-
-  .contact__photo-badge {
-    font-family: var(--font-body);
-    font-size: 0.68rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.22em;
-    color: rgba(255, 255, 255, 0.75);
   }
 
   /* oddělovač */
@@ -318,9 +301,9 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
     flex-shrink: 0;
   }
 
-  /* mapa */
+  /* mapa — clamp výška: na mobilu 180px, na desktopu 240px */
   .contact__map-wrap {
-    height: 240px;
+    height: clamp(180px, 25vw, 240px);
     border-radius: 0 0 1.25rem 1.25rem;
     overflow: hidden;
     border: 1px solid rgba(74, 64, 58, 0.08);
@@ -334,28 +317,51 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
     display: block;
   }
 
-  /* ── responzivita ── */
-  @media (max-width: 860px) {
-    .contact__container {
-      grid-template-columns: 1fr;
-    }
+  /* ── Cookie placeholder ── */
+  .contact__map-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: rgba(74, 64, 58, 0.04);
+    border-radius: 0 0 1.25rem 1.25rem;
+  }
 
-    .contact__info   { order: 1; }
-    .contact__visual { order: 2; }
+  .contact__map-placeholder-text {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: rgba(74, 64, 58, 0.5);
+    text-align: center;
+    padding: 0 1rem;
+  }
 
-    .contact__photo-wrap {
-      border-radius: 1.25rem 1.25rem 0 0;
-    }
+  .contact__map-placeholder-btn {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--color-brown);
+    background: var(--color-gold);
+    border: none;
+    padding: 0.55rem 1.4rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.25s ease;
+  }
 
-    .contact__map-wrap {
-      height: 200px;
+  @media (hover: hover) {
+    .contact__map-placeholder-btn:hover {
+      background: var(--color-brown);
+      color: #ffffff;
     }
   }
 
   /* ── SCROLL ANIMACE ── */
   .scroll-animate {
     opacity: 0;
-    transform: translateY(30px); /* Prodloužena dráha, ať pohyb krásně vynikne */
+    transform: translateY(30px);
     transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .scroll-animate.is-visible {
@@ -363,52 +369,12 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
     transform: translateY(0);
   }
 
-  .contact__map-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  background: rgba(74,64,58,0.04);
-  border-radius: 0 0 1.25rem 1.25rem;
-}
-
-.contact__map-placeholder-text {
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  color: rgba(74,64,58,0.5);
-  text-align: center;
-  padding: 0 1rem;
-}
-
-.contact__map-placeholder-btn {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-style: italic;
-  color: var(--color-brown);
-  background: var(--color-gold);
-  border: none;
-  padding: 0.55rem 1.4rem;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background 0.25s ease;
-}
-
-@media (hover: hover) {
-  .contact__map-placeholder-btn:hover {
-    background: var(--color-brown);
-    color: #ffffff;
-  }
-}
-
   /* ── REDUCED MOTION ── */
   @media (prefers-reduced-motion: reduce) {
     .contact__photo,
     .contact__cta,
-    .scroll-animate { 
-      transition: none !important; 
+    .scroll-animate {
+      transition: none !important;
       transform: none !important;
       opacity: 1 !important;
     }
@@ -417,7 +383,6 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function () {
-    // SCROLL ANIMACE: Observer, který animuje prvky s třídou .scroll-animate
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {

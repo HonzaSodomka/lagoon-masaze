@@ -76,7 +76,13 @@
     align-items: center;
   }
 
-  @media (min-width: 900px) {
+  /* Tablet: střední padding */
+  @media (min-width: 900px) and (max-width: 1199px) {
+    .navbar__inner { padding: 1rem 2rem; }
+  }
+
+  /* Desktop: plný padding */
+  @media (min-width: 1200px) {
     .navbar__inner { padding: 1.5rem 3.5rem; }
   }
 
@@ -86,7 +92,8 @@
     grid-column: 1;
     position: relative;
     display: inline-block;
-    height: clamp(2.8rem, 6vw, 4.5rem);
+    /* Tablet: logo je o kus menší aby bylo místo pro nav */
+    height: clamp(2rem, 4vw, 4.5rem);
     transition: opacity 0.3s linear;
   }
 
@@ -128,32 +135,35 @@
 
   .navbar__dot {
     color: rgba(255, 255, 255, 0.3);
-    font-size: 1.3rem;
+    font-size: clamp(0.9rem, 1.1vw, 1.3rem);
     font-style: normal;
-    padding: 0 0.25rem;
+    padding: 0 clamp(0.1rem, 0.2vw, 0.25rem);
     user-select: none;
     transition: color var(--nav-duration) var(--nav-ease);
   }
 
   .navbar__link {
     font-family: var(--font-display);
-    font-size: 1.3rem;
+    /* Klíčová změna: clamp místo fixního 1.3rem */
+    font-size: clamp(0.95rem, 1.1vw, 1.3rem);
     font-weight: 300;
     font-style: italic;
     letter-spacing: 0.04em;
     color: #ffffff;
     text-decoration: none;
-    padding: 0.4rem 1rem;
+    /* Clampovaný padding — na tabletu se smrskne */
+    padding: 0.4rem clamp(0.3rem, 0.6vw, 1rem);
     position: relative;
     transition: color var(--nav-duration) var(--nav-ease);
+    white-space: nowrap;
   }
 
   .navbar__link::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 1rem;
-    right: 1rem;
+    left: clamp(0.3rem, 0.6vw, 1rem);
+    right: clamp(0.3rem, 0.6vw, 1rem);
     height: 1px;
     background: currentColor;
     transform: scaleX(0);
@@ -174,15 +184,18 @@
     justify-self: end;
     grid-column: 3;
     font-family: var(--font-display);
-    font-size: 1.3rem;
+    /* Clamp stejně jako nav linky */
+    font-size: clamp(0.95rem, 1.1vw, 1.3rem);
     font-weight: 400;
     font-style: italic;
     letter-spacing: 0.04em;
     text-decoration: none;
     color: var(--color-brown);
     background: var(--color-gold);
-    padding: 0.6rem 2rem;
+    /* Clampovaný padding — na tabletu se smrskne */
+    padding: 0.6rem clamp(0.9rem, 1.4vw, 2rem);
     border-radius: 999px;
+    white-space: nowrap;
     transition: background 0.3s linear, color 0.3s linear;
   }
 
@@ -240,8 +253,6 @@
     align-items: center;
     justify-content: center;
     gap: 2.75rem;
-    
-    /* A11y: Zajišťuje bezpečné skrytí před tabulátorem, dokud se neotevře */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -299,8 +310,7 @@
     .mobile-menu__cta:hover { background: #ffffff; color: var(--color-brown); }
   }
 
-  /* ── REDUCED MOTION ACCEPTANCE ── */
-  /* Vypíná nebo zpomaluje animace pro uživatele, kteří mají v systému nastaveno omezení pohybu */
+  /* ── REDUCED MOTION ── */
   @media (prefers-reduced-motion: reduce) {
     .navbar,
     .navbar__logo,
@@ -354,19 +364,15 @@
     if (resizeHandler) { window.removeEventListener('resize', resizeHandler); resizeHandler = null; }
 
     isOpen = false;
-    
-    // A11y reset do zavřeného stavu
+
     toggle.setAttribute('aria-expanded', 'false');
     menu.setAttribute('aria-hidden', 'true');
     menu.classList.remove('is-open');
 
     const openMenu = () => {
       isOpen = true;
-      
-      // A11y aktualizace stavů pro čtečky
       toggle.setAttribute('aria-expanded', 'true');
       menu.setAttribute('aria-hidden', 'false');
-      
       menu.classList.add('is-open');
       const firstLink = menu.querySelector('a');
       if (firstLink) (firstLink as HTMLElement).focus();
@@ -374,8 +380,6 @@
         (lines[0] as HTMLElement).style.transform = 'translateY(4px) rotate(45deg)';
         (lines[1] as HTMLElement).style.transform = 'translateY(-4px) rotate(-45deg)';
       }
-      
-      // Focus Trap pro únik z menu pomocí klávesy ESC
       trapHandler = (e: KeyboardEvent) => {
         if (e.key === 'Escape') { closeMenu(); toggle.focus(); }
       };
@@ -384,11 +388,8 @@
 
     const closeMenu = () => {
       isOpen = false;
-      
-      // A11y znovuzamčení menu
       toggle.setAttribute('aria-expanded', 'false');
       menu.setAttribute('aria-hidden', 'true');
-      
       menu.classList.remove('is-open');
       if (lines) {
         (lines[0] as HTMLElement).style.transform = 'none';
@@ -403,8 +404,6 @@
     window.addEventListener('resize', resizeHandler);
 
     toggle.addEventListener('click', () => isOpen ? closeMenu() : openMenu());
-    
-    // Automatické zavření mobilního menu po kliknutí na nějaký odkaz (A11y friendly)
     links?.forEach(link => link.addEventListener('click', () => { if (isOpen) closeMenu(); }));
   }
 

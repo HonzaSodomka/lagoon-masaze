@@ -57,7 +57,8 @@
     max-width: 860px;
     background: var(--color-brown);
     border-radius: 1rem;
-    padding: 1.25rem 1.5rem;
+    /* Clamp padding — na úzkých mobilech trochu méně */
+    padding: clamp(1rem, 3vw, 1.25rem) clamp(1rem, 3vw, 1.5rem);
     z-index: 999;
     box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     transition: opacity 0.4s ease, transform 0.4s ease;
@@ -162,7 +163,8 @@
     }
   }
 
-  /* ── Mobil ── */
+  /* ── Střední mobil (480–600px): text a tlačítka pod sebou,
+     tlačítka ve třech sloupcích vedle sebe ── */
   @media (max-width: 600px) {
     .cookie-banner__inner {
       flex-direction: column;
@@ -178,15 +180,33 @@
       justify-items: center;
     }
 
-    /* Nastavení vlevo nahoře, Odmítnout vše vpravo nahoře */
     #cookie-settings { grid-column: 1; grid-row: 1; }
     #cookie-reject   { grid-column: 2; grid-row: 1; }
 
-    /* Přijmout vše přes celou šířku dole */
     #cookie-accept {
       grid-column: 1 / -1;
       grid-row: 2;
       text-align: center;
+      width: 100%;
+    }
+  }
+
+  /* ── Malý mobil (< 360px): tlačítka každé na vlastním řádku ── */
+  @media (max-width: 360px) {
+    .cookie-banner__actions {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+    }
+
+    #cookie-settings { grid-column: 1; grid-row: 1; width: 100%; }
+    #cookie-reject   { grid-column: 1; grid-row: 2; width: 100%; }
+    #cookie-accept   { grid-column: 1; grid-row: 3; width: 100%; }
+
+    .cookie-banner__btn {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      display: flex;
     }
   }
 
@@ -215,7 +235,8 @@
   .cookie-modal__box {
     background: #ffffff;
     border-radius: 1rem;
-    padding: 2rem;
+    /* Clamp padding modalu — na malých mobilech úspornější */
+    padding: clamp(1.25rem, 4vw, 2rem);
     max-width: 480px;
     width: 100%;
   }
@@ -373,7 +394,6 @@
     }
   }
 
-  /* ── Focus trap pro modal ── */
   var FOCUSABLE = 'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])';
   var trapHandler = null;
 

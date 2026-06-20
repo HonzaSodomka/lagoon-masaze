@@ -98,11 +98,8 @@ const recenze = [
   .recenze__container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.25rem;
-  }
-
-  @media (min-width: 900px) {
-    .recenze__container { padding: 0 3.5rem; }
+    /* Clamp místo ostrého skoku — konzistentní s ostatními sekcemi */
+    padding: 0 clamp(1.25rem, 4vw, 3.5rem);
   }
 
   /* ── Header ── */
@@ -189,23 +186,21 @@ const recenze = [
   .recenze__viewport {
     overflow: hidden;
     width: 100%;
-    /* Zabraňuje výběru textu při swipování */
     user-select: none;
     -webkit-user-select: none;
   }
 
   .recenze__track {
     display: flex;
-    /* Šířka = počet slidů × 100% */
     width: 400%;
     will-change: transform;
   }
 
   .recenze__slide {
-    /* Každý slide zabírá 1/4 tracku = 100% viewportu */
     width: 25%;
     box-sizing: border-box;
-    padding: 0 0.125rem;
+    /* Trochu větší padding na slidech — karta se netlačí ke krajům viewportu */
+    padding: 0 0.25rem;
   }
 
   /* ── Dots ── */
@@ -238,7 +233,8 @@ const recenze = [
     background: rgba(255, 255, 255, 0.65);
     border: 1px solid rgba(74, 64, 58, 0.08);
     border-radius: 1rem;
-    padding: 1.75rem 1.5rem 1.5rem;
+    /* Clamp padding — na mobilu trochu užší */
+    padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1.1rem, 3vw, 1.5rem);
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -294,17 +290,18 @@ const recenze = [
 
   .recenze__cta {
     font-family: var(--font-display);
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
     font-weight: 400;
     font-style: italic;
     letter-spacing: 0.04em;
     text-decoration: none;
     color: var(--color-brown);
     border: 1px solid rgba(74, 64, 58, 0.3);
-    padding: 0.7rem 2rem;
+    padding: 0.7rem clamp(1.25rem, 2vw, 2rem);
     border-radius: 999px;
     display: inline-flex;
     align-items: center;
+    white-space: nowrap;
     transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
 
@@ -369,33 +366,29 @@ const recenze = [
     var total   = dots.length;
     var current = 0;
 
-    /* Swipe stav */
     var touchStartX = 0;
     var touchStartY = 0;
     var touchDeltaX = 0;
-    var isSwiping   = false;   /* true = jsme v horizontálním swipu */
-    var isDecided   = false;   /* true = rozhodli jsme se h vs v */
+    var isSwiping   = false;
+    var isDecided   = false;
 
     function setSlide(index, animate) {
       current = Math.max(0, Math.min(index, total - 1));
       track.style.transition = animate === false
         ? 'none'
         : 'transform 0.38s cubic-bezier(0.25, 1, 0.5, 1)';
-      /* Track je 400% široký, každý slide 25% — posuneme o current×25% */
       track.style.transform = 'translateX(-' + (current * 25) + '%)';
       dots.forEach(function (d, i) {
         d.classList.toggle('is-active', i === current);
       });
     }
 
-    /* Dots */
     dots.forEach(function (dot) {
       dot.addEventListener('click', function () {
         setSlide(parseInt(dot.getAttribute('data-index'), 10), true);
       });
     });
 
-    /* ── Touch events ── */
     viewport.addEventListener('touchstart', function (e) {
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
@@ -409,7 +402,6 @@ const recenze = [
       var dy = e.touches[0].clientY - touchStartY;
 
       if (!isDecided) {
-        /* Rozhodneme se podle prvního výraznějšího pohybu */
         if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 5) {
           isSwiping = true;
           isDecided = true;
@@ -419,12 +411,11 @@ const recenze = [
         }
       }
 
-      if (!isSwiping) return; /* vertikální scroll — necháme stránce */
+      if (!isSwiping) return;
 
-      e.preventDefault(); /* blokujeme scroll stránky jen při horizontálním swipu */
+      e.preventDefault();
       touchDeltaX = dx;
 
-      /* Live přetahování — posuneme track o delta bez animace */
       var base   = current * 25;
       var offset = (touchDeltaX / viewport.offsetWidth) * 25;
       track.style.transition = 'none';
@@ -435,11 +426,11 @@ const recenze = [
       if (!isSwiping) return;
 
       if (touchDeltaX < -50) {
-        setSlide(current + 1, true); /* swipe doleva → další */
+        setSlide(current + 1, true);
       } else if (touchDeltaX > 50) {
-        setSlide(current - 1, true); /* swipe doprava → předchozí */
+        setSlide(current - 1, true);
       } else {
-        setSlide(current, true);     /* nedostatečný swipe → zpět */
+        setSlide(current, true);
       }
 
       touchDeltaX = 0;

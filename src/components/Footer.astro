@@ -38,13 +38,13 @@ import { Instagram, Facebook } from 'lucide-astro';
             <li><a href="tel:+420732596212" class="footer__link" aria-label="Zavolejte nám">+420 732 596 212</a></li>
             <li><a href="mailto:info@lagoon-masaze.cz" class="footer__link" aria-label="Napište nám e-mail">info@lagoon-masaze.cz</a></li>
             <li class="footer__social">
-  <a href="https://www.instagram.com/lagoon_masaze" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Lagoon Masáže na Instagramu">
-    <Instagram size={18} />
-  </a>
-  <a href="https://www.facebook.com/p/Lagoon-Mas%C3%A1%C5%BEe-61553022234305/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Lagoon Masáže na Facebooku">
-    <Facebook size={18} />
-  </a>
-</li>
+              <a href="https://www.instagram.com/lagoon_masaze" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Lagoon Masáže na Instagramu">
+                <Instagram size={18} />
+              </a>
+              <a href="https://www.facebook.com/p/Lagoon-Mas%C3%A1%C5%BEe-61553022234305/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Lagoon Masáže na Facebooku">
+                <Facebook size={18} />
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -76,22 +76,32 @@ import { Instagram, Facebook } from 'lucide-astro';
   .footer__container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.25rem;
-  }
-
-  @media (min-width: 900px) {
-    .footer__container { padding: 0 3.5rem; }
+    /* Clamp místo ostrého skoku — konzistentní s ostatními sekcemi */
+    padding: 0 clamp(1.25rem, 4vw, 3.5rem);
   }
 
   /* ── Horní mřížka ── */
   .footer__top {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
     margin-bottom: clamp(3rem, 6vw, 4rem);
   }
 
-  @media (min-width: 768px) {
+  /* Tablet 640–900px: dva sloupce — brand přes celou šířku nahoře,
+     menu a kontakt vedle sebe dole */
+  @media (min-width: 640px) and (max-width: 899px) {
+    .footer__top {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .footer__brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* Desktop 900px+: původní tři sloupce */
+  @media (min-width: 900px) {
     .footer__top {
       grid-template-columns: 2fr 1fr 1.5fr;
       gap: 2rem;
@@ -104,14 +114,14 @@ import { Instagram, Facebook } from 'lucide-astro';
     margin-bottom: 1.5rem;
     transition: opacity 0.3s ease;
   }
-  
+
   @media (hover: hover) {
     .footer__logo:hover { opacity: 0.8; }
   }
-  
+
   .footer__logo img {
     display: block;
-    width: clamp(140px, 15vw, 180px);
+    width: clamp(130px, 15vw, 180px);
   }
 
   .footer__legal {
@@ -153,7 +163,7 @@ import { Instagram, Facebook } from 'lucide-astro';
     text-decoration: none;
     transition: color 0.3s ease;
   }
-  
+
   .footer__link--gold {
     color: var(--color-gold);
     font-weight: 500;
@@ -162,6 +172,33 @@ import { Instagram, Facebook } from 'lucide-astro';
   @media (hover: hover) {
     .footer__link:hover { color: #ffffff; }
     .footer__link--gold:hover { color: #ffffff; }
+  }
+
+  /* ── Sociální sítě ── */
+  .footer__social {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .footer__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.5);
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+
+  @media (hover: hover) {
+    .footer__social-link:hover {
+      border-color: var(--color-gold);
+      color: var(--color-gold);
+    }
   }
 
   /* ── Spodní lišta ── */
@@ -191,7 +228,17 @@ import { Instagram, Facebook } from 'lucide-astro';
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    white-space: nowrap;
+    /* Na velmi malých mobilech může "Zásady ochrany soukromí · Nastavení cookies"
+       přetékat — povolíme wrap a centrujeme */
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (min-width: 600px) {
+    .footer__bottom-links {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+    }
   }
 
   .footer__bottom-sep {
@@ -216,13 +263,17 @@ import { Instagram, Facebook } from 'lucide-astro';
     .footer__cookie-btn:hover { color: var(--color-gold); }
   }
 
+  .footer__credits {
+    white-space: nowrap;
+  }
+
   .footer__webresent {
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
   }
-  
+
   @media (hover: hover) {
     .footer__webresent:hover { color: var(--color-gold); }
   }
@@ -237,31 +288,7 @@ import { Instagram, Facebook } from 'lucide-astro';
     opacity: 1;
     transform: translateY(0);
   }
-.footer__social {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 0.25rem;
-}
 
-.footer__social-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.5);
-  transition: border-color 0.3s ease, color 0.3s ease;
-}
-
-@media (hover: hover) {
-  .footer__social-link:hover {
-    border-color: var(--color-gold);
-    color: var(--color-gold);
-  }
-}
   /* ── REDUCED MOTION ── */
   @media (prefers-reduced-motion: reduce) {
     .footer__link,

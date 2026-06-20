@@ -301,9 +301,9 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
   .masaze__container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.25rem;
+    /* Clamp místo ostrého skoku — na tabletu ~2rem, na desktopu 3.5rem */
+    padding: 0 clamp(1.25rem, 4vw, 3.5rem);
   }
-  @media (min-width: 900px) { .masaze__container { padding: 0 3.5rem; } }
 
   /* ── Header ── */
   .masaze__header {
@@ -512,7 +512,6 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
     position: relative; 
   }
 
-  /* Zobáček (šipka) směřující k aktivní kartě */
   .masaze-detail::before {
     content: '';
     position: absolute;
@@ -559,10 +558,13 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    padding: 0 2rem;
+    /* Clamp padding — na mobilu užší, na desktopu původní 2rem */
+    padding: 0 clamp(1rem, 3vw, 2rem);
     transition: padding var(--anim);
   }
-  .masaze-detail.is-open .masaze-detail__inner { padding: 1.75rem 2rem; }
+  .masaze-detail.is-open .masaze-detail__inner {
+    padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1rem, 3vw, 2rem);
+  }
 
   .masaze-detail__inner p {
     font-family: var(--font-body);
@@ -590,7 +592,7 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
   /* ── SCROLL ANIMACE ── */
   .scroll-animate {
     opacity: 0;
-    transform: translateY(30px); /* Prodloužena dráha, ať pohyb krásně vynikne */
+    transform: translateY(30px);
     transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .scroll-animate.is-visible {
@@ -598,7 +600,7 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
     transform: translateY(0);
   }
 
-  /* ── REDUCED MOTION ACCEPTANCE ── */
+  /* ── REDUCED MOTION ── */
   @media (prefers-reduced-motion: reduce) {
     .masaze__card,
     .masaze__card-image img,
@@ -634,7 +636,6 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
     var openId      = null;
     var isAnimating = false;
 
-    // SCROLL ANIMACE PRO OBSAH: Intersection Observer
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
@@ -708,7 +709,6 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
       if (!detail) return;
 
       insertDetail(detail, getAnchor(cardIndex));
-      
       updateArrow(detail, card);
 
       requestAnimationFrame(function () {
