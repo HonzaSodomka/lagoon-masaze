@@ -2,9 +2,14 @@
 // src/components/Navbar.astro
 const isHome = Astro.url.pathname === '/';
 const p = isHome ? '' : '/';
+
+interface Props {
+  forceScrolled?: boolean;
+}
+const { forceScrolled = false } = Astro.props;
 ---
 
-<header class="navbar" id="navbar" role="banner">
+<header class="navbar" id="navbar" role="banner" data-force-scrolled={forceScrolled ? 'true' : 'false'}>
   <div class="navbar__inner">
 
     <a href="/" class="navbar__logo" aria-label="Zpět na hlavní stránku – Lagoon Masáže">
@@ -335,7 +340,13 @@ const p = isHome ? '' : '/';
 
     if (!toggle || !menu || !navbar) return;
 
+    const forceScrolled = navbar.dataset.forceScrolled === 'true';
+
     const updateScrollState = () => {
+      if (forceScrolled) {
+        navbar.classList.add('is-scrolled');
+        return;
+      }
       window.scrollY > SCROLL_THRESHOLD
         ? navbar.classList.add('is-scrolled')
         : navbar.classList.remove('is-scrolled');

@@ -1,28 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 ---
 
 <Layout
   title="Rezervace masáže | Lagoon Masáže Mladá Boleslav"
   description="Rezervujte si masáž online. Vyberte typ masáže, termín a potvrďte rezervaci — rychle a jednoduše."
+  forceScrolledNavbar={true}
 >
-  <script is:inline>
-    document.documentElement.classList.add('navbar-force-scrolled');
-  </script>
-
   <style is:global>
-    .navbar-force-scrolled #navbar {
-      background: #ffffff !important;
-      box-shadow: 0 1px 0 rgba(74, 64, 58, 0.08) !important;
-    }
-    .navbar-force-scrolled #navbar .navbar__logo-white { opacity: 0 !important; }
-    .navbar-force-scrolled #navbar .navbar__logo-dark  { opacity: 1 !important; }
-    .navbar-force-scrolled #navbar .navbar__link       { color: var(--color-brown) !important; }
-    .navbar-force-scrolled #navbar .navbar__dot        { color: rgba(74, 64, 58, 0.25) !important; }
-    .navbar-force-scrolled #navbar .navbar__hamburger span { background: var(--color-brown) !important; }
-
     /* iframe styling — reenio ho vkládá dynamicky */
     .rezervace__widget iframe {
       border-radius: 1.25rem !important;
@@ -32,8 +18,6 @@ import Footer from '../components/Footer.astro';
       overflow: hidden;
     }
   </style>
-
-  <Navbar />
 
   <section class="rezervace">
     <div class="rezervace__container">
@@ -107,7 +91,6 @@ import Footer from '../components/Footer.astro';
 
   .rezervace__widget {
     width: 100%;
-    /* fallback pokud iframe selector nefunguje */
     border-radius: 1.25rem;
     overflow: hidden;
     box-shadow:
