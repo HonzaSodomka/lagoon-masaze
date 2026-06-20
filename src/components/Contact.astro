@@ -80,7 +80,7 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
       <div class="contact__map-wrap">
   <div id="map-placeholder" class="contact__map-placeholder">
     <p class="contact__map-placeholder-text">Pro zobrazení mapy je nutný souhlas s cookies.</p>
-    <button onclick="document.getElementById('cookie-accept').click()" class="contact__map-placeholder-btn">Povolit mapu</button>
+    <button onclick="(function(){localStorage.setItem('lagoon_cookie_consent', JSON.stringify({maps:true,ts:Date.now()}));var p=document.getElementById('map-placeholder');var i=document.getElementById('map-iframe');if(p)p.style.display='none';if(i)i.style.display='block';var b=document.getElementById('cookie-banner');if(b)b.classList.add('is-hidden');})()" class="contact__map-placeholder-btn">Povolit mapu</button>
   </div>
   <iframe
     id="map-iframe"
