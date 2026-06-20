@@ -15,8 +15,6 @@
       <span class="navbar__dot" aria-hidden="true">·</span>
       <a href="#jak-to-funguje" class="navbar__link">Jak to u nás funguje</a>
       <span class="navbar__dot" aria-hidden="true">·</span>
-      <a href="#recenze" class="navbar__link">Recenze</a>
-      <span class="navbar__dot" aria-hidden="true">·</span>
       <a href="#kontakt" class="navbar__link">Kontakt</a>
     </nav>
 
@@ -39,7 +37,6 @@
 <nav id="mobile-menu" class="mobile-menu" aria-label="Mobilní navigace" aria-hidden="true">
   <a href="#typy-masazi" class="mobile-menu__link">Typy masáží</a>
   <a href="#jak-to-funguje" class="mobile-menu__link">Jak to u nás funguje</a>
-  <a href="#recenze" class="mobile-menu__link">Recenze</a>
   <a href="#kontakt" class="mobile-menu__link">Kontakt</a>
   <a href="#rezervace" class="mobile-menu__cta">Rezervace</a>
 </nav>
@@ -76,23 +73,19 @@
     align-items: center;
   }
 
-  /* Tablet: střední padding */
   @media (min-width: 900px) and (max-width: 1199px) {
     .navbar__inner { padding: 1rem 2rem; }
   }
 
-  /* Desktop: plný padding */
   @media (min-width: 1200px) {
     .navbar__inner { padding: 1.5rem 3.5rem; }
   }
 
-  /* ── Logo crossfade ── */
   .navbar__logo {
     justify-self: start;
     grid-column: 1;
     position: relative;
     display: inline-block;
-    /* Tablet: logo je o kus menší aby bylo místo pro nav */
     height: clamp(2rem, 4vw, 4.5rem);
     transition: opacity 0.3s linear;
   }
@@ -124,7 +117,6 @@
   .navbar.is-scrolled .navbar__logo-white { opacity: 0; }
   .navbar.is-scrolled .navbar__logo-dark  { opacity: 1; }
 
-  /* ── Nav ── */
   .navbar__nav {
     display: none;
     align-items: center;
@@ -144,14 +136,12 @@
 
   .navbar__link {
     font-family: var(--font-display);
-    /* Klíčová změna: clamp místo fixního 1.3rem */
     font-size: clamp(0.95rem, 1.1vw, 1.3rem);
     font-weight: 300;
     font-style: italic;
     letter-spacing: 0.04em;
     color: #ffffff;
     text-decoration: none;
-    /* Clampovaný padding — na tabletu se smrskne */
     padding: 0.4rem clamp(0.3rem, 0.6vw, 1rem);
     position: relative;
     transition: color var(--nav-duration) var(--nav-ease);
@@ -178,13 +168,11 @@
   .navbar.is-scrolled .navbar__link { color: var(--color-brown); }
   .navbar.is-scrolled .navbar__dot  { color: rgba(74, 64, 58, 0.25); }
 
-  /* ── CTA ── */
   .navbar__cta {
     display: none;
     justify-self: end;
     grid-column: 3;
     font-family: var(--font-display);
-    /* Clamp stejně jako nav linky */
     font-size: clamp(0.95rem, 1.1vw, 1.3rem);
     font-weight: 400;
     font-style: italic;
@@ -192,7 +180,6 @@
     text-decoration: none;
     color: var(--color-brown);
     background: var(--color-gold);
-    /* Clampovaný padding — na tabletu se smrskne */
     padding: 0.6rem clamp(0.9rem, 1.4vw, 2rem);
     border-radius: 999px;
     white-space: nowrap;
@@ -204,7 +191,6 @@
     .navbar.is-scrolled .navbar__cta:hover { background: var(--color-brown); color: #ffffff; }
   }
 
-  /* ── Hamburger ── */
   .navbar__hamburger {
     display: flex;
     justify-self: end;
@@ -242,7 +228,6 @@
     .mobile-menu       { display: none !important; }
   }
 
-  /* ── Mobile menu ── */
   .mobile-menu {
     position: fixed;
     inset: 0;
@@ -310,7 +295,6 @@
     .mobile-menu__cta:hover { background: #ffffff; color: var(--color-brown); }
   }
 
-  /* ── REDUCED MOTION ── */
   @media (prefers-reduced-motion: reduce) {
     .navbar,
     .navbar__logo,
