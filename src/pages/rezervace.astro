@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -7,6 +8,24 @@ import Footer from '../components/Footer.astro';
   title="Rezervace masáže | Lagoon Masáže Mladá Boleslav"
   description="Rezervujte si masáž online. Vyberte typ masáže, termín a potvrďte rezervaci — rychle a jednoduše."
 >
+  <script is:inline>
+    document.documentElement.classList.add('navbar-force-scrolled');
+  </script>
+
+  <style is:global>
+    .navbar-force-scrolled #navbar {
+      background: #ffffff !important;
+      box-shadow: 0 1px 0 rgba(74, 64, 58, 0.08) !important;
+    }
+    .navbar-force-scrolled #navbar .navbar__logo-white { opacity: 0 !important; }
+    .navbar-force-scrolled #navbar .navbar__logo-dark  { opacity: 1 !important; }
+    .navbar-force-scrolled #navbar .navbar__link       { color: var(--color-brown) !important; }
+    .navbar-force-scrolled #navbar .navbar__dot        { color: rgba(74, 64, 58, 0.25) !important; }
+    .navbar-force-scrolled #navbar .navbar__hamburger span { background: var(--color-brown) !important; }
+  </style>
+
+  <Navbar />
+
   <section class="rezervace">
     <div class="rezervace__container">
 
@@ -29,8 +48,8 @@ import Footer from '../components/Footer.astro';
 
 <style>
   .rezervace {
-    background: #f5f0ea;
-    padding-top: clamp(5rem, 10vw, 8rem);
+    background: var(--color-brown);
+    padding-top: clamp(6rem, 12vw, 9rem);
     padding-bottom: clamp(4rem, 8vw, 6rem);
     min-height: 100dvh;
   }
@@ -63,7 +82,7 @@ import Footer from '../components/Footer.astro';
     font-weight: 300;
     font-style: italic;
     line-height: 1.05;
-    color: var(--color-brown);
+    color: #ffffff;
     margin: 0 0 1rem;
   }
 
@@ -72,7 +91,7 @@ import Footer from '../components/Footer.astro';
     font-size: clamp(0.95rem, 1.2vw, 1.05rem);
     font-weight: 300;
     line-height: 1.65;
-    color: rgba(74, 64, 58, 0.6);
+    color: rgba(255, 255, 255, 0.5);
     max-width: 52ch;
     margin: 0 auto;
   }
@@ -81,15 +100,3 @@ import Footer from '../components/Footer.astro';
     width: 100%;
   }
 </style>
-
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
-    var navbar = document.getElementById('navbar');
-    if (navbar) {
-      navbar.classList.add('is-scrolled');
-      window.addEventListener('scroll', function () {
-        navbar.classList.add('is-scrolled');
-      }, { passive: true });
-    }
-  });
-</script>
