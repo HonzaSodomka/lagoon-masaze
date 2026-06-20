@@ -299,11 +299,7 @@ const p = isHome ? '' : '/';
     var cookieBtn = document.getElementById('footer-cookie-settings');
     if (cookieBtn) {
       cookieBtn.addEventListener('click', function () {
-        var modal = document.getElementById('cookie-modal');
-        if (modal) {
-          modal.classList.add('is-open');
-          modal.setAttribute('aria-hidden', 'false');
-        }
+        document.dispatchEvent(new CustomEvent('lagoon:open-cookie-modal'));
       });
     }
   });
