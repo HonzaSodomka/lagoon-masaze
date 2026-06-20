@@ -1,5 +1,7 @@
 ---
 // src/components/Navbar.astro
+const isHome = Astro.url.pathname === '/';
+const p = isHome ? '' : '/';
 ---
 
 <header class="navbar" id="navbar" role="banner">
@@ -7,15 +9,15 @@
 
     <a href="/" class="navbar__logo" aria-label="Zpět na hlavní stránku – Lagoon Masáže">
       <img class="navbar__logo-img navbar__logo-white" src="/logo.png" alt="" width="710" height="394" />
-<img class="navbar__logo-img navbar__logo-dark"  src="/lagoon-bronze.png" alt="" width="710" height="394" aria-hidden="true" />
+      <img class="navbar__logo-img navbar__logo-dark" src="/lagoon-bronze.png" alt="" width="710" height="394" aria-hidden="true" />
     </a>
 
     <nav class="navbar__nav" aria-label="Hlavní navigace">
-      <a href="#typy-masazi" class="navbar__link">Typy masáží</a>
+      <a href={`${p}#typy-masazi`} class="navbar__link">Typy masáží</a>
       <span class="navbar__dot" aria-hidden="true">·</span>
-      <a href="#jak-to-funguje" class="navbar__link">Jak to u nás funguje</a>
+      <a href={`${p}#jak-to-funguje`} class="navbar__link">Jak to u nás funguje</a>
       <span class="navbar__dot" aria-hidden="true">·</span>
-      <a href="#kontakt" class="navbar__link">Kontakt</a>
+      <a href={`${p}#kontakt`} class="navbar__link">Kontakt</a>
     </nav>
 
     <a href="/rezervace" class="navbar__cta" aria-label="Rezervovat termín - přesun na rezervační systém">Rezervace</a>
@@ -35,9 +37,9 @@
 </header>
 
 <nav id="mobile-menu" class="mobile-menu" aria-label="Mobilní navigace" aria-hidden="true">
-  <a href="#typy-masazi" class="mobile-menu__link">Typy masáží</a>
-  <a href="#jak-to-funguje" class="mobile-menu__link">Jak to u nás funguje</a>
-  <a href="#kontakt" class="mobile-menu__link">Kontakt</a>
+  <a href={`${p}#typy-masazi`} class="mobile-menu__link">Typy masáží</a>
+  <a href={`${p}#jak-to-funguje`} class="mobile-menu__link">Jak to u nás funguje</a>
+  <a href={`${p}#kontakt`} class="mobile-menu__link">Kontakt</a>
   <a href="/rezervace" class="mobile-menu__cta">Rezervace</a>
 </nav>
 

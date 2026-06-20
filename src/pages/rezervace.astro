@@ -29,7 +29,7 @@ import Footer from '../components/Footer.astro';
 
 <style>
   .rezervace {
-    background: #ffffff;
+    background: #f5f0ea;
     padding-top: clamp(5rem, 10vw, 8rem);
     padding-bottom: clamp(4rem, 8vw, 6rem);
     min-height: 100dvh;
@@ -85,6 +85,11 @@ import Footer from '../components/Footer.astro';
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function () {
     var navbar = document.getElementById('navbar');
-    if (navbar) navbar.classList.add('is-scrolled');
+    if (navbar) {
+      navbar.classList.add('is-scrolled');
+      window.addEventListener('scroll', function () {
+        navbar.classList.add('is-scrolled');
+      }, { passive: true });
+    }
   });
 </script>

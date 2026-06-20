@@ -2,6 +2,8 @@
 // src/components/Footer.astro
 const year = new Date().getFullYear();
 import { Instagram, Facebook } from 'lucide-astro';
+const isHome = Astro.url.pathname === '/';
+const p = isHome ? '' : '/';
 ---
 
 <footer class="footer" role="contentinfo">
@@ -23,10 +25,10 @@ import { Instagram, Facebook } from 'lucide-astro';
         <nav class="footer__links-col" aria-label="Patičková navigace">
           <h3 class="footer__heading">Menu</h3>
           <ul class="footer__list">
-            <li><a href="#typy-masazi" class="footer__link">Typy masáží</a></li>
-            <li><a href="#jak-to-funguje" class="footer__link">Jak to funguje</a></li>
-            <li><a href="#recenze" class="footer__link">Recenze</a></li>
-            <li><a href="#kontakt" class="footer__link">Kontakt</a></li>
+            <li><a href={`${p}#typy-masazi`} class="footer__link">Typy masáží</a></li>
+            <li><a href={`${p}#jak-to-funguje`} class="footer__link">Jak to funguje</a></li>
+            <li><a href={`${p}#recenze`} class="footer__link">Recenze</a></li>
+            <li><a href={`${p}#kontakt`} class="footer__link">Kontakt</a></li>
             <li><a href="/rezervace" class="footer__link footer__link--gold">Rezervovat termín</a></li>
           </ul>
         </nav>
@@ -76,11 +78,9 @@ import { Instagram, Facebook } from 'lucide-astro';
   .footer__container {
     max-width: 1200px;
     margin: 0 auto;
-    /* Clamp místo ostrého skoku — konzistentní s ostatními sekcemi */
     padding: 0 clamp(1.25rem, 4vw, 3.5rem);
   }
 
-  /* ── Horní mřížka ── */
   .footer__top {
     display: grid;
     grid-template-columns: 1fr;
@@ -88,8 +88,6 @@ import { Instagram, Facebook } from 'lucide-astro';
     margin-bottom: clamp(3rem, 6vw, 4rem);
   }
 
-  /* Tablet 640–900px: dva sloupce — brand přes celou šířku nahoře,
-     menu a kontakt vedle sebe dole */
   @media (min-width: 640px) and (max-width: 899px) {
     .footer__top {
       grid-template-columns: 1fr 1fr;
@@ -100,7 +98,6 @@ import { Instagram, Facebook } from 'lucide-astro';
     }
   }
 
-  /* Desktop 900px+: původní tři sloupce */
   @media (min-width: 900px) {
     .footer__top {
       grid-template-columns: 2fr 1fr 1.5fr;
@@ -108,7 +105,6 @@ import { Instagram, Facebook } from 'lucide-astro';
     }
   }
 
-  /* ── Brand ── */
   .footer__logo {
     display: inline-block;
     margin-bottom: 1.5rem;
@@ -132,7 +128,6 @@ import { Instagram, Facebook } from 'lucide-astro';
     max-width: 40ch;
   }
 
-  /* ── Sloupce s odkazy a kontaktem ── */
   .footer__heading {
     font-family: var(--font-display);
     font-size: 1.3rem;
@@ -174,7 +169,6 @@ import { Instagram, Facebook } from 'lucide-astro';
     .footer__link--gold:hover { color: #ffffff; }
   }
 
-  /* ── Sociální sítě ── */
   .footer__social {
     display: flex;
     align-items: center;
@@ -201,7 +195,6 @@ import { Instagram, Facebook } from 'lucide-astro';
     }
   }
 
-  /* ── Spodní lišta ── */
   .footer__bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 2rem;
@@ -223,13 +216,10 @@ import { Instagram, Facebook } from 'lucide-astro';
     }
   }
 
-  /* ── Spodní odkazy ── */
   .footer__bottom-links {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    /* Na velmi malých mobilech může "Zásady ochrany soukromí · Nastavení cookies"
-       přetékat — povolíme wrap a centrujeme */
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -278,7 +268,6 @@ import { Instagram, Facebook } from 'lucide-astro';
     .footer__webresent:hover { color: var(--color-gold); }
   }
 
-  /* ── SCROLL ANIMACE ── */
   .scroll-animate {
     opacity: 0;
     transform: translateY(30px);
@@ -289,7 +278,6 @@ import { Instagram, Facebook } from 'lucide-astro';
     transform: translateY(0);
   }
 
-  /* ── REDUCED MOTION ── */
   @media (prefers-reduced-motion: reduce) {
     .footer__link,
     .footer__logo,
