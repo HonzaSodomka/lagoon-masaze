@@ -7,6 +7,22 @@ import Layout from '../layouts/Layout.astro';
   description="Omlouváme se, ale tato stránka neexistuje. Vraťte se zpět na hlavní stranu salonu Lagoon Masáže a objevte naše relaxační procedury."
   noindex={true}
 >
+  <script is:inline>
+    document.documentElement.classList.add('navbar-force-scrolled');
+  </script>
+
+  <style is:global>
+    .navbar-force-scrolled #navbar {
+      background: #ffffff !important;
+      box-shadow: 0 1px 0 rgba(74, 64, 58, 0.08) !important;
+    }
+    .navbar-force-scrolled #navbar .navbar__logo-white { opacity: 0 !important; }
+    .navbar-force-scrolled #navbar .navbar__logo-dark  { opacity: 1 !important; }
+    .navbar-force-scrolled #navbar .navbar__link       { color: var(--color-brown) !important; }
+    .navbar-force-scrolled #navbar .navbar__dot        { color: rgba(74, 64, 58, 0.25) !important; }
+    .navbar-force-scrolled #navbar .navbar__hamburger span { background: var(--color-brown) !important; }
+  </style>
+
   <section class="error-page">
     <div class="error-page__container">
       <span class="error-page__eyebrow">404</span>
@@ -93,11 +109,3 @@ import Layout from '../layouts/Layout.astro';
     .error-page__cta { transition: none !important; transform: none !important; }
   }
 </style>
-
-<script is:inline>
-  // Navbar má tmavé pozadí hned — nepotřebujeme čekat na scroll
-  document.addEventListener('DOMContentLoaded', function () {
-    var navbar = document.getElementById('navbar');
-    if (navbar) navbar.classList.add('is-scrolled');
-  });
-</script>
