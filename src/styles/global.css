@@ -6,7 +6,6 @@
   --color-brown:        #4A403A;
   --color-brown-muted:  #7A6A62;
   --color-overlay:      rgba(74, 64, 58, 0.5);
-  --color-bg:           #FFFFFF;
 
   --font-display: 'Cormorant', Georgia, serif;
   --font-body:    'Satoshi', 'Helvetica Neue', sans-serif;
@@ -23,12 +22,12 @@
 html {
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
-  scroll-padding-top: 72px; /* mobil — navbar je ~64px, +8px rezerva */
+  scroll-padding-top: 72px;
 }
 
 @media (min-width: 900px) {
   html {
-    scroll-padding-top: 100px; /* desktop — navbar je ~88px, +12px rezerva */
+    scroll-padding-top: 100px;
   }
 }
 
@@ -42,6 +41,10 @@ body {
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   line-height: 1.1;
+}
+
+main {
+  display: block;
 }
 
 :focus-visible {
