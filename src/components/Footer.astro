@@ -293,19 +293,6 @@ const p = isHome ? '' : '/';
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function () {
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    document.querySelectorAll('.scroll-animate').forEach(function(el) {
-      observer.observe(el);
-    });
-
     var cookieBtn = document.getElementById('footer-cookie-settings');
     if (cookieBtn) {
       cookieBtn.addEventListener('click', function () {
