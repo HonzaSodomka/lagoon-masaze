@@ -91,18 +91,16 @@ const recenze = [
 
 <style>
   .recenze {
-    background: #e8d9c4;
+    background: #2d3d2e;
     padding: clamp(4rem, 8vw, 8rem) 0;
   }
 
   .recenze__container {
     max-width: 1200px;
     margin: 0 auto;
-    /* Clamp místo ostrého skoku — konzistentní s ostatními sekcemi */
     padding: 0 clamp(1.25rem, 4vw, 3.5rem);
   }
 
-  /* ── Header ── */
   .recenze__header {
     display: flex;
     flex-direction: column;
@@ -118,8 +116,7 @@ const recenze = [
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: var(--color-brown);
-    opacity: 0.5;
+    color: var(--color-gold);
     margin-bottom: 1rem;
   }
 
@@ -129,7 +126,7 @@ const recenze = [
     font-weight: 300;
     font-style: italic;
     line-height: 1.05;
-    color: var(--color-brown);
+    color: #ffffff;
     margin: 0 0 1.25rem;
   }
 
@@ -141,21 +138,18 @@ const recenze = [
 
   .recenze__meta-stars {
     font-size: 1rem;
-    color: var(--color-brown);
+    color: var(--color-gold);
     letter-spacing: 0.05em;
     line-height: 1;
-    opacity: 0.6;
   }
 
   .recenze__meta-score {
     font-family: var(--font-body);
     font-size: 0.85rem;
     font-weight: 500;
-    color: var(--color-brown);
-    opacity: 0.4;
+    color: rgba(255, 255, 255, 0.4);
   }
 
-  /* ── Desktop grid ── */
   .recenze__grid {
     display: none;
   }
@@ -174,7 +168,6 @@ const recenze = [
     }
   }
 
-  /* ── Mobil slider ── */
   .recenze__slider {
     display: block;
   }
@@ -199,11 +192,9 @@ const recenze = [
   .recenze__slide {
     width: 25%;
     box-sizing: border-box;
-    /* Trochu větší padding na slidech — karta se netlačí ke krajům viewportu */
     padding: 0 0.25rem;
   }
 
-  /* ── Dots ── */
   .recenze__dots {
     display: flex;
     justify-content: center;
@@ -216,7 +207,7 @@ const recenze = [
     height: 7px;
     border-radius: 50%;
     border: none;
-    background: rgba(74, 64, 58, 0.2);
+    background: rgba(255, 255, 255, 0.2);
     cursor: pointer;
     padding: 0;
     transition: background 0.25s ease, transform 0.25s ease;
@@ -224,29 +215,27 @@ const recenze = [
   }
 
   .recenze__dot.is-active {
-    background: var(--color-brown);
+    background: var(--color-gold);
     transform: scale(1.35);
   }
 
-  /* ── Karta ── */
   .recenze__card {
-    background: rgba(255, 255, 255, 0.65);
-    border: 1px solid rgba(74, 64, 58, 0.08);
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1rem;
-    /* Clamp padding — na mobilu trochu užší */
     padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1.1rem, 3vw, 1.5rem);
     margin: 0;
     display: flex;
     flex-direction: column;
     gap: 0.875rem;
     box-sizing: border-box;
-    transition: box-shadow 0.3s ease, background 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
 
   @media (hover: hover) {
     .recenze__card:hover {
-      background: rgba(255, 255, 255, 0.85);
-      box-shadow: 0 6px 24px rgba(74, 64, 58, 0.1);
+      background: rgba(255, 255, 255, 0.11);
+      border-color: rgba(255, 255, 255, 0.18);
     }
   }
 
@@ -261,14 +250,14 @@ const recenze = [
     font-family: var(--font-body);
     font-size: 0.9rem;
     line-height: 1.8;
-    color: rgba(74, 64, 58, 0.75);
+    color: rgba(255, 255, 255, 0.65);
     margin: 0;
     flex: 1;
   }
 
   .recenze__card-footer {
     padding-top: 0.875rem;
-    border-top: 1px solid rgba(74, 64, 58, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     margin-top: auto;
   }
 
@@ -277,11 +266,10 @@ const recenze = [
     font-size: 1.05rem;
     font-weight: 400;
     font-style: italic;
-    color: var(--color-brown);
+    color: #ffffff;
     line-height: 1.2;
   }
 
-  /* ── CTA ── */
   .recenze__cta-wrap {
     display: flex;
     justify-content: center;
@@ -295,25 +283,23 @@ const recenze = [
     font-style: italic;
     letter-spacing: 0.04em;
     text-decoration: none;
-    color: var(--color-brown);
-    border: 1px solid rgba(74, 64, 58, 0.3);
+    color: #2d3d2e;
+    background: var(--color-gold);
     padding: 0.7rem clamp(1.25rem, 2vw, 2rem);
     border-radius: 999px;
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
-    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
   @media (hover: hover) {
     .recenze__cta:hover {
-      background: var(--color-brown);
-      border-color: var(--color-brown);
-      color: #ffffff;
+      background: #ffffff;
+      color: #2d3d2e;
     }
   }
 
-  /* ── Scroll animace ── */
   .scroll-animate {
     opacity: 0;
     transform: translateY(30px);
@@ -325,7 +311,6 @@ const recenze = [
     transform: translateY(0);
   }
 
-  /* ── Reduced motion ── */
   @media (prefers-reduced-motion: reduce) {
     .recenze__card,
     .recenze__cta,
@@ -342,7 +327,6 @@ const recenze = [
 (function () {
   document.addEventListener('DOMContentLoaded', function () {
 
-    /* ── Scroll animace ── */
     var scrollObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -356,7 +340,6 @@ const recenze = [
       scrollObs.observe(el);
     });
 
-    /* ── Slider ── */
     var viewport = document.getElementById('recenzeViewport');
     var track    = document.getElementById('recenzeTrack');
     var dotsEl   = document.getElementById('recenzeDots');
