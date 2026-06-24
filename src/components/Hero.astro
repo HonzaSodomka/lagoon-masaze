@@ -6,6 +6,7 @@
 
   <video class="hero__bg" id="heroBg" autoplay muted loop playsinline aria-hidden="true">
     <source data-src="/lagoon.webm" type="video/webm" />
+    <source data-src="/lagoon.mp4" type="video/mp4" />
   </video>
 
   <div class="hero__overlay" aria-hidden="true"></div>
@@ -250,18 +251,30 @@
   window.addEventListener('load', () => {
     const video = document.getElementById('heroBg') as HTMLVideoElement;
     if (!video) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.dispatchEvent(new Event('lagoon:video-ready'));
+      return;
+    }
 
     const source = video.querySelector('source[data-src]') as HTMLSourceElement;
     if (!source) return;
 
     source.src = source.dataset.src || '';
+    // načti i MP4 fallback
+    const sources = video.querySelectorAll('source[data-src]') as NodeListOf<HTMLSourceElement>;
+    sources.forEach(s => { s.src = s.dataset.src || ''; });
     video.load();
     video.play().catch(() => {});
 
-    video.addEventListener('canplay', () => {
+    const ready = () => {
       video.classList.add('is-loaded');
-    }, { once: true });
+      window.dispatchEvent(new Event('lagoon:video-ready'));
+    };
+
+    video.addEventListener('canplay', ready, { once: true });
+
+    // fallback — max 4s čekání
+    setTimeout(() => window.dispatchEvent(new Event('lagoon:video-ready')), 4000);
 
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') {
