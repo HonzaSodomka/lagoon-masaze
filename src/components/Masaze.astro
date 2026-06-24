@@ -210,14 +210,14 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
           <div class="masaze__card-icon" aria-hidden="true"><Gift size={22} /></div>
           <div>
             <h3 class="masaze__card-title">Dárkový poukaz</h3>
-            <p class="masaze__card-short">Darujte chvíli klidu někomu blízkému.</p>
+            <p class="masaze__card-short">Dostupné přímo v salonu nebo z automatu před vchodem.</p>
           </div>
         </div>
         <div class="masaze__card-footer">
           <div class="masaze__prices">
-            <span>Libovolná hodnota</span>
+            <span>30 / 60 / 90 minut</span>
           </div>
-          <a href="#kontakt" class="masaze__card-cta" aria-label="Kontaktovat ohledně dárkového poukazu">Kontaktovat</a>
+          <a href="tel:+420732596212" class="masaze__card-cta" aria-label="Zavolat ohledně dárkového poukazu">Zavolat</a>
         </div>
         <button class="masaze__toggle" aria-expanded="false" aria-controls="masaze-detail-voucher">
           <span>Detail poukazu</span>
@@ -284,8 +284,8 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
 
     <div id="masaze-detail-voucher" class="masaze-detail masaze-detail--dark" role="region" aria-label="Detail: Dárkový poukaz" aria-hidden="true">
       <div class="masaze-detail__inner">
-        <p>Poukaz na libovolnou masáž v libovolné hodnotě — ideální dárek pro každou příležitost. Poukazy vydáváme osobně po předchozí domluvě přímo v salonu.</p>
-        <p class="masaze-detail__vhodna"><strong>Jak na to:</strong> kontaktujte nás předem, domluvíme termín vyzvednutí a poukaz bude připraven.</p>
+        <p>Dárkový poukaz lze zakoupit na 30, 60 nebo 90 minut a nemá datum expirace. Držitel má na výběr ze všech typů masáží, které odpovídají délce uvedené na poukazu.</p>
+        <p>Poukaz si vyzvedněte osobně v salonu Po–So 8–20 h, stačí zavolat asi 10 minut předem. Případně využijte automat přímo před vchodem — ten je k dispozici kdykoliv, jen mějte u sebe hotovost a přesnou částku.</p>
       </div>
     </div>
 
@@ -336,7 +336,7 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
     font-family: var(--font-display);
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 300;
-    font-style: italic;
+    font-style: normal;
     line-height: 1.05;
     color: var(--color-brown);
     margin: 0 0 1rem;
@@ -416,7 +416,7 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
     font-family: var(--font-display);
     font-size: clamp(1.15rem, 1.5vw, 1.35rem);
     font-weight: 400;
-    font-style: italic;
+    font-style: normal;
     line-height: 1.2;
     color: var(--color-brown);
     margin: 0 0 0.3rem;
@@ -446,7 +446,7 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
   .masaze__card-cta {
     font-family: var(--font-display);
     font-size: 1rem;
-    font-style: italic;
+    font-style: normal;
     text-decoration: none;
     color: var(--brown);
     border: 1px solid rgba(74, 64, 58, 0.25);

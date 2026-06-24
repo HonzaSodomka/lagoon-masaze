@@ -22,16 +22,15 @@
     <h1 id="hero-heading" class="hero__h1">Masáže Mladá Boleslav</h1>
 
     <p class="hero__display">
-      Chvíle klidu<br aria-hidden="true"/>jen pro vás
+      Tradiční masáže<br aria-hidden="true"/>v srdci města
     </p>
 
     <p class="hero__text">
-      Tradiční orientální techniky, přírodní oleje a tiché prostředí v centru města. Přijďte načerpat energii a zbavit se každodenního stresu.
+      Tradiční orientální techniky, přírodní oleje a tiché prostředí v centru města.
     </p>
 
     <div class="hero__actions">
-      <a href="/rezervace" class="hero__btn-primary">Rezervovat termín</a>
-      <a href="#typy-masazi" class="hero__btn-ghost">Objevit masáže</a>
+      <a href="/rezervace" class="hero__btn-primary">Rezervovat masáž</a>
     </div>
 
     
@@ -132,11 +131,11 @@
 
   .hero__display {
     font-family: var(--font-display);
-    font-size: clamp(3.2rem, 7.5vw, 6.5rem);
-    font-weight: 300;
-    font-style: italic;
+    font-size: clamp(2.4rem, 7.5vw, 6.5rem);
+    font-weight: 400;
+    font-style: normal;
     line-height: 1.05;
-    letter-spacing: 0.01em;
+    letter-spacing: -0.01em;
     color: var(--color-white);
     margin: 0 0 0.75rem;
     opacity: 0;
@@ -163,55 +162,27 @@
     animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
   }
 
-  /* Tlačítka pod sebou na malých mobilech */
-  @media (max-width: 540px) {
-    .hero__actions { flex-direction: column; width: 100%; }
-    .hero__btn-primary,
-    .hero__btn-ghost { justify-content: center; }
-  }
+  /* Jedno tlačítko — flex-direction column už nepotřeba */
 
   .hero__btn-primary {
     font-family: var(--font-display);
-    /* Clamp: na tabletu se trochu smrskne */
-    font-size: clamp(1.1rem, 1.3vw, 1.3rem);
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
     font-weight: 400;
-    font-style: italic;
+    font-style: normal;
     letter-spacing: 0.04em;
-    text-decoration: none;
-    color: var(--color-brown);
-    background: var(--color-gold);
-    padding: 0.75rem clamp(1.5rem, 2vw, 2.25rem);
-    border-radius: 999px;
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-  @media (hover: hover) {
-    .hero__btn-primary:hover { background: var(--color-white); }
-  }
-
-  .hero__btn-ghost {
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 1.3vw, 1.3rem);
-    font-weight: 300;
-    font-style: italic;
-    letter-spacing: 0.04em;
+    text-transform: none;
     text-decoration: none;
     color: #ffffff;
-    padding: 0.75rem clamp(1.5rem, 2vw, 2.25rem);
+    background: var(--color-gold);
+    padding: 0.85rem clamp(1.75rem, 2.5vw, 2.5rem);
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
-    transition: border-color 0.3s ease, background 0.3s ease;
+    transition: background 0.3s ease;
   }
   @media (hover: hover) {
-    .hero__btn-ghost:hover {
-      border-color: rgba(255, 255, 255, 0.9);
-      background: rgba(255, 255, 255, 0.08);
-    }
+    .hero__btn-primary:hover { background: rgba(198, 162, 122, 0.85); }
   }
 
   .hero__reviews {
