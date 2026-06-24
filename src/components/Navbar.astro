@@ -20,7 +20,9 @@ const { forceScrolled = false } = Astro.props;
     <nav class="navbar__nav" aria-label="Hlavní navigace">
       <a href={`${p}#typy-masazi`} class="navbar__link">Typy masáží</a>
       <span class="navbar__dot" aria-hidden="true">·</span>
-      <a href={`${p}#jak-to-funguje`} class="navbar__link">Jak to u nás funguje</a>
+      <a href={`${p}#nas-tym`} class="navbar__link">Náš tým</a>
+      <span class="navbar__dot" aria-hidden="true">·</span>
+      <a href="/jak-to-funguje" class="navbar__link">Jak to u nás funguje</a>
       <span class="navbar__dot" aria-hidden="true">·</span>
       <a href={`${p}#kontakt`} class="navbar__link">Kontakt</a>
     </nav>
@@ -43,7 +45,8 @@ const { forceScrolled = false } = Astro.props;
 
 <nav id="mobile-menu" class="mobile-menu" aria-label="Mobilní navigace" aria-hidden="true">
   <a href={`${p}#typy-masazi`} class="mobile-menu__link">Typy masáží</a>
-  <a href={`${p}#jak-to-funguje`} class="mobile-menu__link">Jak to u nás funguje</a>
+  <a href={`${p}#nas-tym`} class="mobile-menu__link">Náš tým</a>
+  <a href="/jak-to-funguje" class="mobile-menu__link">Jak to u nás funguje</a>
   <a href={`${p}#kontakt`} class="mobile-menu__link">Kontakt</a>
   <a href="/rezervace" class="mobile-menu__cta">Rezervovat masáž</a>
 </nav>
