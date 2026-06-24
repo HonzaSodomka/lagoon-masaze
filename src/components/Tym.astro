@@ -16,22 +16,43 @@ const maserky = [
       <h2 id="tym-heading" class="tym__title">Seznamte se s&nbsp;masérkami</h2>
     </div>
 
+    <!-- Desktop: grid -->
     <div class="tym__grid">
       {maserky.map((m, i) => (
         <div class="tym__card scroll-animate" style={`transition-delay: ${i * 0.1}s`}>
           <div class="tym__card-photo">
-            <img
-              src={m.foto}
-              alt={m.jmeno}
-              width="600"
-              height="800"
-              loading="lazy"
-              decoding="async"
-            />
+            <img src={m.foto} alt={m.jmeno} width="600" height="800" loading="lazy" decoding="async" />
           </div>
           <p class="tym__card-name">{m.jmeno}</p>
         </div>
       ))}
+    </div>
+
+    <!-- Mobil: carousel -->
+    <div class="tym__slider scroll-animate">
+      <div class="tym__viewport" id="tymViewport">
+        <div class="tym__track" id="tymTrack">
+          {maserky.map((m, i) => (
+            <div class="tym__slide">
+              <div class="tym__card">
+                <div class="tym__card-photo">
+                  <img src={m.foto} alt={m.jmeno} width="600" height="800" loading="lazy" decoding="async" />
+                </div>
+                <p class="tym__card-name">{m.jmeno}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="tym__dots" id="tymDots">
+        {maserky.map((_, i) => (
+          <button
+            class={`tym__dot${i === 0 ? ' is-active' : ''}`}
+            data-index={String(i)}
+            aria-label={`${maserky[i].jmeno}`}
+          ></button>
+        ))}
+      </div>
     </div>
 
   </div>
@@ -80,19 +101,65 @@ const maserky = [
     margin: 0;
   }
 
+  /* ── Desktop grid ── */
   .tym__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: clamp(1rem, 2vw, 1.75rem);
   }
 
+  .tym__slider { display: none; }
+
   @media (max-width: 640px) {
-    .tym__grid {
-      grid-template-columns: 1fr;
-      max-width: 360px;
-    }
+    .tym__grid   { display: none; }
+    .tym__slider { display: block; }
   }
 
+  /* ── Carousel ── */
+  .tym__viewport {
+    overflow: hidden;
+    width: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .tym__track {
+    display: flex;
+    width: 300%;
+    will-change: transform;
+  }
+
+  .tym__slide {
+    width: 33.333%;
+    box-sizing: border-box;
+    padding: 0 1.5rem;
+  }
+
+  .tym__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .tym__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.25s ease, transform 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .tym__dot.is-active {
+    background: var(--color-gold);
+    transform: scale(1.35);
+  }
+
+  /* ── Karta ── */
   .tym__card {
     display: flex;
     flex-direction: column;
@@ -103,7 +170,6 @@ const maserky = [
     aspect-ratio: 3 / 4;
     border-radius: 1.25rem;
     overflow: hidden;
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
   }
 
   .tym__card-photo img {
@@ -112,11 +178,6 @@ const maserky = [
     object-fit: cover;
     object-position: center top;
     display: block;
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  @media (hover: hover) {
-    .tym__card-photo:hover img { transform: scale(1.04); }
   }
 
   .tym__card-name {
@@ -128,6 +189,7 @@ const maserky = [
     text-align: center;
   }
 
+  /* ── Scroll animace ── */
   .scroll-animate {
     opacity: 0;
     transform: translateY(30px);
@@ -141,6 +203,7 @@ const maserky = [
 
   @media (prefers-reduced-motion: reduce) {
     .tym__card-photo img,
+    .tym__dot,
     .scroll-animate {
       transition: none !important;
       transform: none !important;
@@ -148,3 +211,81 @@ const maserky = [
     }
   }
 </style>
+
+<script is:inline>
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    var viewport = document.getElementById('tymViewport');
+    var track    = document.getElementById('tymTrack');
+    var dotsEl   = document.getElementById('tymDots');
+    if (!viewport || !track || !dotsEl) return;
+
+    var dots    = Array.from(dotsEl.querySelectorAll('.tym__dot'));
+    var total   = dots.length;
+    var current = 0;
+
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var touchDeltaX = 0;
+    var isSwiping   = false;
+    var isDecided   = false;
+
+    function setSlide(index, animate) {
+      current = Math.max(0, Math.min(index, total - 1));
+      track.style.transition = animate === false
+        ? 'none'
+        : 'transform 0.38s cubic-bezier(0.25, 1, 0.5, 1)';
+      track.style.transform = 'translateX(-' + (current * (100 / total)) + '%)';
+      dots.forEach(function (d, i) {
+        d.classList.toggle('is-active', i === current);
+      });
+    }
+
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        setSlide(parseInt(dot.getAttribute('data-index'), 10), true);
+      });
+    });
+
+    viewport.addEventListener('touchstart', function (e) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchDeltaX = 0;
+      isSwiping   = false;
+      isDecided   = false;
+    }, { passive: true });
+
+    viewport.addEventListener('touchmove', function (e) {
+      var dx = e.touches[0].clientX - touchStartX;
+      var dy = e.touches[0].clientY - touchStartY;
+
+      if (!isDecided) {
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 5) {
+          isSwiping = true; isDecided = true;
+        } else if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 5) {
+          isSwiping = false; isDecided = true;
+        }
+      }
+
+      if (!isSwiping) return;
+      e.preventDefault();
+      touchDeltaX = dx;
+
+      var base   = current * (100 / total);
+      var offset = (touchDeltaX / viewport.offsetWidth) * (100 / total);
+      track.style.transition = 'none';
+      track.style.transform  = 'translateX(-' + (base - offset) + '%)';
+    }, { passive: false });
+
+    viewport.addEventListener('touchend', function () {
+      if (!isSwiping) return;
+      if (touchDeltaX < -50)     { setSlide(current + 1, true); }
+      else if (touchDeltaX > 50) { setSlide(current - 1, true); }
+      else                       { setSlide(current, true); }
+      touchDeltaX = 0;
+      isSwiping   = false;
+      isDecided   = false;
+    }, { passive: true });
+  });
+})();
+</script>
