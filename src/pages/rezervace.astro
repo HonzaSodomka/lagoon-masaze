@@ -34,6 +34,12 @@ import Footer from '../components/Footer.astro';
       </div>
 
     </div>
+
+    <div class="rezervace__wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,35 C360,70 1080,0 1440,35 L1440,70 L0,70 Z" fill="#4A403A"/>
+      </svg>
+    </div>
   </section>
 
   <Footer />
@@ -45,6 +51,22 @@ import Footer from '../components/Footer.astro';
     padding-top: clamp(8rem, 16vw, 12rem);
     padding-bottom: clamp(4rem, 8vw, 6rem);
     min-height: 100dvh;
+    position: relative;
+  }
+
+  .rezervace__wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    line-height: 0;
+  }
+
+  .rezervace__wave svg {
+    display: block;
+    width: 100%;
+    height: clamp(35px, 5vw, 70px);
   }
 
   .rezervace__container {

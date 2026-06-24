@@ -284,11 +284,17 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
 
     <div id="masaze-detail-voucher" class="masaze-detail masaze-detail--dark" role="region" aria-label="Detail: Dárkový poukaz" aria-hidden="true">
       <div class="masaze-detail__inner">
-        <p>Dárkový poukaz lze zakoupit na 30, 60 nebo 90 minut a nemá datum expirace. Držitel má na výběr ze všech typů masáží, které odpovídají délce uvedené na poukazu.</p>
+        <p>Dárkový poukaz lze zakoupit na 30, 60 nebo 90 minut trvající masáž a nemá datum expirace. Držitel má na výběr ze všech typů masáží, které odpovídají délce uvedené na poukazu.</p>
         <p>Poukaz si vyzvedněte osobně v salonu Po–So 8–20 h, stačí zavolat asi 10 minut předem. Případně využijte automat přímo před vchodem — ten je k dispozici kdykoliv, jen mějte u sebe hotovost a přesnou částku.</p>
       </div>
     </div>
 
+  </div>
+
+  <div class="masaze__wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,35 C360,70 1080,0 1440,35 L1440,70 L0,70 Z" fill="#4A403A"/>
+    </svg>
   </div>
 </section>
 
@@ -304,6 +310,22 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
 
     background: #f5f0ea;
     padding: clamp(4rem, 8vw, 8rem) 0;
+    position: relative;
+  }
+
+  .masaze__wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    line-height: 0;
+  }
+
+  .masaze__wave svg {
+    display: block;
+    width: 100%;
+    height: clamp(35px, 5vw, 70px);
   }
 
   .masaze__container {

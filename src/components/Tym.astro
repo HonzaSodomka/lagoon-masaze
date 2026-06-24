@@ -56,12 +56,34 @@ const maserky = [
     </div>
 
   </div>
+
+  <div class="tym__wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,35 C360,70 1080,0 1440,35 L1440,70 L0,70 Z" fill="#2d3d2e"/>
+    </svg>
+  </div>
 </section>
 
 <style>
   .tym {
     background: var(--color-brown);
     padding-block: clamp(4rem, 8vw, 7rem);
+    position: relative;
+  }
+
+  .tym__wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    line-height: 0;
+  }
+
+  .tym__wave svg {
+    display: block;
+    width: 100%;
+    height: clamp(35px, 5vw, 70px);
   }
 
   .tym__container {
