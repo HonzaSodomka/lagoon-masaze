@@ -714,7 +714,13 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
       var id    = rawId === 'voucher' ? 'voucher' : parseInt(rawId);
       if (rawId !== 'voucher' && isNaN(id)) return;
 
-      btn.addEventListener('click', function () {
+      // Rezervovat tlačítko nepropaguje klik na kartu
+      var cta = card.querySelector('.masaze__card-cta');
+      if (cta) {
+        cta.addEventListener('click', function (e) { e.stopPropagation(); });
+      }
+
+      function toggleDetail() {
         if (isAnimating) return;
 
         if (openId === id) {
@@ -730,7 +736,10 @@ import { Flame, Waves, Sparkles, Zap, Heart, Footprints, Activity, Smile, Gift, 
         } else {
           closeActive(function () { openDetail(id, card, cardIndex); });
         }
-      });
+      }
+
+      btn.addEventListener('click', function(e) { e.stopPropagation(); toggleDetail(); });
+      card.addEventListener('click', toggleDetail);
     });
 
     var resizeTimer;
