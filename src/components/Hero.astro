@@ -99,7 +99,7 @@
     max-width: 1200px;
     margin-inline: auto;
     padding: 0 1.25rem;
-    padding-top: clamp(3.5rem, 10vw, 6rem);
+    padding-top: clamp(5rem, 12vw, 8rem);
     padding-bottom: clamp(3rem, 6vw, 5rem);
     display: flex;
     flex-direction: column;
@@ -127,7 +127,7 @@
   /* ── Display nadpis ── */
   .hero__display {
     font-family: var(--font-display);
-    font-size: clamp(2.2rem, 8vw, 5rem);
+    font-size: clamp(2.8rem, 8vw, 5rem);
     font-weight: 300;
     font-style: normal;
     line-height: 1.0;
@@ -136,17 +136,6 @@
     margin: 0 0 1.25rem;
     opacity: 0;
     animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
-  }
-
-  @media (min-width: 390px) and (max-width: 479px) {
-    .hero { align-items: flex-start; }
-    .hero__display { font-size: clamp(2.5rem, 8vw, 2.9rem); }
-    .hero__container { padding-top: clamp(4.5rem, 14vw, 6rem); }
-    .hero__text { margin-bottom: 2rem; }
-  }
-
-  @media (min-width: 480px) and (max-width: 899px) {
-    .hero__display { font-size: clamp(2.4rem, 7vw, 3.2rem); }
   }
 
   /* ── Podtext ── */
@@ -177,7 +166,7 @@
   /* ── Tlačítko ── */
   .hero__btn-primary {
     font-family: var(--font-display);
-    font-size: clamp(1.15rem, 4vw, 1.35rem);
+    font-size: clamp(1rem, 1.4vw, 1.35rem);
     font-weight: 400;
     font-style: normal;
     letter-spacing: 0.03em;
@@ -234,11 +223,6 @@
     .hero__h1 { text-align: center; }
     .hero__text { margin-inline: auto; }
     .hero__actions { justify-content: center; flex-direction: column; align-items: center; gap: 1rem; }
-    .hero__btn-primary { font-size: clamp(1rem, 1.4vw, 1.35rem); }
-  }
-
-  @media (min-width: 900px) and (max-width: 1300px) {
-    .hero__display { font-size: clamp(2.8rem, 5.5vw, 3.8rem); }
   }
 
   @keyframes heroFadeUp {
