@@ -142,8 +142,11 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
     .contact__container {
       grid-template-columns: 1fr;
     }
-    .contact__info   { order: 1; }
-    .contact__visual { order: 2; }
+    .contact__info                        { order: 1; }
+    .contact__visual                      { display: contents; }
+    .contact__map-wrap                    { order: 2; }
+    .contact__divider                     { display: none; }
+    .contact__photo-wrap                  { order: 3; }
   }
 
   /* ── levý sloupec ── */
@@ -291,36 +294,6 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
   }
 
   /* oddělovač */
-  .contact__divider {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding-inline: 0.25rem;
-    background: #ffffff;
-    border-inline: 1px solid rgba(74, 64, 58, 0.08);
-    padding-block: 0.85rem;
-  }
-
-  .contact__divider-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(
-      to right,
-      rgba(198, 162, 122, 0.0),
-      rgba(198, 162, 122, 0.4),
-      rgba(198, 162, 122, 0.0)
-    );
-  }
-
-  .contact__divider-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--color-gold);
-    opacity: 0.6;
-    flex-shrink: 0;
-  }
-
   /* mapa */
   .contact__map-wrap {
     height: clamp(180px, 25vw, 240px);
@@ -329,6 +302,13 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
     border: 1px solid rgba(74, 64, 58, 0.08);
     border-top: none;
     box-shadow: 0 8px 32px rgba(74, 64, 58, 0.07);
+  }
+
+  @media (max-width: 860px) {
+    .contact__map-wrap {
+      border-radius: 1.25rem;
+      border-top: 1px solid rgba(74, 64, 58, 0.08);
+    }
   }
 
   .contact__map {
@@ -348,6 +328,10 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-astro';
     gap: 1rem;
     background: rgba(74, 64, 58, 0.04);
     border-radius: 0 0 1.25rem 1.25rem;
+  }
+
+  @media (max-width: 860px) {
+    .contact__map-placeholder { border-radius: 1.25rem; }
   }
 
   .contact__map-placeholder-text {
