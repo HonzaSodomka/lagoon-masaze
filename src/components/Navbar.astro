@@ -1,5 +1,6 @@
 ---
 // src/components/Navbar.astro
+import { Instagram, Facebook } from 'lucide-astro';
 const isHome = Astro.url.pathname === '/';
 const p = isHome ? '' : '/';
 
@@ -29,7 +30,17 @@ const { forceScrolled = false } = Astro.props;
       <a href={`${p}#kontakt`} class="navbar__link">Kde nás najdete</a>
     </nav>
 
-    <a href="/rezervace" class="navbar__cta" aria-label="Rezervovat termín - přesun na rezervační systém">Rezervovat masáž</a>
+    <div class="navbar__right">
+      <a href="/rezervace" class="navbar__cta" aria-label="Rezervovat termín - přesun na rezervační systém">Rezervovat masáž</a>
+      <div class="navbar__social">
+        <a href="https://www.instagram.com/lagoon_masaze" target="_blank" rel="noopener noreferrer" class="navbar__social-link" aria-label="Lagoon Masáže na Instagramu">
+          <Instagram size={16} />
+        </a>
+        <a href="https://www.facebook.com/p/Lagoon-Mas%C3%A1%C5%BEe-61553022234305/" target="_blank" rel="noopener noreferrer" class="navbar__social-link" aria-label="Lagoon Masáže na Facebooku">
+          <Facebook size={16} />
+        </a>
+      </div>
+    </div>
 
     <button
       id="menu-toggle"
@@ -52,6 +63,14 @@ const { forceScrolled = false } = Astro.props;
   <a href="/jak-to-funguje" class="mobile-menu__link">Jak to u nás funguje</a>
   <a href={`${p}#kontakt`} class="mobile-menu__link">Kde nás najdete</a>
   <a href="/rezervace" class="mobile-menu__cta">Rezervovat masáž</a>
+  <div class="mobile-menu__social">
+    <a href="https://www.instagram.com/lagoon_masaze" target="_blank" rel="noopener noreferrer" class="mobile-menu__social-link" aria-label="Lagoon Masáže na Instagramu">
+      <Instagram size={20} />
+    </a>
+    <a href="https://www.facebook.com/p/Lagoon-Mas%C3%A1%C5%BEe-61553022234305/" target="_blank" rel="noopener noreferrer" class="mobile-menu__social-link" aria-label="Lagoon Masáže na Facebooku">
+      <Facebook size={20} />
+    </a>
+  </div>
 </nav>
 
 <style>
@@ -181,10 +200,20 @@ const { forceScrolled = false } = Astro.props;
   .navbar.is-scrolled .navbar__link { color: var(--color-brown); }
   .navbar.is-scrolled .navbar__dot  { color: rgba(74, 64, 58, 0.25); }
 
-  .navbar__cta {
+  /* ── Pravá část (CTA + social) ── */
+  .navbar__right {
     display: none;
     justify-self: end;
     grid-column: 3;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 900px) {
+    .navbar__right { display: flex; }
+  }
+
+  .navbar__cta {
     font-family: var(--font-display);
     font-size: clamp(1rem, 1.2vw, 1.2rem);
     font-weight: 400;
@@ -203,6 +232,39 @@ const { forceScrolled = false } = Astro.props;
   @media (hover: hover) {
     .navbar__cta:hover { background: var(--color-btn-hover); }
     .navbar.is-scrolled .navbar__cta:hover { background: var(--color-brown); }
+  }
+
+  /* ── Social ikonky (desktop) ── */
+  .navbar__social {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .navbar__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6);
+    transition:
+      border-color var(--nav-duration) var(--nav-ease),
+      color var(--nav-duration) var(--nav-ease);
+  }
+
+  .navbar.is-scrolled .navbar__social-link {
+    border-color: rgba(74, 64, 58, 0.18);
+    color: rgba(74, 64, 58, 0.45);
+  }
+
+  @media (hover: hover) {
+    .navbar__social-link:hover {
+      border-color: var(--color-gold);
+      color: var(--color-gold);
+    }
   }
 
   .navbar__hamburger {
@@ -237,7 +299,6 @@ const { forceScrolled = false } = Astro.props;
 
   @media (min-width: 900px) {
     .navbar__nav       { display: flex; }
-    .navbar__cta       { display: inline-flex; align-items: center; }
     .navbar__hamburger { display: none !important; }
     .mobile-menu       { display: none !important; }
   }
@@ -319,9 +380,33 @@ const { forceScrolled = false } = Astro.props;
     transition: background 0.3s linear;
   }
 
+  /* ── Social ikonky (mobile menu) ── */
+  .mobile-menu__social {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .mobile-menu__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.5);
+    transition: border-color 0.25s linear, color 0.25s linear;
+  }
+
   @media (hover: hover) {
     .mobile-menu__link:hover::after { transform: scaleX(1); }
     .mobile-menu__cta:hover { background: var(--color-btn-hover); }
+    .mobile-menu__social-link:hover {
+      border-color: var(--color-gold);
+      color: var(--color-gold);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -333,10 +418,12 @@ const { forceScrolled = false } = Astro.props;
     .navbar__link::after,
     .navbar__dot,
     .navbar__cta,
+    .navbar__social-link,
     .navbar__hamburger span,
     .mobile-menu,
     .mobile-menu__link::after,
-    .mobile-menu__cta {
+    .mobile-menu__cta,
+    .mobile-menu__social-link {
       transition-duration: 0.01ms !important;
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
