@@ -65,7 +65,7 @@ const { forceScrolled = false } = Astro.props;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 50;
+    z-index: 1000;
     background: transparent;
     box-shadow: none;
     transition:
@@ -242,16 +242,27 @@ const { forceScrolled = false } = Astro.props;
     .mobile-menu       { display: none !important; }
   }
 
+  /* ─── MOBILE MENU ─────────────────────────────────────────── */
+
   .mobile-menu {
     position: fixed;
-    inset: 0;
-    z-index: 40;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
     background: var(--color-brown);
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 2.75rem;
+    justify-content: flex-start;
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    padding: clamp(1.5rem, 5vw, 2.5rem) 1.5rem clamp(2rem, 6vw, 3rem);
+
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -266,7 +277,7 @@ const { forceScrolled = false } = Astro.props;
 
   .mobile-menu__link {
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-size: clamp(1.25rem, 4.5vw, 1.8rem);
     font-weight: 400;
     font-style: normal;
     letter-spacing: 0.03em;
@@ -274,12 +285,15 @@ const { forceScrolled = false } = Astro.props;
     text-decoration: none;
     text-align: center;
     position: relative;
+    display: block;
+    width: 100%;
+    padding: 0.95rem 0;
   }
 
   .mobile-menu__link::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: 4px;
     left: 0;
     right: 0;
     height: 1px;
@@ -291,16 +305,17 @@ const { forceScrolled = false } = Astro.props;
 
   .mobile-menu__cta {
     font-family: var(--font-display);
-    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-size: clamp(1.1rem, 4vw, 1.45rem);
     font-weight: 400;
     font-style: normal;
     letter-spacing: 0.03em;
     text-decoration: none;
     color: #ffffff;
     background: var(--color-btn);
-    padding: 0.85rem 2.75rem;
+    padding: 0.85rem 2.25rem;
     border-radius: 999px;
-    margin-top: 0.5rem;
+    margin-top: 2.25rem;
+    align-self: center;
     transition: background 0.3s linear;
   }
 
@@ -340,8 +355,8 @@ const { forceScrolled = false } = Astro.props;
 
   function initMenu() {
     const toggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
-    const menu = document.getElementById('mobile-menu');
-    const navbar = document.getElementById('navbar');
+    const menu = document.getElementById('mobile-menu') as HTMLElement | null;
+    const navbar = document.getElementById('navbar') as HTMLElement | null;
     const lines = toggle?.querySelectorAll('span');
     const links = menu?.querySelectorAll('a');
 
@@ -350,7 +365,7 @@ const { forceScrolled = false } = Astro.props;
     const forceScrolled = navbar.dataset.forceScrolled === 'true';
 
     const updateScrollState = () => {
-      if (forceScrolled) {
+      if (forceScrolled || isOpen) {
         navbar.classList.add('is-scrolled');
         return;
       }
@@ -368,16 +383,23 @@ const { forceScrolled = false } = Astro.props;
     if (resizeHandler) { window.removeEventListener('resize', resizeHandler); resizeHandler = null; }
 
     isOpen = false;
-
     toggle.setAttribute('aria-expanded', 'false');
     menu.setAttribute('aria-hidden', 'true');
     menu.classList.remove('is-open');
 
+    const setMenuTop = () => {
+      menu.style.top = `${navbar.getBoundingClientRect().height}px`;
+    };
+
     const openMenu = () => {
+      setMenuTop();
       isOpen = true;
       toggle.setAttribute('aria-expanded', 'true');
       menu.setAttribute('aria-hidden', 'false');
       menu.classList.add('is-open');
+      toggle.setAttribute('aria-label', 'Zavřít menu');
+      navbar.classList.add('is-scrolled');
+      document.body.style.overflow = 'hidden';
       const firstLink = menu.querySelector('a');
       if (firstLink) (firstLink as HTMLElement).focus();
       if (lines) {
@@ -395,6 +417,11 @@ const { forceScrolled = false } = Astro.props;
       toggle.setAttribute('aria-expanded', 'false');
       menu.setAttribute('aria-hidden', 'true');
       menu.classList.remove('is-open');
+      toggle.setAttribute('aria-label', 'Otevřít menu');
+      document.body.style.overflow = '';
+      if (!forceScrolled && window.scrollY <= SCROLL_THRESHOLD) {
+        navbar.classList.remove('is-scrolled');
+      }
       if (lines) {
         (lines[0] as HTMLElement).style.transform = 'none';
         (lines[1] as HTMLElement).style.transform = 'none';
@@ -404,6 +431,7 @@ const { forceScrolled = false } = Astro.props;
 
     resizeHandler = () => {
       if (window.innerWidth >= 900 && isOpen) closeMenu();
+      if (isOpen) setMenuTop();
     };
     window.addEventListener('resize', resizeHandler);
 
