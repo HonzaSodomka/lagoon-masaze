@@ -198,7 +198,7 @@ const { forceScrolled = false } = Astro.props;
   }
 
   @media (hover: hover) {
-    .navbar__cta:hover { background: rgba(198, 162, 122, 0.85); }
+    .navbar__cta:hover { background: var(--color-btn-hover); }
     .navbar.is-scrolled .navbar__cta:hover { background: var(--color-brown); }
   }
 
@@ -303,7 +303,7 @@ const { forceScrolled = false } = Astro.props;
 
   @media (hover: hover) {
     .mobile-menu__link:hover::after { transform: scaleX(1); }
-    .mobile-menu__cta:hover { background: rgba(198, 162, 122, 0.85); }
+    .mobile-menu__cta:hover { background: var(--color-btn-hover); }
   }
 
   @media (prefers-reduced-motion: reduce) {
