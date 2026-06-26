@@ -251,8 +251,8 @@ const { forceScrolled = false } = Astro.props;
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: rgba(255, 255, 255, 0.6);
     transition:
-      border-color var(--nav-duration) var(--nav-ease),
-      color var(--nav-duration) var(--nav-ease);
+      border-color 0.3s ease,
+      color 0.3s ease;
   }
 
   .navbar.is-scrolled .navbar__social-link {
@@ -262,6 +262,10 @@ const { forceScrolled = false } = Astro.props;
 
   @media (hover: hover) {
     .navbar__social-link:hover {
+      border-color: var(--color-gold);
+      color: var(--color-gold);
+    }
+    .navbar.is-scrolled .navbar__social-link:hover {
       border-color: var(--color-gold);
       color: var(--color-gold);
     }

@@ -246,6 +246,27 @@
     height: clamp(40px, 6vw, 80px);
   }
 
+  /* ── Mobil: všechny mobily (≤ 899px) ── */
+  @media (max-width: 899px) {
+    .hero__display {
+      font-size: clamp(2.4rem, 7.5vw, 2.8rem);
+    }
+    .hero__container {
+      padding-top: clamp(3.5rem, 10vw, 5rem);
+    }
+    .hero__btn-primary {
+      font-size: 1.15rem;
+      padding: 0.7rem 2.25rem;
+    }
+    .hero__text {
+      margin-bottom: 3.75rem;
+    }
+    .hero__actions {
+      margin-top: -0.25rem;
+      margin-bottom: 2rem;
+    }
+  }
+
   /* ── Reduced motion ── */
   @media (prefers-reduced-motion: reduce) {
     .hero__bg,
