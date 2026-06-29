@@ -1,6 +1,8 @@
+@import '@fontsource-variable/raleway/wght.css';
 @import "tailwindcss";
 
 @theme {
+  --font-display:       'Raleway Variable', 'Helvetica Neue', sans-serif;
   --color-white:        #FFFFFF;
   --color-gold:         #C6A27A;
   --color-brown:        #4A403A;
@@ -8,9 +10,6 @@
   --color-btn:  #B8926A;
   --color-btn-hover: #A8845A;
   --color-overlay:      rgba(74, 64, 58, 0.5);
-
-  --font-display: 'Raleway', 'Helvetica Neue', sans-serif;
-  --font-body:    'Satoshi', 'Helvetica Neue', sans-serif;
 
   --text-hero: clamp(3rem, 0.5rem + 7vw, 8rem);
   --text-2xl:  clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
