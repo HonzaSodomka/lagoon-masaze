@@ -1,54 +1,70 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
+import {
+  VolumeX, CalendarCheck, ShowerHead, Toilet, CircleAlert,
+  Video, Phone
+} from 'lucide-astro';
 ---
 
 <Layout
   title="Jak to u nás funguje | Lagoon Masáže Mladá Boleslav"
-  description="Vše, co potřebujete vědět před návštěvou Lagoon Masáže — od rezervace přes příchod až po závěr masáže. A pravidla, díky kterým si klid užijete všichni."
+  description="Vše, co potřebujete vědět před návštěvou Lagoon Masáže — od rezervace přes příchod až po závěr masáže."
   forceScrolledNavbar={true}
 >
 
-<!-- ══════════════════════════════════════
-     HERO
-══════════════════════════════════════ -->
-<section class="jtf-hero">
+<section class="jtf-hero" id="jtf-hero">
   <div class="jtf-hero__container">
+
     <div class="jtf-hero__text scroll-animate">
       <span class="jtf-hero__eyebrow">Průvodce návštěvou</span>
       <h1 class="jtf-hero__title">Jak to u&nbsp;nás funguje</h1>
-      <p class="jtf-hero__sub">Vše, co potřebujete vědět před první i&nbsp;každou další návštěvou.</p>
+      <p class="jtf-hero__sub">Vše, co potřebujete vědět před první i každou další návštěvou.</p>
     </div>
-    <div class="jtf-hero__img scroll-animate" style="transition-delay:0.15s">
-      <img
-        src="/maserky.webp"
-        alt="Tři masérky Lagoon Masáže v černých uniformách"
-        width="800" height="600"
-        loading="eager" decoding="async"
-      />
+
+    <div class="jtf-hero__carousel" aria-label="Fotografie studia Lagoon Masáže">
+      <div class="jtf-hero__track" id="heroTrack">
+        <div class="jtf-hero__slide"><img src="/recepceJTF1.webp"  alt="Recepce Lagoon Masáže" width="800" height="600" loading="eager" decoding="async" /></div>
+        <div class="jtf-hero__slide"><img src="/interierJTF.webp"  alt="Masážní místnost v Lagoon Masáže" width="800" height="600" loading="lazy" decoding="async" /></div>
+        <div class="jtf-hero__slide"><img src="/recepceJTF2.webp"  alt="Prostor recepce Lagoon Masáže" width="800" height="600" loading="lazy" decoding="async" /></div>
+        <div class="jtf-hero__slide"><img src="/interierJTF2.webp" alt="Druhá masážní místnost v Lagoon Masáže" width="800" height="600" loading="lazy" decoding="async" /></div>
+        <div class="jtf-hero__slide"><img src="/studioJTF.webp"    alt="Studio Lagoon Masáže na Staroměstském náměstí" width="800" height="600" loading="lazy" decoding="async" /></div>
+      </div>
+
+      <div class="jtf-hero__dots" aria-hidden="true">
+        <button class="jtf-hero__dot is-active" data-index="0"></button>
+        <button class="jtf-hero__dot" data-index="1"></button>
+        <button class="jtf-hero__dot" data-index="2"></button>
+        <button class="jtf-hero__dot" data-index="3"></button>
+        <button class="jtf-hero__dot" data-index="4"></button>
+      </div>
+
+      <button class="jtf-hero__arrow jtf-hero__arrow--prev" id="heroPrev" aria-label="Předchozí fotografie">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="jtf-hero__arrow jtf-hero__arrow--next" id="heroNext" aria-label="Další fotografie">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
     </div>
+
   </div>
   <div class="jtf-wave" aria-hidden="true">
-    <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0,35 C360,70 1080,0 1440,35 L1440,70 L0,70 Z" fill="#f5f0ea"/>
-    </svg>
+    <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,35 C360,70 1080,0 1440,35 L1440,70 L0,70 Z" fill="#f5f0ea"/></svg>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     KROKY — hnědá
-══════════════════════════════════════ -->
 <section class="jtf-steps" aria-label="Kroky návštěvy">
   <div class="jtf-steps__container">
 
     <div class="jtf-steps__header scroll-animate">
       <span class="jtf-steps__eyebrow">Krok za krokem</span>
       <h2 class="jtf-steps__title">Vaše návštěva</h2>
+      <p class="jtf-steps__subtitle">Sedm kroků od rezervace po šálek čaje na závěr.</p>
     </div>
 
     <ol class="jtf-steps__list">
 
-      <li class="jtf-steps__item scroll-animate" style="transition-delay:0.05s">
+      <li class="jtf-steps__item scroll-animate">
         <div class="jtf-steps__num" aria-hidden="true">01</div>
         <div class="jtf-steps__body">
           <h3 class="jtf-steps__name">Rezervace</h3>
@@ -57,7 +73,7 @@ import Footer from '../components/Footer.astro';
         </div>
       </li>
 
-      <li class="jtf-steps__item scroll-animate" style="transition-delay:0.1s">
+      <li class="jtf-steps__item scroll-animate" style="transition-delay:0.05s">
         <div class="jtf-steps__num" aria-hidden="true">02</div>
         <div class="jtf-steps__body">
           <h3 class="jtf-steps__name">SMS s&nbsp;kódem</h3>
@@ -65,15 +81,15 @@ import Footer from '../components/Footer.astro';
         </div>
       </li>
 
-      <li class="jtf-steps__item scroll-animate" style="transition-delay:0.15s">
+      <li class="jtf-steps__item scroll-animate" style="transition-delay:0.1s">
         <div class="jtf-steps__num" aria-hidden="true">03</div>
         <div class="jtf-steps__body">
           <h3 class="jtf-steps__name">Parkování</h3>
-          <p class="jtf-steps__text">Jsme na Staroměstském náměstí — frekventované místo, které stojí za to. Přímo na náměstí je podzemní parkovací dům, místo vždy najdete. Počítejte s&nbsp;mírnou časovou rezervou.</p>
+          <p class="jtf-steps__text">Jsme na Staroměstském náměstí — velmi frekventované místo. Přímo na náměstí je podzemní parkovací dům, kde místo téměř vždy najdete. Počítejte ale i tak s mírnou časovou rezervou.</p>
         </div>
       </li>
 
-      <li class="jtf-steps__item scroll-animate" style="transition-delay:0.2s">
+      <li class="jtf-steps__item scroll-animate" style="transition-delay:0.15s">
         <div class="jtf-steps__num" aria-hidden="true">04</div>
         <div class="jtf-steps__body">
           <h3 class="jtf-steps__name">Přijďte s&nbsp;předstihem</h3>
@@ -81,23 +97,23 @@ import Footer from '../components/Footer.astro';
         </div>
       </li>
 
-      <li class="jtf-steps__item scroll-animate" style="transition-delay:0.25s">
+      <li class="jtf-steps__item scroll-animate" style="transition-delay:0.2s">
         <div class="jtf-steps__num" aria-hidden="true">05</div>
         <div class="jtf-steps__body">
           <h3 class="jtf-steps__name">Recepce</h3>
-          <p class="jtf-steps__text">Po zadání kódu vstoupíte do recepce — čeká na vás čaj, káva nebo malý snack. Nalaďte se, klidně si počkejte. WC najdete na konci chodby.</p>
+          <p class="jtf-steps__text">Po zadání kódu vstoupíte do recepce — čeká na vás čaj, káva nebo malý snack. Nalaďte se v klidu na masáž a vyčkejte zde na masérku. WC najdete na konci chodby.</p>
+        </div>
+      </li>
+
+      <li class="jtf-steps__item scroll-animate" style="transition-delay:0.25s">
+        <div class="jtf-steps__num" aria-hidden="true">06</div>
+        <div class="jtf-steps__body">
+          <h3 class="jtf-steps__name">Průběh masáže</h3>
+          <p class="jtf-steps__text">Masérka vás vyzvedne a doprovodí do místnosti. Sundáte si boty a nasadíte pantofle — osobní věci si vezměte s sebou. Jakmile budete připraveni, masérka zaklepe a začínáme. Nebojte se říct, pokud vám něco nevyhovuje — tlak, tempo, cokoliv.</p>
         </div>
       </li>
 
       <li class="jtf-steps__item scroll-animate" style="transition-delay:0.3s">
-        <div class="jtf-steps__num" aria-hidden="true">06</div>
-        <div class="jtf-steps__body">
-          <h3 class="jtf-steps__name">Průběh masáže</h3>
-          <p class="jtf-steps__text">Masérka vás vyzvedne a&nbsp;doprovodí do místnosti. Sundáte boty, nasadíte pantofle — osobní věci si vezměte s&nbsp;sebou. Jakmile budete připraveni, masérka zaklepe a&nbsp;začínáme. Nebojte se říct, pokud vám něco nevyhovuje — tlak, tempo, cokoliv.</p>
-        </div>
-      </li>
-
-      <li class="jtf-steps__item scroll-animate" style="transition-delay:0.35s">
         <div class="jtf-steps__num" aria-hidden="true">07</div>
         <div class="jtf-steps__body">
           <h3 class="jtf-steps__name">Na závěr</h3>
@@ -107,87 +123,75 @@ import Footer from '../components/Footer.astro';
 
     </ol>
 
-  </div>
+    <div class="jtf-steps__cta scroll-animate">
+      <p class="jtf-steps__cta-label">Teď víte vše.<br/>Zbývá si vybrat masáž.</p>
+      <a href="/rezervace" class="jtf-steps__cta-btn">Rezervovat termín</a>
+    </div>
 
-  <!-- vlna cream → zelená -->
+  </div>
   <div class="jtf-wave" aria-hidden="true">
-    <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0,35 C360,0 1080,70 1440,35 L1440,70 L0,70 Z" fill="#2d3d2e"/>
-    </svg>
+    <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,35 C360,0 1080,70 1440,35 L1440,70 L0,70 Z" fill="#2d3d2e"/></svg>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     PRAVIDLA — zelená
-══════════════════════════════════════ -->
 <section class="jtf-rules" aria-label="Pravidla salonu">
-  <div class="jtf-rules__container">
 
-    <div class="jtf-rules__header scroll-animate">
+  <div class="jtf-rules__intro">
+    <div class="jtf-rules__intro-img scroll-animate">
+      <img src="/maserky.webp" alt="Masérky Lagoon Masáže" width="800" height="600" loading="lazy" decoding="async" />
+    </div>
+    <div class="jtf-rules__intro-text scroll-animate" style="transition-delay:0.1s">
       <span class="jtf-rules__eyebrow">Pravidla salonu</span>
       <h2 class="jtf-rules__title">Aby se dobře cítili všichni</h2>
       <p class="jtf-rules__sub">Pár věcí, které pomáhají udržet Lagoon tím, čím je — klidným místem pro každého.</p>
     </div>
+  </div>
 
+  <div class="jtf-rules__container">
     <div class="jtf-rules__grid">
 
       <div class="jtf-rules__card scroll-animate" style="transition-delay:0.05s">
-        <div class="jtf-rules__card-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M9 9h.01M15 9h.01M9.5 14s1 1.5 2.5 1.5 2.5-1.5 2.5-1.5"/></svg>
-        </div>
-        <h3 class="jtf-rules__card-title">Ticho je součást rituálu</h3>
-        <p class="jtf-rules__card-text">Jsme místem klidu a&nbsp;odpočinku. Prosíme o&nbsp;tichý tón hlasu — ostatní klienti si to, stejně jako vy, zaslouží.</p>
+        <div class="jtf-rules__card-icon" aria-hidden="true"><VolumeX size={22} /></div>
+        <h3 class="jtf-rules__card-title">Ticho jako součást rituálu</h3>
+        <p class="jtf-rules__card-text">Jsme místem klidu a relaxace. Buďte prosím během čekání na recepci potichu, abyste nerušili ostatní klienty.</p>
       </div>
 
       <div class="jtf-rules__card scroll-animate" style="transition-delay:0.1s">
-        <div class="jtf-rules__card-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        </div>
-        <h3 class="jtf-rules__card-title">Pouze s&nbsp;rezervací</h3>
-        <p class="jtf-rules__card-text">Klienty bez předchozí rezervace nepřijímáme. Každá masérka má svůj harmonogram — rezervace zaručuje, že na vás bude čekat.</p>
+        <div class="jtf-rules__card-icon" aria-hidden="true"><CalendarCheck size={22} /></div>
+        <h3 class="jtf-rules__card-title">Jen s&nbsp;rezervací</h3>
+        <p class="jtf-rules__card-text">Bez rezervace vás nepřijmeme. Pokud máte zájem o masáž, proveďte prosím rezervaci předem přes náš web.</p>
       </div>
 
       <div class="jtf-rules__card scroll-animate" style="transition-delay:0.15s">
-        <div class="jtf-rules__card-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        </div>
+        <div class="jtf-rules__card-icon" aria-hidden="true"><ShowerHead size={22} /></div>
         <h3 class="jtf-rules__card-title">Osobní hygiena</h3>
-        <p class="jtf-rules__card-text">Dbejte prosím na osobní hygienu — masáž je příjemnější pro vás i&nbsp;masérku. Pracujeme s&nbsp;přímým kontaktem a&nbsp;vzájemný komfort je klíčový.</p>
+        <p class="jtf-rules__card-text">Přijďte čistí. Masáž je práce s přímým kontaktem těla a dbáme na komfort obou stran.</p>
       </div>
 
       <div class="jtf-rules__card scroll-animate" style="transition-delay:0.2s">
-        <div class="jtf-rules__card-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
-        </div>
-        <h3 class="jtf-rules__card-title">WC etiketa</h3>
-        <p class="jtf-rules__card-text">Do záchodové mísy patří výhradně toaletní papír. Pomáháte tím udržovat prostory v&nbsp;pořádku pro každého.</p>
+        <div class="jtf-rules__card-icon" aria-hidden="true"><Toilet size={22} /></div>
+        <h3 class="jtf-rules__card-title">Pouze toaletní papír</h3>
+        <p class="jtf-rules__card-text">Do záchodové mísy patří jen toaletní papír. Nic jiného tam prosím nevhazujte.</p>
       </div>
 
       <div class="jtf-rules__card scroll-animate" style="transition-delay:0.25s">
-        <div class="jtf-rules__card-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-        </div>
+        <div class="jtf-rules__card-icon" aria-hidden="true"><Video size={22} /></div>
         <h3 class="jtf-rules__card-title">Kamerový systém</h3>
-        <p class="jtf-rules__card-text">Recepce je monitorována kamerovým systémem pro bezpečí vás i&nbsp;našich zaměstnanců.</p>
+        <p class="jtf-rules__card-text">Recepce je monitorována kamerou — kvůli bezpečí vás i našich zaměstnanců. Masážní místnosti kamerou vybaveny nejsou.</p>
       </div>
 
-      <div class="jtf-rules__card scroll-animate" style="transition-delay:0.3s">
-        <div class="jtf-rules__card-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
-        </div>
-        <h3 class="jtf-rules__card-title">Cokoliv nevyhovuje</h3>
-        <p class="jtf-rules__card-text">Máte problém nebo otázku? Kdykoli nám zavolejte — jsme tu pro vás.</p>
+      <div class="jtf-rules__card jtf-rules__card--accent scroll-animate" style="transition-delay:0.3s">
+        <div class="jtf-rules__card-icon" aria-hidden="true"><Phone size={22} /></div>
+        <h3 class="jtf-rules__card-title">Cokoliv nevyhovuje, řekněte</h3>
+        <p class="jtf-rules__card-text">Něco nesedělo nebo máte otázku? Zavolejte. Rádi vám s čímkoliv pomůžeme.</p>
         <a href="tel:+420732596212" class="jtf-rules__tel">+420&nbsp;732&nbsp;596&nbsp;212</a>
       </div>
 
     </div>
   </div>
 
-  <!-- vlna zelená → hnědá (footer) -->
   <div class="jtf-wave jtf-wave--bottom" aria-hidden="true">
-    <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0,35 C360,70 1080,0 1440,35 L1440,70 L0,70 Z" fill="#4A403A"/>
-    </svg>
+    <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,35 C360,70 1080,0 1440,35 L1440,70 L0,70 Z" fill="#4A403A"/></svg>
   </div>
 </section>
 
@@ -196,499 +200,443 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <style>
-/* ══════════════════════════════════════
-   SDÍLENÁ VLNKA
-══════════════════════════════════════ */
 .jtf-wave {
   position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  line-height: 0;
-  z-index: 1;
+  bottom: -1px; left: 0;
+  width: 100%; line-height: 0; z-index: 1;
 }
-
 .jtf-wave svg {
-  display: block;
-  width: 100%;
+  display: block; width: 100%;
   height: clamp(35px, 5vw, 70px);
 }
 
-/* ══════════════════════════════════════
-   HERO
-══════════════════════════════════════ */
+/* ══ HERO ══ */
 .jtf-hero {
   background: var(--color-brown);
   position: relative;
-  padding-top: clamp(8rem, 16vw, 12rem);
-  padding-bottom: clamp(5rem, 10vw, 7rem);
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-top: clamp(5rem, 12vw, 8rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
 }
-
 .jtf-hero__container {
   max-width: 1200px;
+  width: 100%;
   margin-inline: auto;
   padding-inline: clamp(1.25rem, 4vw, 3.5rem);
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(2.5rem, 5vw, 4rem);
+  gap: clamp(1.5rem, 3vw, 3rem);
   align-items: center;
 }
-
 @media (min-width: 860px) {
-  .jtf-hero__container {
-    grid-template-columns: 1fr 1fr;
-  }
+  .jtf-hero__container { grid-template-columns: 1fr 1fr; }
 }
-
 .jtf-hero__text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-
 .jtf-hero__eyebrow {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--color-gold);
-  margin-bottom: 1rem;
+  font-size: 0.75rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--color-gold); margin-bottom: 1rem;
 }
-
 .jtf-hero__title {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4vw, 3.25rem);
-  font-weight: 300;
-  line-height: 1.05;
-  color: #ffffff;
-  margin: 0 0 1rem;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 300; line-height: 1.05;
+  color: #fff; margin: 0 0 1rem;
 }
-
 .jtf-hero__sub {
   font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.5);
-  max-width: 38ch;
-  margin: 0;
+  font-size: 1rem; line-height: 1.7;
+  color: rgba(255,255,255,.5);
+  max-width: 38ch; margin: 0;
 }
 
-.jtf-hero__img {
-  border-radius: 1.25rem;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-  aspect-ratio: 4/3;
+/* ── Carousel ── */
+.jtf-hero__carousel {
+  position: relative;
+  border-radius: 1.25rem; overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: rgba(0,0,0,.2);
+}
+.jtf-hero__track {
+  position: relative;
+  width: 100%; height: 100%;
+}
+.jtf-hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+.jtf-hero__slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.jtf-hero__slide img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.jtf-hero__dots {
+  position: absolute; bottom: 1rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 0.4rem; z-index: 2;
+}
+.jtf-hero__dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  border: none; background: rgba(255,255,255,.35);
+  cursor: pointer; padding: 0;
+  transition: background 0.25s ease, transform 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.jtf-hero__dot.is-active { background: #fff; transform: scale(1.4); }
+.jtf-hero__arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  z-index: 2; width: 36px; height: 36px; border-radius: 50%;
+  border: none; background: rgba(255,255,255,.12);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.jtf-hero__arrow--prev { left: 0.75rem; }
+.jtf-hero__arrow--next { right: 0.75rem; }
+@media (hover: hover) {
+  .jtf-hero__arrow:hover { background: rgba(255,255,255,.22); }
 }
 
-.jtf-hero__img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 15%;
-  display: block;
-}
-
-/* ══════════════════════════════════════
-   KROKY — hnědá
-══════════════════════════════════════ */
+/* ══ KROKY ══ */
 .jtf-steps {
   background: #f5f0ea;
   padding-top: clamp(4rem, 8vw, 7rem);
   padding-bottom: clamp(5rem, 10vw, 8rem);
   position: relative;
 }
-
 .jtf-steps__container {
-  max-width: 1200px;
+  max-width: 800px;
   margin-inline: auto;
   padding-inline: clamp(1.25rem, 4vw, 3.5rem);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(3rem, 6vw, 5rem);
 }
-
 .jtf-steps__header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  display: flex; flex-direction: column;
+  align-items: flex-start; text-align: left;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
 }
-
+@media (min-width: 900px) {
+  .jtf-steps__header { align-items: center; text-align: center; }
+  .jtf-steps__subtitle { margin-inline: auto; }
+}
 .jtf-steps__eyebrow {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--color-gold);
-  margin-bottom: 1rem;
+  font-size: 0.75rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--color-gold); margin-bottom: 1rem;
 }
-
 .jtf-steps__title {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 4vw, 3.25rem);
-  font-weight: 300;
-  line-height: 1.05;
-  color: var(--color-brown);
-  margin: 0;
+  font-weight: 300; line-height: 1.05;
+  color: var(--color-brown); margin: 0 0 0.75rem;
 }
-
+.jtf-steps__subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem; line-height: 1.65;
+  color: rgba(74,64,58,.5); margin: 0;
+}
 .jtf-steps__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column;
 }
-
-@media (min-width: 860px) {
-  .jtf-steps__list {
-    grid-template-columns: 1fr 1fr;
-    column-gap: clamp(2rem, 4vw, 4rem);
-  }
-}
-
 .jtf-steps__item {
-  display: flex;
-  gap: clamp(1.25rem, 3vw, 2rem);
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 0 clamp(1rem, 2.5vw, 1.5rem);
   align-items: flex-start;
-  padding-block: clamp(1.5rem, 3vw, 2rem);
-  border-bottom: 1px solid rgba(74, 64, 58, 0.08);
-  border-radius: 0.5rem;
-  transition: background 0.35s ease;
+  padding-block: clamp(1.75rem, 3.5vw, 2.25rem);
+  border-bottom: 1px solid rgba(74,64,58,.08);
 }
-
-.jtf-steps__item:first-child {
-  border-top: 1px solid rgba(74, 64, 58, 0.08);
-}
-
-@media (min-width: 860px) {
-  .jtf-steps__item:nth-child(2) {
-    border-top: 1px solid rgba(74, 64, 58, 0.08);
-  }
-}
-
-@media (hover: hover) {
-  .jtf-steps__item:hover { background: rgba(74, 64, 58, 0.03); }
-  .jtf-steps__item:hover .jtf-steps__num { opacity: 0.6; }
-}
-
+.jtf-steps__item:first-child { border-top: 1px solid rgba(74,64,58,.08); }
 .jtf-steps__num {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 300;
-  line-height: 1;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 300; line-height: 1;
   color: var(--color-gold);
-  opacity: 0.25;
-  flex-shrink: 0;
-  width: 2.75rem;
-  text-align: right;
-  user-select: none;
-  transition: opacity 0.35s ease;
-  padding-top: 0.1em;
+  text-align: right; user-select: none;
+  padding-top: 0.05em;
 }
-
-.jtf-steps__body { flex: 1; min-width: 0; }
-
+.jtf-steps__body { min-width: 0; }
 .jtf-steps__name {
   font-family: var(--font-display);
   font-size: clamp(1.2rem, 1.8vw, 1.5rem);
-  font-weight: 400;
-  line-height: 1.2;
-  color: var(--color-brown);
-  margin: 0 0 0.5rem;
+  font-weight: 400; line-height: 1.2;
+  color: var(--color-brown); margin: 0 0 0.6rem;
 }
-
 .jtf-steps__text {
   font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: 1.8;
-  color: rgba(74, 64, 58, 0.6);
-  margin: 0 0 0.5rem;
-  max-width: 56ch;
+  font-size: 0.95rem; line-height: 1.8;
+  color: rgba(74,64,58,.65); margin: 0 0 0.5rem;
 }
-
 .jtf-steps__text:last-child { margin-bottom: 0; }
-
 .jtf-steps__link {
   color: var(--color-gold);
   text-decoration: underline;
-  text-decoration-color: rgba(198, 162, 122, 0.4);
-  text-underline-offset: 3px;
-  white-space: nowrap;
+  text-decoration-color: rgba(198,162,122,.4);
+  text-underline-offset: 3px; white-space: nowrap;
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
-
 @media (hover: hover) {
   .jtf-steps__link:hover {
     color: var(--color-brown);
-    text-decoration-color: rgba(74, 64, 58, 0.4);
+    text-decoration-color: rgba(74,64,58,.4);
   }
 }
-
-.jtf-steps__footer {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(1.5rem, 3vw, 2rem);
-}
-
-.jtf-steps__photos {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-}
-
-@media (max-width: 400px) {
-  .jtf-steps__photos { grid-template-columns: 1fr; }
-}
-
-.jtf-steps__photo {
-  aspect-ratio: 4/3;
-  border-radius: 1.25rem;
-  overflow: hidden;
-  box-shadow: 0 16px 48px rgba(74, 64, 58, 0.12);
-}
-
-.jtf-steps__photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@media (hover: hover) {
-  .jtf-steps__photo:hover img { transform: scale(1.04); }
-}
-
 .jtf-steps__cta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  text-align: center;
+  display: flex; flex-direction: column;
+  align-items: flex-start; gap: 2rem;
+  text-align: left;
+  padding-top: clamp(3rem, 6vw, 5rem);
 }
-
-@media (min-width: 860px) {
-  .jtf-steps__cta {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    text-align: left;
-  }
+@media (min-width: 640px) {
+  .jtf-steps__cta { flex-direction: row; justify-content: space-between; align-items: center; }
 }
-
 .jtf-steps__cta-label {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
-  font-weight: 300;
-  line-height: 1.1;
-  color: rgba(74, 64, 58, 0.75);
-  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  font-weight: 300; line-height: 1.15;
+  color: var(--color-brown); margin: 0; opacity: 0.75;
 }
-
 .jtf-steps__cta-btn {
   font-family: var(--font-display);
   font-size: clamp(1rem, 1.2vw, 1.2rem);
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: 0.03em;
-  text-decoration: none;
-  color: #ffffff;
-  background: var(--color-btn);
-  padding: 0.75rem clamp(1.5rem, 2vw, 2.25rem);
+  font-weight: 400; font-style: normal;
+  letter-spacing: 0.03em; text-decoration: none;
+  color: #fff; background: var(--color-btn);
+  padding: 0.85rem clamp(1.75rem, 2.5vw, 2.5rem);
   border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  flex-shrink: 0;
+  display: inline-flex; align-items: center;
+  white-space: nowrap; flex-shrink: 0;
   transition: background 0.3s ease;
 }
-
 @media (hover: hover) {
   .jtf-steps__cta-btn:hover { background: var(--color-btn-hover); }
 }
 
-/* ══════════════════════════════════════
-   PRAVIDLA — zelená
-══════════════════════════════════════ */
+/* ══ PRAVIDLA ══ */
 .jtf-rules {
   background: #2d3d2e;
-  padding-top: clamp(4rem, 8vw, 7rem);
   padding-bottom: clamp(5rem, 10vw, 8rem);
   position: relative;
 }
-
+.jtf-rules__intro {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+}
+@media (min-width: 860px) {
+  .jtf-rules__intro {
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+  }
+}
+.jtf-rules__intro-img {
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: rgba(0,0,0,.2);
+  order: 2;
+}
+@media (min-width: 860px) {
+  .jtf-rules__intro-img {
+    order: 1;
+    aspect-ratio: auto;
+    max-height: 460px;
+  }
+  .jtf-rules__intro-text { order: 2; }
+}
+.jtf-rules__intro-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 30%;
+  display: block;
+}
+.jtf-rules__intro-text {
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+}
+.jtf-rules__eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.75rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--color-gold); margin-bottom: 1rem;
+}
+.jtf-rules__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 300; line-height: 1.05;
+  color: #fff; margin: 0 0 1.25rem;
+}
+.jtf-rules__sub {
+  font-family: var(--font-body);
+  font-size: 1rem; line-height: 1.65;
+  color: rgba(255,255,255,.45); margin: 0;
+  max-width: 42ch;
+}
 .jtf-rules__container {
   max-width: 1200px;
   margin-inline: auto;
   padding-inline: clamp(1.25rem, 4vw, 3.5rem);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2.5rem, 5vw, 4rem);
 }
-
-.jtf-rules__header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-@media (min-width: 900px) {
-  .jtf-rules__header { align-items: center; text-align: center; }
-  .jtf-rules__sub { margin-inline: auto; }
-}
-
-.jtf-rules__eyebrow {
-  display: block;
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--color-gold);
-  margin-bottom: 1rem;
-}
-
-.jtf-rules__title {
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4vw, 3.25rem);
-  font-weight: 300;
-  line-height: 1.05;
-  color: #ffffff;
-  margin: 0 0 1.25rem;
-}
-
-.jtf-rules__sub {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.4);
-  max-width: 52ch;
-  margin: 0;
-}
-
 .jtf-rules__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
 }
-
 @media (min-width: 640px)  { .jtf-rules__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .jtf-rules__grid { grid-template-columns: repeat(3, 1fr); } }
-
 .jtf-rules__card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
   border-radius: 0.875rem;
   padding: clamp(1.25rem, 3vw, 1.75rem);
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
+  display: flex; flex-direction: column; gap: 0.875rem;
   transition: background 0.3s ease, border-color 0.3s ease;
 }
-
 @media (hover: hover) {
-  .jtf-rules__card:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.15);
-  }
+  .jtf-rules__card:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14); }
 }
-
 .jtf-rules__card--accent {
-  background: rgba(198, 162, 122, 0.08);
-  border-color: rgba(198, 162, 122, 0.18);
+  background: rgba(198,162,122,.08);
+  border-color: rgba(198,162,122,.18);
 }
-
 @media (hover: hover) {
-  .jtf-rules__card--accent:hover {
-    background: rgba(198, 162, 122, 0.12);
-    border-color: rgba(198, 162, 122, 0.3);
-  }
+  .jtf-rules__card--accent:hover { background: rgba(198,162,122,.12); border-color: rgba(198,162,122,.3); }
 }
-
-.jtf-rules__card-icon {
-  color: var(--color-gold);
-  opacity: 0.7;
-  flex-shrink: 0;
-}
-
+.jtf-rules__card-icon { color: var(--color-gold); opacity: 0.75; flex-shrink: 0; }
+.jtf-rules__card-icon svg { width: 22px; height: 22px; }
 .jtf-rules__card--accent .jtf-rules__card-icon { opacity: 1; }
-
 .jtf-rules__card-title {
   font-family: var(--font-display);
-  font-size: clamp(1.15rem, 1.5vw, 1.35rem);
-  font-weight: 400;
-  line-height: 1.2;
-  color: #ffffff;
-  margin: 0;
+  font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+  font-weight: 400; line-height: 1.2;
+  color: #fff; margin: 0;
 }
-
 .jtf-rules__card-text {
   font-family: var(--font-body);
-  font-size: 0.9rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.5);
-  margin: 0;
-  flex: 1;
+  font-size: 0.9rem; line-height: 1.7;
+  color: rgba(255,255,255,.5); margin: 0; flex: 1;
 }
-
 .jtf-rules__tel {
   font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  color: var(--color-gold);
-  text-decoration: none;
-  display: inline-flex;
-  margin-top: 0.25rem;
+  font-size: 1rem; font-weight: 400; letter-spacing: 0.03em;
+  color: var(--color-gold); text-decoration: none;
+  display: inline-flex; margin-top: 0.25rem;
   transition: opacity 0.2s ease;
 }
+@media (hover: hover) { .jtf-rules__tel:hover { opacity: 0.7; } }
 
-@media (hover: hover) {
-  .jtf-rules__tel:hover { opacity: 0.7; }
-}
-
-/* ══════════════════════════════════════
-   SCROLL ANIMACE
-══════════════════════════════════════ */
+/* ══ SCROLL ANIMACE ══ */
 .scroll-animate {
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-.scroll-animate.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+.scroll-animate.is-visible { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
-  .scroll-animate,
-  .jtf-hero__img img,
-  .jtf-steps__photo img {
-    transition: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-  }
+  .scroll-animate { transition: none !important; transform: none !important; opacity: 1 !important; }
+  .jtf-hero__slide { transition: none !important; }
+  .jtf-hero__slide.is-active { opacity: 1 !important; }
 }
 </style>
 
-<script>
+<script is:inline>
   window.dispatchEvent(new Event('lagoon:video-ready'));
 
-  const els = document.querySelectorAll('.scroll-animate');
-  const obs = new IntersectionObserver(
-    (entries) => entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-    }),
-    { threshold: 0.1 }
-  );
-  els.forEach(el => obs.observe(el));
+  /* Scroll animace */
+  var animEls = document.querySelectorAll('.scroll-animate');
+  var animObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); animObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  animEls.forEach(function(el) { animObs.observe(el); });
+
+  /* Hero výška — stejný hack jako index */
+  (function() {
+    var hero = document.getElementById('jtf-hero');
+    if (!hero) return;
+    var lastW = window.innerWidth;
+    function setH() { hero.style.minHeight = window.innerHeight + 'px'; }
+    setH();
+    window.addEventListener('resize', function() {
+      if (window.innerWidth !== lastW) { lastW = window.innerWidth; setH(); }
+    });
+    window.addEventListener('orientationchange', function() { setTimeout(setH, 100); });
+  })();
+
+  /* Carousel */
+  (function() {
+    var track = document.getElementById('heroTrack');
+    var dots  = Array.from(document.querySelectorAll('.jtf-hero__dot'));
+    var prev  = document.getElementById('heroPrev');
+    var next  = document.getElementById('heroNext');
+    if (!track || !dots.length) return;
+
+    var total   = dots.length;
+    var current = 0;
+    var autoTimer;
+    var slides  = Array.from(track.querySelectorAll('.jtf-hero__slide'));
+
+    function goTo(index) {
+      current = (index + total) % total;
+      slides.forEach(function(s, i) { s.classList.toggle('is-active', i === current); });
+      dots.forEach(function(d, i) { d.classList.toggle('is-active', i === current); });
+    }
+
+    function resetAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(function() { goTo(current + 1); }, 4000);
+    }
+
+    goTo(0);
+    resetAuto();
+
+    dots.forEach(function(dot, i) { dot.addEventListener('click', function() { goTo(i); resetAuto(); }); });
+    if (prev) prev.addEventListener('click', function() { goTo(current - 1); resetAuto(); });
+    if (next) next.addEventListener('click', function() { goTo(current + 1); resetAuto(); });
+
+    var touchStartX = 0, touchStartY = 0, isSwiping = false, isDecided = false;
+    track.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      isSwiping = false; isDecided = false;
+    }, { passive: true });
+    track.addEventListener('touchmove', function(e) {
+      if (!isDecided) {
+        var dx = Math.abs(e.touches[0].clientX - touchStartX);
+        var dy = Math.abs(e.touches[0].clientY - touchStartY);
+        if (dx > 8 || dy > 8) { isSwiping = dx > dy; isDecided = true; }
+      }
+      if (isSwiping) e.preventDefault();
+    }, { passive: false });
+    track.addEventListener('touchend', function(e) {
+      if (!isSwiping) return;
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      if (dx < -40) { goTo(current + 1); resetAuto(); }
+      else if (dx > 40) { goTo(current - 1); resetAuto(); }
+    }, { passive: true });
+  })();
 </script>

@@ -234,42 +234,11 @@ const { forceScrolled = false } = Astro.props;
     .navbar.is-scrolled .navbar__cta:hover { background: var(--color-brown); }
   }
 
-  /* ── Social ikonky (desktop) ── */
+  /* ── Social ikonky (desktop) — skryté, zůstávají jen v mobilním menu ── */
   .navbar__social {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+    display: none;
   }
 
-  .navbar__social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.6);
-    transition:
-      border-color 0.3s ease,
-      color 0.3s ease;
-  }
-
-  .navbar.is-scrolled .navbar__social-link {
-    border-color: rgba(74, 64, 58, 0.18);
-    color: rgba(74, 64, 58, 0.45);
-  }
-
-  @media (hover: hover) {
-    .navbar__social-link:hover {
-      border-color: var(--color-gold);
-      color: var(--color-gold);
-    }
-    .navbar.is-scrolled .navbar__social-link:hover {
-      border-color: var(--color-gold);
-      color: var(--color-gold);
-    }
-  }
 
   .navbar__hamburger {
     display: flex;
@@ -422,7 +391,6 @@ const { forceScrolled = false } = Astro.props;
     .navbar__link::after,
     .navbar__dot,
     .navbar__cta,
-    .navbar__social-link,
     .navbar__hamburger span,
     .mobile-menu,
     .mobile-menu__link::after,
