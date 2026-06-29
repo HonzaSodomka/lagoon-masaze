@@ -2,9 +2,9 @@
 // src/components/Tym.astro
 
 const maserky = [
-  { jmeno: "Angel",   foto: "/angel.webp" },
-  { jmeno: "Jayline", foto: "/jayline.webp" },
-  { jmeno: "Rose",    foto: "/rose.webp" },
+  { jmeno: "Angel",   foto: "/angel.webp",   alt: "Masérka Angel – Lagoon Masáže Mladá Boleslav" },
+  { jmeno: "Jayline", foto: "/jayline.webp", alt: "Masérka Jayline – Lagoon Masáže Mladá Boleslav" },
+  { jmeno: "Rose",    foto: "/rose.webp",    alt: "Masérka Rose – Lagoon Masáže Mladá Boleslav" },
 ];
 ---
 
@@ -19,11 +19,14 @@ const maserky = [
     <!-- Desktop: grid -->
     <div class="tym__grid">
       {maserky.map((m, i) => (
-        <div class="tym__card scroll-animate" style={`transition-delay: ${i * 0.1}s`}>
+        <div class="tym__card scroll-animate" style={`transition-delay: ${i * 0.12}s`}>
           <div class="tym__card-photo">
-            <img src={m.foto} alt={m.jmeno} width="600" height="800" loading="lazy" decoding="async" />
+            <img src={m.foto} alt={m.alt} width="600" height="900" loading="lazy" decoding="async" />
+            <div class="tym__card-overlay" aria-hidden="true">
+              <span class="tym__card-accent"></span>
+              <p class="tym__card-name">{m.jmeno}</p>
+            </div>
           </div>
-          <p class="tym__card-name">{m.jmeno}</p>
         </div>
       ))}
     </div>
@@ -32,13 +35,16 @@ const maserky = [
     <div class="tym__slider scroll-animate">
       <div class="tym__viewport" id="tymViewport">
         <div class="tym__track" id="tymTrack">
-          {maserky.map((m, i) => (
+          {maserky.map((m) => (
             <div class="tym__slide">
               <div class="tym__card">
                 <div class="tym__card-photo">
-                  <img src={m.foto} alt={m.jmeno} width="600" height="800" loading="lazy" decoding="async" />
+                  <img src={m.foto} alt={m.alt} width="600" height="900" loading="lazy" decoding="async" />
+                  <div class="tym__card-overlay" aria-hidden="true">
+                    <span class="tym__card-accent"></span>
+                    <p class="tym__card-name">{m.jmeno}</p>
+                  </div>
                 </div>
-                <p class="tym__card-name">{m.jmeno}</p>
               </div>
             </div>
           ))}
@@ -140,6 +146,63 @@ const maserky = [
     .tym__slider { display: block; }
   }
 
+  /* ── Karta ── */
+  .tym__card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tym__card-photo {
+    aspect-ratio: 2 / 3;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .tym__card-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  @media (hover: hover) {
+    .tym__card:hover .tym__card-photo img {
+      transform: scale(1.04);
+    }
+  }
+
+  /* ── Name overlay ── */
+  .tym__card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: clamp(2.5rem, 5vw, 3.5rem) 1.5rem 1.5rem;
+    background: linear-gradient(to top, rgba(12, 6, 3, 0.82) 0%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .tym__card-accent {
+    display: block;
+    width: 1.75rem;
+    height: 1px;
+    background: var(--color-gold);
+  }
+
+  .tym__card-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+    font-weight: 300;
+    font-style: normal;
+    color: #ffffff;
+    text-align: left;
+  }
+
   /* ── Carousel ── */
   .tym__viewport {
     overflow: hidden;
@@ -182,36 +245,6 @@ const maserky = [
   .tym__dot.is-active {
     background: var(--color-gold);
     transform: scale(1.35);
-  }
-
-  /* ── Karta ── */
-  .tym__card {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .tym__card-photo {
-    aspect-ratio: 3 / 4;
-    border-radius: 1.25rem;
-    overflow: hidden;
-  }
-
-  .tym__card-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-  }
-
-  .tym__card-name {
-    font-family: var(--font-display);
-    font-size: clamp(1.3rem, 2vw, 1.6rem);
-    font-weight: 400;
-    font-style: normal;
-    color: #ffffff;
-    text-align: center;
   }
 
   /* ── Scroll animace ── */

@@ -20,18 +20,14 @@ const { forceScrolled = false } = Astro.props;
 
     <nav class="navbar__nav" aria-label="Hlavní navigace">
       <a href={`${p}#typy-masazi`} class="navbar__link">Typy masáží</a>
-      <span class="navbar__dot" aria-hidden="true">·</span>
       <a href={`${p}#darkovy-poukaz`} class="navbar__link">Dárkové poukazy</a>
-      <span class="navbar__dot" aria-hidden="true">·</span>
       <a href={`${p}#nas-tym`} class="navbar__link">Naše masérky</a>
-      <span class="navbar__dot" aria-hidden="true">·</span>
       <a href="/jak-to-funguje" class="navbar__link">Jak to u nás funguje</a>
-      <span class="navbar__dot" aria-hidden="true">·</span>
       <a href={`${p}#kontakt`} class="navbar__link">Kde nás najdete</a>
     </nav>
 
     <div class="navbar__right">
-      <a href="/rezervace" class="navbar__cta" aria-label="Rezervovat termín - přesun na rezervační systém">Rezervovat masáž</a>
+      <a href="/rezervace" class="navbar__cta">Rezervovat masáž</a>
       <div class="navbar__social">
         <a href="https://www.instagram.com/lagoon_masaze" target="_blank" rel="noopener noreferrer" class="navbar__social-link" aria-label="Lagoon Masáže na Instagramu">
           <Instagram size={16} />
@@ -75,8 +71,8 @@ const { forceScrolled = false } = Astro.props;
 
 <style>
   :root {
-    --nav-duration: 0.6s;
-    --nav-ease: linear;
+    --nav-duration: 0.4s;
+    --nav-ease: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .navbar {
@@ -93,7 +89,9 @@ const { forceScrolled = false } = Astro.props;
   }
 
   .navbar.is-scrolled {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 1px 0 rgba(74, 64, 58, 0.08);
   }
 
@@ -157,24 +155,15 @@ const { forceScrolled = false } = Astro.props;
     gap: 0;
   }
 
-  .navbar__dot {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: clamp(0.9rem, 1.1vw, 1.3rem);
-    font-style: normal;
-    padding: 0 clamp(0.1rem, 0.2vw, 0.25rem);
-    user-select: none;
-    transition: color var(--nav-duration) var(--nav-ease);
-  }
-
   .navbar__link {
     font-family: var(--font-display);
-    font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+    font-size: clamp(0.8rem, 0.9vw, 0.875rem);
     font-weight: 400;
     font-style: normal;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.08em;
     color: #ffffff;
     text-decoration: none;
-    padding: 0.4rem clamp(0.3rem, 0.6vw, 1rem);
+    padding: 0.4rem clamp(0.3rem, 0.7vw, 1.1rem);
     position: relative;
     transition: color var(--nav-duration) var(--nav-ease);
     white-space: nowrap;
@@ -215,23 +204,29 @@ const { forceScrolled = false } = Astro.props;
 
   .navbar__cta {
     font-family: var(--font-display);
-    font-size: clamp(1rem, 1.2vw, 1.2rem);
+    font-size: clamp(0.8rem, 0.9vw, 0.875rem);
     font-weight: 400;
     font-style: normal;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.07em;
     text-transform: none;
     text-decoration: none;
     color: #ffffff;
-    background: var(--color-btn);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.45);
     padding: 0.6rem clamp(0.9rem, 1.4vw, 1.75rem);
     border-radius: 999px;
     white-space: nowrap;
-    transition: background 0.3s linear;
+    transition: background var(--nav-duration) var(--nav-ease), border-color var(--nav-duration) var(--nav-ease);
+  }
+
+  .navbar.is-scrolled .navbar__cta {
+    background: var(--color-btn);
+    border-color: var(--color-btn);
   }
 
   @media (hover: hover) {
-    .navbar__cta:hover { background: var(--color-btn-hover); }
-    .navbar.is-scrolled .navbar__cta:hover { background: var(--color-brown); }
+    .navbar__cta:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.7); }
+    .navbar.is-scrolled .navbar__cta:hover { background: var(--color-btn-hover); border-color: var(--color-btn-hover); }
   }
 
   /* ── Social ikonky (desktop) — skryté, zůstávají jen v mobilním menu ── */
@@ -389,7 +384,6 @@ const { forceScrolled = false } = Astro.props;
     .navbar__logo-dark,
     .navbar__link,
     .navbar__link::after,
-    .navbar__dot,
     .navbar__cta,
     .navbar__hamburger span,
     .mobile-menu,

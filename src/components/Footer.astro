@@ -7,80 +7,85 @@ const p = isHome ? '' : '/';
 ---
 
 <footer class="footer" role="contentinfo">
-  <div class="footer__container">
-    
-    <div class="scroll-animate">
-      
-      <div class="footer__top">
-        <div class="footer__brand">
-          <a href="/" class="footer__logo" aria-label="Zpět na hlavní stranu">
-            <img src="/logo.png" alt="" width="160" height="89" loading="lazy" />
-          </a>
-          <p class="footer__legal">
-            IČ: 193 25 240<br/>
-            Společnost je zapsaná u Městského soudu v Praze pod spisovou značkou C 384783
-          </p>
-        </div>
 
-        <nav class="footer__links-col" aria-label="Patičková navigace">
-          <h3 class="footer__heading">Menu</h3>
-          <ul class="footer__list">
-            <li><a href={`${p}#typy-masazi`} class="footer__link">Typy masáží</a></li>
-            <li><a href={`${p}#darkovy-poukaz`} class="footer__link">Dárkové poukazy</a></li>
-            <li><a href={`${p}#nas-tym`} class="footer__link">Naše masérky</a></li>
-            <li><a href="/jak-to-funguje" class="footer__link">Jak to funguje</a></li>
-            <li><a href={`${p}#recenze`} class="footer__link">Recenze</a></li>
-            <li><a href={`${p}#kontakt`} class="footer__link">Kde nás najdete</a></li>
-            <li><a href="/rezervace" class="footer__link footer__link--gold">Rezervovat termín</a></li>
-          </ul>
-        </nav>
+  <div class="footer__container scroll-animate">
 
-        <div class="footer__contact-col">
-          <h3 class="footer__heading">Lagoon Masáže</h3>
-          <ul class="footer__list">
-            <li class="footer__text">Staroměstské náměstí 19/23<br/>Mladá Boleslav 293 01</li>
-            <li><a href="tel:+420732596212" class="footer__link" aria-label="Zavolejte nám">+420 732 596 212</a></li>
-            <li><a href="mailto:info@lagoon-masaze.cz" class="footer__link" aria-label="Napište nám e-mail">info@lagoon-masaze.cz</a></li>
-            <li class="footer__social">
-              <a href="https://www.instagram.com/lagoon_masaze" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Lagoon Masáže na Instagramu">
-                <Instagram size={18} />
-              </a>
-              <a href="https://www.facebook.com/p/Lagoon-Mas%C3%A1%C5%BEe-61553022234305/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Lagoon Masáže na Facebooku">
-                <Facebook size={18} />
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer__bottom">
-        <p class="footer__copy">&copy; <span id="footer-year"></span> Lagoon Masáže. Všechna práva vyhrazena.</p>
-        <div class="footer__bottom-links">
-          <a href="/zasady-ochrany-soukromi" class="footer__cookie-btn">Zásady ochrany soukromí</a>
-          <span class="footer__bottom-sep" aria-hidden="true">·</span>
-          <button id="footer-cookie-settings" class="footer__cookie-btn" aria-label="Změnit nastavení cookies">Nastavení cookies</button>
-        </div>
-        <p class="footer__credits">
-          Realizováno <a href="https://webresent.cz" target="_blank" rel="noopener noreferrer" class="footer__webresent">Webresent</a>
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo" aria-label="Zpět na hlavní stranu">
+          <img src="/logo.png" alt="" width="160" height="89" loading="lazy" />
+        </a>
+        <p class="footer__tagline">Masážní studio · Mladá Boleslav</p>
+        <p class="footer__legal">
+          IČ: 193 25 240<br/>
+          Společnost je zapsaná u Městského soudu v Praze pod spisovou značkou C 384783
         </p>
       </div>
 
+      <nav class="footer__links-col" aria-label="Patičková navigace">
+        <div class="footer__col-eyebrow">
+          <span class="footer__col-rule" aria-hidden="true"></span>
+          <p class="footer__col-label">Menu</p>
+        </div>
+        <ul class="footer__list">
+          <li><a href={`${p}#typy-masazi`} class="footer__link">Typy masáží</a></li>
+          <li><a href={`${p}#darkovy-poukaz`} class="footer__link">Dárkové poukazy</a></li>
+          <li><a href={`${p}#nas-tym`} class="footer__link">Naše masérky</a></li>
+          <li><a href="/jak-to-funguje" class="footer__link">Jak to funguje</a></li>
+          <li><a href={`${p}#recenze`} class="footer__link">Recenze</a></li>
+          <li><a href={`${p}#kontakt`} class="footer__link">Kde nás najdete</a></li>
+          <li><a href="/rezervace" class="footer__link footer__link--gold">Rezervovat termín</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__contact-col">
+        <div class="footer__col-eyebrow">
+          <span class="footer__col-rule" aria-hidden="true"></span>
+          <p class="footer__col-label">Kontakt</p>
+        </div>
+        <ul class="footer__list">
+          <li class="footer__text">Staroměstské náměstí 19/23<br/>Mladá Boleslav 293 01</li>
+          <li><a href="tel:+420732596212" class="footer__link" aria-label="Zavolejte nám">+420 732 596 212</a></li>
+          <li><a href="mailto:info@lagoon-masaze.cz" class="footer__link" aria-label="Napište nám e-mail">info@lagoon-masaze.cz</a></li>
+          <li class="footer__social">
+            <a href="https://www.instagram.com/lagoon_masaze" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Lagoon Masáže na Instagramu">
+              <Instagram size={18} />
+            </a>
+            <a href="https://www.facebook.com/p/Lagoon-Mas%C3%A1%C5%BEe-61553022234305/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Lagoon Masáže na Facebooku">
+              <Facebook size={18} />
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; <span id="footer-year"></span> Lagoon Masáže. Všechna práva vyhrazena.</p>
+      <div class="footer__bottom-links">
+        <a href="/zasady-ochrany-soukromi" class="footer__cookie-btn">Zásady ochrany soukromí</a>
+        <span class="footer__bottom-sep" aria-hidden="true">·</span>
+        <button id="footer-cookie-settings" class="footer__cookie-btn" aria-label="Změnit nastavení cookies">Nastavení cookies</button>
+      </div>
+      <p class="footer__credits">
+        Realizováno <a href="https://webresent.cz" target="_blank" rel="noopener noreferrer" class="footer__webresent">Webresent</a>
+      </p>
+    </div>
+
   </div>
 </footer>
 
 <style>
   .footer {
     background: var(--color-brown);
-    padding: clamp(4rem, 8vw, 6rem) 0 2rem;
     color: #ffffff;
     overflow: hidden;
   }
 
+  /* ── Container ── */
   .footer__container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 clamp(1.25rem, 4vw, 3.5rem);
+    padding: clamp(3rem, 6vw, 5rem) clamp(1.25rem, 4vw, 3.5rem) 2rem;
   }
 
   .footer__top {
@@ -95,50 +100,77 @@ const p = isHome ? '' : '/';
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
     }
-    .footer__brand {
-      grid-column: 1 / -1;
-    }
+    .footer__brand { grid-column: 1 / -1; }
   }
 
   @media (min-width: 900px) {
     .footer__top {
       grid-template-columns: 2fr 1fr 1.5fr;
-      gap: 2rem;
+      gap: 3rem;
     }
   }
 
+  /* ── Brand ── */
   .footer__logo {
     display: inline-block;
-    margin-bottom: 1.5rem;
-    transition: opacity 0.3s ease;
+    margin-bottom: 1.25rem;
+    transition: opacity 0.25s ease;
   }
 
   @media (hover: hover) {
-    .footer__logo:hover { opacity: 0.8; }
+    .footer__logo:hover { opacity: 0.75; }
   }
 
   .footer__logo img {
     display: block;
-    width: clamp(130px, 15vw, 180px);
+    width: clamp(120px, 14vw, 155px);
+  }
+
+  .footer__tagline {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 1.25rem;
   }
 
   .footer__legal {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.5);
-    max-width: 40ch;
+    color: rgba(255, 255, 255, 0.25);
+    max-width: 38ch;
   }
 
-  .footer__heading {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    font-weight: 400;
-    font-style: normal;
+  /* ── Column headings ── */
+  .footer__col-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer__col-rule {
+    display: block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--color-gold);
+    flex-shrink: 0;
+    opacity: 0.65;
+  }
+
+  .footer__col-label {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
     color: var(--color-gold);
-    margin-bottom: 1.25rem;
   }
 
+  /* ── Links ── */
   .footer__list {
     list-style: none;
     display: flex;
@@ -148,34 +180,32 @@ const p = isHome ? '' : '/';
 
   .footer__text {
     font-family: var(--font-body);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.5);
   }
 
   .footer__link {
     font-family: var(--font-body);
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.25s ease;
   }
 
-  .footer__link--gold {
-    color: var(--color-gold);
-    font-weight: 500;
-  }
+  .footer__link--gold { color: var(--color-gold); }
 
   @media (hover: hover) {
     .footer__link:hover { color: #ffffff; }
     .footer__link--gold:hover { color: #ffffff; }
   }
 
+  /* ── Social ── */
   .footer__social {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-top: 0.25rem;
+    gap: 0.65rem;
+    margin-top: 0.5rem;
   }
 
   .footer__social-link {
@@ -185,9 +215,9 @@ const p = isHome ? '' : '/';
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.5);
-    transition: border-color 0.3s ease, color 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.4);
+    transition: border-color 0.25s ease, color 0.25s ease;
   }
 
   @media (hover: hover) {
@@ -197,17 +227,18 @@ const p = isHome ? '' : '/';
     }
   }
 
+  /* ── Bottom bar ── */
   .footer__bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    padding-top: 1.75rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.875rem;
     align-items: center;
     text-align: center;
     font-family: var(--font-body);
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.28);
   }
 
   @media (min-width: 600px) {
@@ -215,6 +246,7 @@ const p = isHome ? '' : '/';
       flex-direction: row;
       justify-content: space-between;
       text-align: left;
+      gap: 0;
     }
   }
 
@@ -233,21 +265,18 @@ const p = isHome ? '' : '/';
     }
   }
 
-  .footer__bottom-sep {
-    color: rgba(255, 255, 255, 0.2);
-    font-size: 1rem;
-  }
+  .footer__bottom-sep { color: rgba(255, 255, 255, 0.15); }
 
   .footer__cookie-btn {
     font-family: var(--font-body);
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.28);
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.25s ease;
     white-space: nowrap;
   }
 
@@ -255,26 +284,25 @@ const p = isHome ? '' : '/';
     .footer__cookie-btn:hover { color: var(--color-gold); }
   }
 
-  .footer__credits {
-    white-space: nowrap;
-  }
+  .footer__credits { white-space: nowrap; }
 
   .footer__webresent {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.35);
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    transition: color 0.25s ease;
   }
 
   @media (hover: hover) {
     .footer__webresent:hover { color: var(--color-gold); }
   }
 
+  /* ── Scroll animace ── */
   .scroll-animate {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
   .scroll-animate.is-visible {
     opacity: 1;
     transform: translateY(0);
@@ -285,6 +313,7 @@ const p = isHome ? '' : '/';
     .footer__logo,
     .footer__webresent,
     .footer__cookie-btn,
+    .footer__social-link,
     .scroll-animate {
       transition: none !important;
       transform: none !important;

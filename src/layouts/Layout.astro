@@ -10,7 +10,7 @@ interface Props {
   forceScrolledNavbar?: boolean;
 }
 
-const { title, description, image = '/og-image.webp', noindex = false, forceScrolledNavbar = false } = Astro.props; 
+const { title, description, image = '/og-image.webp', noindex = false, forceScrolledNavbar = false } = Astro.props;
 import '../styles/global.css';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lagoon-masaze.cz');
@@ -124,30 +124,39 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://www.lago
     </main>
     
     <script is:inline>
+      var _plDone = false;
+
       function hidePreloader() {
-        var preloader = document.getElementById('preloader');
+        if (_plDone) return;
+        _plDone = true;
+        var el   = document.getElementById('preloader');
         var body = document.body;
-        if (preloader) {
-          preloader.classList.add('is-hidden');
-          body.classList.remove('is-loading');
-          setTimeout(function() { preloader.remove(); }, 600);
-        }
+        if (!el) return;
+        el.classList.add('is-hidden');
+        body.classList.remove('is-loading');
+        setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 700);
       }
 
+      // Index: čeká na video event z Hero
       window.addEventListener('lagoon:video-ready', hidePreloader, { once: true });
 
-      // Fallback pro stránky bez Hero videa — zkontroluj hned i po načtení
-      if (!document.getElementById('heroBg')) {
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', hidePreloader);
-        } else {
-          hidePreloader();
-        }
-      }
+      // Ostatní stránky: window.load = všechny zdroje načteny
+      window.addEventListener('load', function () { setTimeout(hidePreloader, 80); }, { once: true });
+
+      // Absolutní pojistka 6 s
+      setTimeout(hidePreloader, 6000);
     </script>
 
     <script>
       function initScrollAnimations() {
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const lowMemory = (navigator as any).deviceMemory !== undefined && (navigator as any).deviceMemory <= 1;
+
+        if (prefersReduced || lowMemory) {
+          document.querySelectorAll('.scroll-animate').forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+
         const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {

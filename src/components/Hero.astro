@@ -30,7 +30,7 @@
           target="_blank"
           rel="noopener noreferrer"
           class="hero__reviews"
-          aria-label="Hodnocení 4,9 hvězdy od více než 280 zákazníků na Google Maps"
+          aria-label="4,9 · 280+ recenzí – Google Maps hodnocení Lagoon Masáže"
         >
           <span class="hero__reviews-stars" aria-hidden="true">★★★★★</span>
           <span class="hero__reviews-divider" aria-hidden="true"></span>
@@ -40,6 +40,7 @@
 
     </div>
   </div>
+
 
   <div class="hero__wave" aria-hidden="true">
     <svg viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -78,16 +79,22 @@
     display: block;
     background-color: var(--color-brown, #4a403a);
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity 1.2s ease;
   }
 
   .hero__bg.is-loaded { opacity: 1; }
 
-  /* ── Overlay ── */
+  /* ── Overlay — cinematic gradient ── */
   .hero__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.42);
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.08) 0%,
+        rgba(0, 0, 0, 0.3) 55%,
+        rgba(18, 10, 6, 0.68) 100%
+      );
     z-index: 1;
   }
 
@@ -98,56 +105,64 @@
     width: 100%;
     max-width: 1200px;
     margin-inline: auto;
-    padding: 0 1.25rem;
+    padding: 0 clamp(1.5rem, 5vw, 3.5rem);
     padding-top: clamp(5rem, 12vw, 8rem);
-    padding-bottom: clamp(3rem, 6vw, 5rem);
+    padding-bottom: clamp(5rem, 8vw, 7rem);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
   }
 
+  @media (min-width: 900px) {
+    .hero__container {
+      align-items: center;
+      text-align: center;
+      padding-inline: clamp(1.5rem, 4vw, 3.5rem);
+    }
+  }
+
   .hero__content {
-    max-width: 680px;
+    max-width: 700px;
   }
 
   /* ── H1 label ── */
   .hero__h1 {
     font-family: var(--font-body);
-    font-size: var(--text-sm);
-    font-weight: 500;
+    font-size: 0.75rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.2em;
     color: var(--color-gold);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
     opacity: 0;
-    animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    animation: heroFade 0.9s ease 0.2s forwards;
   }
 
   /* ── Display nadpis ── */
   .hero__display {
     font-family: var(--font-display);
-    font-size: clamp(2.8rem, 8vw, 5rem);
-    font-weight: 300;
+    font-size: clamp(3rem, 8.5vw, 5.5rem);
+    font-weight: 200;
     font-style: normal;
     line-height: 1.0;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
     color: #ffffff;
-    margin: 0 0 1.25rem;
+    margin: 0 0 1.5rem;
     opacity: 0;
-    animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+    animation: heroFade 1s ease 0.45s forwards;
   }
 
   /* ── Podtext ── */
   .hero__text {
     font-family: var(--font-body);
-    font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
     font-weight: 300;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.65);
-    margin: 0 0 2.5rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 0 2.75rem;
     opacity: 0;
-    animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    animation: heroFade 1s ease 0.7s forwards;
   }
 
   .hero__text-br { display: none; }
@@ -160,16 +175,25 @@
     align-items: flex-start;
     gap: 1rem;
     opacity: 0;
-    animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+    animation: heroFade 1s ease 0.95s forwards;
+  }
+
+  @media (min-width: 900px) {
+    .hero__actions {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+    }
   }
 
   /* ── Tlačítko ── */
   .hero__btn-primary {
     font-family: var(--font-display);
-    font-size: clamp(1rem, 1.4vw, 1.35rem);
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
     font-weight: 400;
     font-style: normal;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
     text-decoration: none;
     color: #ffffff;
     background: var(--color-btn);
@@ -206,29 +230,10 @@
     .hero__reviews:hover { background: rgba(255, 255, 255, 0.1); }
   }
 
-  .hero__reviews-stars { font-size: 0.72rem; color: var(--color-gold); letter-spacing: 0.06em; line-height: 1; }
-  .hero__reviews-divider { width: 1px; height: 0.85rem; background: rgba(255, 255, 255, 0.18); flex-shrink: 0; }
-  .hero__reviews-text { font-family: var(--font-body); font-size: 0.78rem; color: rgba(255, 255, 255, 0.55); white-space: nowrap; }
+  .hero__reviews-stars   { font-size: 0.7rem; color: var(--color-gold); letter-spacing: 0.06em; line-height: 1; }
+  .hero__reviews-divider { width: 1px; height: 0.85rem; background: rgba(255, 255, 255, 0.15); flex-shrink: 0; }
+  .hero__reviews-text    { font-family: var(--font-body); font-size: 0.78rem; color: rgba(255, 255, 255, 0.5); white-space: nowrap; }
   .hero__reviews-text strong { color: #fff; font-weight: 600; }
-
-  /* ── Desktop: obsah na střed ── */
-  @media (min-width: 900px) {
-    .hero__container {
-      align-items: center;
-      text-align: center;
-      padding-inline: clamp(1.25rem, 4vw, 3.5rem);
-      padding-top: clamp(5rem, 10vw, 8rem);
-    }
-    .hero__content { max-width: 780px; text-align: center; }
-    .hero__h1 { text-align: center; }
-    .hero__text { margin-inline: auto; }
-    .hero__actions { justify-content: center; flex-direction: column; align-items: center; gap: 1rem; }
-  }
-
-  @keyframes heroFadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
 
   /* ── Wave přechod ── */
   .hero__wave {
@@ -246,36 +251,88 @@
     height: clamp(40px, 6vw, 80px);
   }
 
-  /* ── Mobil: všechny mobily (≤ 899px) ── */
+  /* ── Scroll indicator ── */
+  .hero__indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    width: 1px;
+    height: 56px;
+    opacity: 0;
+    animation: heroFade 1s ease 1.5s forwards;
+  }
+
+  .hero__indicator-line {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.12);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero__indicator-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 45%;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.65));
+    animation: indicatorFlow 2.8s ease-in-out 2.2s infinite;
+  }
+
+  @keyframes heroFade {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes indicatorFlow {
+    0%   { transform: translateY(-100%); opacity: 0; }
+    20%  { opacity: 1; }
+    100% { transform: translateY(280%); opacity: 0; }
+  }
+
+  /* ── Mobil (≤ 899px) ── */
   @media (max-width: 899px) {
     .hero__display {
-      font-size: clamp(2.4rem, 7.5vw, 2.8rem);
+      font-size: clamp(2.6rem, 8vw, 3.2rem);
     }
     .hero__container {
       padding-top: clamp(3.5rem, 10vw, 5rem);
     }
     .hero__btn-primary {
-      font-size: 1.15rem;
-      padding: 0.7rem 2.25rem;
+      font-size: 1.05rem;
+      padding: 0.8rem 2.25rem;
     }
     .hero__text {
-      margin-bottom: 3.75rem;
+      margin-bottom: 3rem;
     }
-    .hero__actions {
-      margin-top: -0.25rem;
-      margin-bottom: 2rem;
+    .hero__indicator {
+      display: none;
     }
   }
 
   /* ── Reduced motion ── */
   @media (prefers-reduced-motion: reduce) {
     .hero__bg,
-    .hero__h1, .hero__display, .hero__text, .hero__actions {
+    .hero__h1,
+    .hero__display,
+    .hero__text,
+    .hero__actions,
+    .hero__indicator {
       animation: none !important;
       opacity: 1 !important;
       transform: none !important;
     }
-    .hero__btn-primary, .hero__reviews { transition: none !important; }
+    .hero__indicator-line::after {
+      animation: none !important;
+    }
+    .hero__btn-primary,
+    .hero__reviews {
+      transition: none !important;
+    }
   }
 </style>
 
@@ -299,11 +356,6 @@
       return;
     }
 
-    const source = video.querySelector('source[data-src]') as HTMLSourceElement;
-    if (!source) return;
-
-    source.src = source.dataset.src || '';
-    // načti i MP4 fallback
     const sources = video.querySelectorAll('source[data-src]') as NodeListOf<HTMLSourceElement>;
     sources.forEach(s => { s.src = s.dataset.src || ''; });
     video.load();
@@ -315,8 +367,6 @@
     };
 
     video.addEventListener('canplay', ready, { once: true });
-
-    // fallback — max 4s čekání
     setTimeout(() => window.dispatchEvent(new Event('lagoon:video-ready')), 4000);
 
     document.addEventListener('visibilitychange', () => {

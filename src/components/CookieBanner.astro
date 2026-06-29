@@ -1,7 +1,7 @@
 ---
 ---
 
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Nastavení cookies" aria-live="polite">
+<div id="cookie-banner" class="cookie-banner is-hidden" role="dialog" aria-label="Nastavení cookies">
   <div class="cookie-banner__inner">
     <div class="cookie-banner__text">
       <p class="cookie-banner__title">Tento web používá cookies</p>
@@ -35,8 +35,8 @@
         <span class="cookie-modal__item-name">Mapové služby (Google Maps)</span>
         <span class="cookie-modal__item-desc">Umožňují zobrazení interaktivní mapy s polohou studia.</span>
       </div>
-      <label class="cookie-modal__toggle" aria-label="Povolit mapové služby">
-        <input type="checkbox" id="cookie-maps" />
+      <label class="cookie-modal__toggle">
+        <input type="checkbox" id="cookie-maps" aria-label="Povolit mapové služby" />
         <span class="cookie-modal__toggle-track"></span>
       </label>
     </div>
@@ -274,7 +274,7 @@
   .cookie-modal__item-desc {
     font-family: var(--font-body);
     font-size: 0.8rem;
-    color: rgba(74,64,58,0.55);
+    color: rgba(74,64,58,0.75);
     line-height: 1.5;
     max-width: 30ch;
   }
@@ -427,7 +427,6 @@
   function init() {
     var consent = getConsent();
     if (consent !== null) {
-      hideBanner();
       applyConsent(consent.maps);
       return;
     }
